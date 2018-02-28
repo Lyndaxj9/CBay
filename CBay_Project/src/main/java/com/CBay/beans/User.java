@@ -81,6 +81,10 @@ public class User {
 		Email = email;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}
