@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,7 +26,7 @@ public class UserApi {
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getAllEmps(){
+	public List<User> getAllUsers(){
 		return new ArrayList<User>();
 	}
 	
@@ -33,7 +34,7 @@ public class UserApi {
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getEmployeeIndex(@PathParam("id") int id){
+	public User getUserIndex(@PathParam("id") int id){
 		return new User();
 	}
 	
@@ -43,7 +44,18 @@ public class UserApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertEmployee(User emp){
+	public String insertUser(User emp){
+		return "success";
+	}
+	
+	//-- delete a particular user via id.
+	//-- if the user exist the return success
+	//-- else just return error.
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/delete/{id}")
+	public String deleteUser(@PathParam("id") int id){
 		return "success";
 	}
 }
