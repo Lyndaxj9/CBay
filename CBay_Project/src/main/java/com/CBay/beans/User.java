@@ -46,9 +46,8 @@ public class User {
 	@Column
 	private String Description;
 
-<<<<<<< HEAD
 	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,
-			String email, Integer rating, String description) {
+			String email, Set<Rating> rating, String description) {
 		super();
 		ID = iD;
 		FirstName = firstName;
@@ -57,12 +56,12 @@ public class User {
 		UserName = userName;
 		Password = password;
 		Email = email;
-		Rating = rating;
+		this.rating = rating;
 		Description = description;
 	}
 
 	public User(String firstName, String lastName, String type, String userName, String password, String email,
-			Integer rating, String description) {
+			Set<Rating> rating, String description) {
 		super();
 		FirstName = firstName;
 		LastName = lastName;
@@ -70,7 +69,7 @@ public class User {
 		UserName = userName;
 		Password = password;
 		Email = email;
-		Rating = rating;
+		this.rating = rating;
 		Description = description;
 	}
 
@@ -146,12 +145,12 @@ public class User {
 		Email = email;
 	}
 
-	public Integer getRating() {
-		return Rating;
+	public Set<Rating> getRating() {
+		return rating;
 	}
 
-	public void setRating(Integer rating) {
-		Rating = rating;
+	public void setRating(Set<Rating> rating) {
+		this.rating = rating;
 	}
 
 	public String getDescription() {
@@ -161,9 +160,6 @@ public class User {
 	public void setDescription(String description) {
 		Description = description;
 	}
-=======
-	
->>>>>>> a11d31ec33fc031057446df69940ede8b7548132
 	
 	
 }
