@@ -66,6 +66,10 @@ public class Message {
 		Subject = subject;
 	}
 
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}
