@@ -1,11 +1,15 @@
 package com.CBay.beans;
 
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,12 +40,13 @@ public class User {
 	@Column(unique = true)
 	private String Email;
 	
-	@Column
-	private Integer Rating;
+	@OneToMany(mappedBy="NumRating", fetch=FetchType.EAGER)
+	private Set<Rating> rating;
 	
 	@Column
 	private String Description;
 
+<<<<<<< HEAD
 	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,
 			String email, Integer rating, String description) {
 		super();
@@ -156,6 +161,9 @@ public class User {
 	public void setDescription(String description) {
 		Description = description;
 	}
+=======
+	
+>>>>>>> a11d31ec33fc031057446df69940ede8b7548132
 	
 	
 }

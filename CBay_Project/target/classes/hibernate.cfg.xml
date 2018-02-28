@@ -13,15 +13,15 @@
 		</property>
 		
 		<property name="hibernate.connection.url">
-			jdbc:oracle:thin:@localhost:1521:xe
+			jdbc:oracle:thin:@dbcbay.cwjnalc45cde.us-west-2.rds.amazonaws.com:1521:orcl
 		</property>
 		
 		<property name="hibernate.connection.username">
-			CBay
+			cbayconnect
 		</property>
 		
 		<property name="hibernate.connection.password">
-			CBay
+			cbayconnectpassword
 		</property>
 		
 		<property name="hibernate.connection.pool_size">
@@ -37,7 +37,13 @@
 		</property>
 		
 		
-		
+		<!-- <mapping resource="cbay.hbm.xml"/> -->
+		<mapping class="com.CBay.beans.Item"/>
+		<mapping class="com.CBay.beans.User"/>
+		<mapping class="com.CBay.beans.Order"/>
+		<mapping class="com.CBay.beans.Rating"/>
+		<mapping class="com.CBay.beans.Message"/>
+		<mapping class="com.CBay.beans.Image"/>
 		
 		
 		

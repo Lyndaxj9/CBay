@@ -1,14 +1,19 @@
 package com.CBay.beans;
 
-import java.sql.Blob;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 
 @Entity
@@ -22,48 +27,72 @@ public class Item {
 	@GeneratedValue(generator="ITEM_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
-	@Column
-	private Integer SellerID;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="UserID")
+	private User user;
 	
 	@Column
 	private String Name;
 	
 	@Column
 	private String Description;
-	
+	 
 	@Column
-	private Blob Image;
+	private Integer Price;
 	
-	@Column
-	private String Email;
+	@OneToMany(mappedBy="ImageID", fetch=FetchType.EAGER)
+	private Set<Image> image;
 	
-	@Column
-	private Integer RatingAvg;
+	
+	@OneToMany(mappedBy="NumRating", fetch=FetchType.EAGER)
+	private Set<Rating> RatingAvg;
+	
+	@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
+	private Set<Rating> RatingText;
 
-	public Item(Integer iD, Integer sellerID, String name, String description, Blob image, String email,
-			Integer ratingAvg) {
+	
+	public Item(Integer iD, User user, String name, String description, Set<Image> image, Integer price,
+			Set<Rating> ratingAvg, Set<Rating> ratingText) {
 		super();
 		ID = iD;
-		SellerID = sellerID;
+		this.user = user;
 		Name = name;
 		Description = description;
-		Image = image;
-		Email = email;
+		this.image = image;
+		Price = price;
 		RatingAvg = ratingAvg;
+		RatingText = ratingText;
+	}
+
+	public Item(User user, String name, String description, Set<Image> image, Integer price, Set<Rating> ratingAvg,
+			Set<Rating> ratingText) {
+		super();
+		this.user = user;
+		Name = name;
+		Description = description;
+		this.image = image;
+		Price = price;
+		RatingAvg = ratingAvg;
+		RatingText = ratingText;
+	}
+
+	public Item(User user, String name, String description, Set<Image> image, Integer price) {
+		super();
+		this.user = user;
+		Name = name;
+		Description = description;
+		this.image = image;
+		Price = price;
 	}
 	
+	
 
-	public Item(Integer sellerID, String name, String description, Blob image, String email, Integer ratingAvg) {
+	public Item(String name, String description, Integer price) {
 		super();
-		SellerID = sellerID;
 		Name = name;
 		Description = description;
-		Image = image;
-		Email = email;
-		RatingAvg = ratingAvg;
+		Price = price;
 	}
-
-
 
 	public Integer getID() {
 		return ID;
@@ -73,12 +102,12 @@ public class Item {
 		ID = iD;
 	}
 
-	public Integer getSellerID() {
-		return SellerID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setSellerID(Integer sellerID) {
-		SellerID = sellerID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getName() {
@@ -97,29 +126,33 @@ public class Item {
 		Description = description;
 	}
 
-	public Blob getPicture() {
-		return Image;
+	public Set<Image> getImage() {
+		return image;
 	}
 
-	public void setPicture(Blob image) {
-		Image = image;
+	public void setImage(Set<Image> image) {
+		this.image = image;
 	}
 
-	public String getEmail() {
-		return Email;
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-	}
-
-	public Integer getRatingAvg() {
+	
+	public Set<Rating> getRatingAvg() {
 		return RatingAvg;
 	}
 
-	public void setRatingAvg(Integer ratingAvg) {
+	public void setRatingAvg(Set<Rating> ratingAvg) {
 		RatingAvg = ratingAvg;
 	}
+
+	public Set<Rating> getRatingText() {
+		return RatingText;
+	}
+
+	public void setRatingText(Set<Rating> ratingText) {
+		RatingText = ratingText;
+	}
+
+	
+	
 	
 	
 	

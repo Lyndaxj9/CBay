@@ -2,13 +2,18 @@ package com.CBay.beans;
 
 import java.sql.Blob;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="IMAGE")
@@ -20,33 +25,30 @@ public class Image {
 	@GeneratedValue(generator="IMAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
-	@Column
-	private Integer ItemID;
-	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="ItemID")
+	private Item item;
 	
 	@Column
 	private Blob Image;
 	
 	@Column
 	private String FileName;
-	
-	
-	public Image(Integer iD, Integer itemID, Blob image, String fileName) {
+
+	public Image(Integer iD, Item item, Blob image, String fileName) {
 		super();
 		ID = iD;
-		ItemID = itemID;
+		this.item = item;
 		Image = image;
 		FileName = fileName;
 	}
 
-	public Image(Integer itemID, Blob image, String fileName) {
+	public Image(Item item, Blob image, String fileName) {
 		super();
-		ItemID = itemID;
+		this.item = item;
 		Image = image;
 		FileName = fileName;
 	}
-
-
 
 	public Integer getID() {
 		return ID;
@@ -56,12 +58,12 @@ public class Image {
 		ID = iD;
 	}
 
-	public Integer getItemID() {
-		return ItemID;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItemID(Integer itemID) {
-		ItemID = itemID;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public Blob getImage() {
