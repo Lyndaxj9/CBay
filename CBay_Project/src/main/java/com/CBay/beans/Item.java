@@ -94,6 +94,10 @@ public class Item {
 		Price = price;
 	}
 
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}
