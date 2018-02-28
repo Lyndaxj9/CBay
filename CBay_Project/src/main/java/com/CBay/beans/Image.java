@@ -50,6 +50,10 @@ public class Image {
 		FileName = fileName;
 	}
 
+	public Image() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}

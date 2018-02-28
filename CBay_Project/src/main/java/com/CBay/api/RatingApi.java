@@ -12,34 +12,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.CBay.beans.User;
+import com.CBay.beans.Rating;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
 //-- the database.
 //-- example :
-//-- http://34.217.96.20:8089/CBay/rest/user
-@Path("/user")
-public class UserApi {
+//-- http://34.217.96.20:8089/CBay/rest/rating
+@Path("/rating")
+public class RatingApi {
 
-	//-- this will return all the users in the database.
+	//-- this will return all the rating in the database.
 	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/user/get/all
+	//-- http://34.217.96.20:8089/CBay/rest/rating/get/all
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getAllUsers(){
-		return new ArrayList<User>();
+	public List<Rating> getAllRatings(){
+		return new ArrayList<Rating>();
 	}
 	
-	//-- get one user from the database via id.
+	//-- get one rating from the database via id.
 	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/user/get/{id}
+	//-- http://34.217.96.20:8089/CBay/rest/rating/get/{id}
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserIndex(@PathParam("id") int id){
-		return new User();
+	public Rating getRatingIndex(@PathParam("id") int id){
+		return new Rating();
 	}
 	
 	//-- insert and if successful return success
@@ -48,7 +48,7 @@ public class UserApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertUser(User user){
+	public String insertRating(Rating rating){
 		return "success";
 	}
 	
@@ -56,12 +56,12 @@ public class UserApi {
 	//-- if the user exist the return success
 	//-- else just return error.
 	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/user/delete/{id}
+	//-- http://34.217.96.20:8089/CBay/rest/rating/delete/{id}
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
-	public String deleteUser(@PathParam("id") int id){
+	public String deleteRating(@PathParam("id") int id){
 		return "success";
 	}
 }

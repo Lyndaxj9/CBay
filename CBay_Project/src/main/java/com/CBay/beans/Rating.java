@@ -66,6 +66,10 @@ public class Rating {
 		TextRatingSeller = textRatingSeller;
 	}
 
+	public Rating() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}
