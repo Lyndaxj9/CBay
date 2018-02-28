@@ -1,10 +1,14 @@
 package com.CBay.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,36 +22,49 @@ public class Rating {
 	@GeneratedValue(generator="RATING_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
-	@Column
-	private Integer BuyerID;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="UserID")
+	private User user;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="ItemID")
+	private Item item;
 	
 	@Column
-	private Integer ItemID;
+	private Integer NumRatingItem;
 	
 	@Column
-	private Integer NumRating;
+	private String TextRatingItem;
 	
 	@Column
-	private String TextRating;
+	private Integer NumRatingSeller;
+	
+	@Column
+	private String TextRatingSeller;
 
-	public Rating(Integer iD, Integer buyerID, Integer itemID, Integer numRating, String textRating) {
+	public Rating(Integer iD, User user, Item item, Integer numRatingItem, String textRatingItem,
+			Integer numRatingSeller, String textRatingSeller) {
 		super();
 		ID = iD;
-		BuyerID = buyerID;
-		ItemID = itemID;
-		NumRating = numRating;
-		TextRating = textRating;
+		this.user = user;
+		this.item = item;
+		NumRatingItem = numRatingItem;
+		TextRatingItem = textRatingItem;
+		NumRatingSeller = numRatingSeller;
+		TextRatingSeller = textRatingSeller;
 	}
 
-	public Rating(Integer buyerID, Integer itemID, Integer numRating, String textRating) {
+	public Rating(User user, Item item, Integer numRatingItem, String textRatingItem, Integer numRatingSeller,
+			String textRatingSeller) {
 		super();
-		BuyerID = buyerID;
-		ItemID = itemID;
-		NumRating = numRating;
-		TextRating = textRating;
+		this.user = user;
+		this.item = item;
+		NumRatingItem = numRatingItem;
+		TextRatingItem = textRatingItem;
+		NumRatingSeller = numRatingSeller;
+		TextRatingSeller = textRatingSeller;
 	}
-
-
 
 	public Integer getID() {
 		return ID;
@@ -57,37 +74,54 @@ public class Rating {
 		ID = iD;
 	}
 
-	public Integer getBuyerID() {
-		return BuyerID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setBuyerID(Integer buyerID) {
-		BuyerID = buyerID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Integer getItemID() {
-		return ItemID;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItemID(Integer itemID) {
-		ItemID = itemID;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
-	public Integer getNumRating() {
-		return NumRating;
+	public Integer getNumRatingItem() {
+		return NumRatingItem;
 	}
 
-	public void setNumRating(Integer numRating) {
-		NumRating = numRating;
+	public void setNumRatingItem(Integer numRatingItem) {
+		NumRatingItem = numRatingItem;
 	}
 
-	public String getTextRating() {
-		return TextRating;
+	public String getTextRatingItem() {
+		return TextRatingItem;
 	}
 
-	public void setTextRating(String textRating) {
-		TextRating = textRating;
+	public void setTextRatingItem(String textRatingItem) {
+		TextRatingItem = textRatingItem;
 	}
 
+	public Integer getNumRatingSeller() {
+		return NumRatingSeller;
+	}
+
+	public void setNumRatingSeller(Integer numRatingSeller) {
+		NumRatingSeller = numRatingSeller;
+	}
+
+	public String getTextRatingSeller() {
+		return TextRatingSeller;
+	}
+
+	public void setTextRatingSeller(String textRatingSeller) {
+		TextRatingSeller = textRatingSeller;
+	}
+
+	
 	
 }

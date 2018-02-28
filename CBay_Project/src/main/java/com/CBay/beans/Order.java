@@ -1,11 +1,16 @@
 package com.CBay.beans;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,14 +26,17 @@ public class Order {
 	@GeneratedValue(generator="TRANS_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
-	@Column
+	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ")
+	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer OrderID;
 	
-	@Column
-	private Integer ItemID;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="ItemID")
+	private Item item;
 	
-	@Column
-	private Integer BuyerID;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="UserID")
+	private User user;
 	
 	@Column
 	private String Status;
@@ -36,26 +44,24 @@ public class Order {
 	@Column
 	private Integer Quantity;
 
-	public Order(Integer iD, Integer orderID, Integer itemID, Integer buyerID, String status, Integer quantity) {
+	public Order(Integer iD, Integer orderID, Item item, User user, String status, Integer quantity) {
 		super();
 		ID = iD;
 		OrderID = orderID;
-		ItemID = itemID;
-		BuyerID = buyerID;
+		this.item = item;
+		this.user = user;
 		Status = status;
 		Quantity = quantity;
 	}
 
-	
-	public Order(Integer orderID, Integer itemID, Integer buyerID, String status, Integer quantity) {
+	public Order(Integer orderID, Item item, User user, String status, Integer quantity) {
 		super();
 		OrderID = orderID;
-		ItemID = itemID;
-		BuyerID = buyerID;
+		this.item = item;
+		this.user = user;
 		Status = status;
 		Quantity = quantity;
 	}
-
 
 	public Integer getID() {
 		return ID;
@@ -73,20 +79,20 @@ public class Order {
 		OrderID = orderID;
 	}
 
-	public Integer getItemID() {
-		return ItemID;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setItemID(Integer itemID) {
-		ItemID = itemID;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
-	public Integer getBuyerID() {
-		return BuyerID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setBuyerID(Integer buyerID) {
-		BuyerID = buyerID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getStatus() {
@@ -105,5 +111,7 @@ public class Order {
 		Quantity = quantity;
 	}
 
+	
+	
 	
 }

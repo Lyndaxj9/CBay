@@ -1,10 +1,14 @@
 package com.CBay.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,17 +22,22 @@ public class Message {
 	@GeneratedValue(generator="MESSAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
+	
 	@Column
 	private Integer ThreadID;
 	
-	@Column
-	private Integer TransactionID;
 	
-	@Column
-	private Integer User1_ID;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="TransactionID")
+	private Order order;
 	
-	@Column
-	private Integer User2_ID;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="UserID")
+	private User user1;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="UserID")
+	private User user2;
 	
 	@Column
 	private String Message;
@@ -36,31 +45,26 @@ public class Message {
 	@Column
 	private String Subject;
 
-	public Message(Integer iD, Integer threadID, Integer transactionID, Integer user1_ID, Integer user2_ID,
-			String message, String subject) {
+	public Message(Integer iD, Integer threadID, Order order, User user1, User user2, String message, String subject) {
 		super();
 		ID = iD;
 		ThreadID = threadID;
-		TransactionID = transactionID;
-		User1_ID = user1_ID;
-		User2_ID = user2_ID;
+		this.order = order;
+		this.user1 = user1;
+		this.user2 = user2;
 		Message = message;
 		Subject = subject;
 	}
-	
 
-	public Message(Integer threadID, Integer transactionID, Integer user1_ID, Integer user2_ID, String message,
-			String subject) {
+	public Message(Integer threadID, Order order, User user1, User user2, String message, String subject) {
 		super();
 		ThreadID = threadID;
-		TransactionID = transactionID;
-		User1_ID = user1_ID;
-		User2_ID = user2_ID;
+		this.order = order;
+		this.user1 = user1;
+		this.user2 = user2;
 		Message = message;
 		Subject = subject;
 	}
-
-
 
 	public Integer getID() {
 		return ID;
@@ -78,28 +82,28 @@ public class Message {
 		ThreadID = threadID;
 	}
 
-	public Integer getTransactionID() {
-		return TransactionID;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setTransactionID(Integer transactionID) {
-		TransactionID = transactionID;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public Integer getUser1_ID() {
-		return User1_ID;
+	public User getUser1() {
+		return user1;
 	}
 
-	public void setUser1_ID(Integer user1_ID) {
-		User1_ID = user1_ID;
+	public void setUser1(User user1) {
+		this.user1 = user1;
 	}
 
-	public Integer getUser2_ID() {
-		return User2_ID;
+	public User getUser2() {
+		return user2;
 	}
 
-	public void setUser2_ID(Integer user2_ID) {
-		User2_ID = user2_ID;
+	public void setUser2(User user2) {
+		this.user2 = user2;
 	}
 
 	public String getMessage() {
@@ -117,6 +121,8 @@ public class Message {
 	public void setSubject(String subject) {
 		Subject = subject;
 	}
+
+	
 	
 
 }
