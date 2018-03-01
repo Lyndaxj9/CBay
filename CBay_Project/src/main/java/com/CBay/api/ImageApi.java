@@ -38,7 +38,7 @@ public class ImageApi {
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Image getRatingIndex(@PathParam("id") int id){
+	public Image getImageIndex(@PathParam("id") int id){
 		return new Image();
 	}
 	

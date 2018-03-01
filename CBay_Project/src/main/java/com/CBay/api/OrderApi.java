@@ -38,7 +38,7 @@ public class OrderApi {
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order getMessageIndex(@PathParam("id") int id){
+	public Order getOrderIndex(@PathParam("id") int id){
 		return new Order();
 	}
 	
@@ -48,7 +48,7 @@ public class OrderApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertMessage(Order message){
+	public String insertOrder(Order message){
 		return "success";
 	}
 	
