@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="ORDER")
+@Table(name="ORDERS")
 public class Order {
 
 	

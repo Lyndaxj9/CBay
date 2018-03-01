@@ -32,7 +32,7 @@ public class Item {
 	private User user;
 	
 	@Column
-	private String Name;
+	private String ItemName;
 	
 	@Column
 	private String Description;
@@ -40,48 +40,47 @@ public class Item {
 	@Column
 	private Integer Price;
 	
-	@OneToMany(mappedBy="ImageID", fetch=FetchType.EAGER)
-	private Set<Image> image;
+	// map this to the Image Table instead
+	/*@OneToMany(mappedBy="ImageID", fetch=FetchType.EAGER)
+	private Set<Image> Image;*/
 	
 	
-	@OneToMany(mappedBy="NumRating", fetch=FetchType.EAGER)
-	private Set<Rating> RatingAvg;
+	@Column
+	private Integer RatingAvg;
 	
-	@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
-	private Set<Rating> RatingText;
+	// map this to the Rating Table instead
+	/*@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
+	private Set<Rating> RatingText;*/
 
 	
 	public Item(Integer iD, User user, String name, String description, Set<Image> image, Integer price,
-			Set<Rating> ratingAvg, Set<Rating> ratingText) {
+			Integer ratingAvg) {
 		super();
 		ID = iD;
 		this.user = user;
-		Name = name;
+		ItemName = name;
 		Description = description;
-		this.image = image;
+		//this.image = image;
 		Price = price;
 		RatingAvg = ratingAvg;
-		RatingText = ratingText;
 	}
 
-	public Item(User user, String name, String description, Set<Image> image, Integer price, Set<Rating> ratingAvg,
-			Set<Rating> ratingText) {
+	public Item(User user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
 		super();
 		this.user = user;
-		Name = name;
+		ItemName = name;
 		Description = description;
-		this.image = image;
+		//this.image = image;
 		Price = price;
 		RatingAvg = ratingAvg;
-		RatingText = ratingText;
 	}
 
 	public Item(User user, String name, String description, Set<Image> image, Integer price) {
 		super();
 		this.user = user;
-		Name = name;
+		ItemName = name;
 		Description = description;
-		this.image = image;
+		//this.image = image;
 		Price = price;
 	}
 	
@@ -89,7 +88,7 @@ public class Item {
 
 	public Item(String name, String description, Integer price) {
 		super();
-		Name = name;
+		ItemName = name;
 		Description = description;
 		Price = price;
 	}
@@ -110,13 +109,7 @@ public class Item {
 		this.user = user;
 	}
 
-	public String getName() {
-		return Name;
-	}
-
-	public void setName(String name) {
-		Name = name;
-	}
+	
 
 	public String getDescription() {
 		return Description;
@@ -126,30 +119,30 @@ public class Item {
 		Description = description;
 	}
 
-	public Set<Image> getImage() {
+	/*public Set<Image> getImage() {
 		return image;
 	}
 
 	public void setImage(Set<Image> image) {
 		this.image = image;
-	}
+	}*/
 
-	
-	public Set<Rating> getRatingAvg() {
+
+	public Integer getRatingAvg() {
 		return RatingAvg;
 	}
 
-	public void setRatingAvg(Set<Rating> ratingAvg) {
+	public void setRatingAvg(Integer ratingAvg) {
 		RatingAvg = ratingAvg;
 	}
 
-	public Set<Rating> getRatingText() {
+	/*public Set<Rating> getRatingText() {
 		return RatingText;
 	}
 
 	public void setRatingText(Set<Rating> ratingText) {
 		RatingText = ratingText;
-	}
+	}*/
 
 	
 	

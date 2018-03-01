@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name="CLIENT")
 public class User {
 
 	@Id
@@ -30,21 +30,152 @@ public class User {
 	private String LastName;
 	
 	@Column
-	private String type;
+	private String UserType;
 	
 	@Column(unique = true)
 	private String UserName;
 	@Column
-	private String Password;
+	private String PW;
 	
 	@Column(unique = true)
 	private String Email;
 	
-	@OneToMany(mappedBy="NumRating", fetch=FetchType.EAGER)
-	private Set<Rating> rating;
+	
+	private Integer RatingAvg;
 	
 	@Column
 	private String Description;
+
+	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,
+			String email, Integer rating, String description) {
+		super();
+		ID = iD;
+		FirstName = firstName;
+		LastName = lastName;
+		UserType = type;
+		UserName = userName;
+		PW = password;
+		Email = email;
+		RatingAvg = rating;
+		Description = description;
+	}
+	
+	
+
+	public User(String firstName, String lastName, String type, String userName, String password, String email,
+			Integer rating, String description) {
+		super();
+		FirstName = firstName;
+		LastName = lastName;
+		UserType = type;
+		UserName = userName;
+		PW = password;
+		Email = email;
+		RatingAvg = rating;
+		Description = description;
+	}
+
+
+
+	public User(String firstName, String lastName, String type, String userName, String password, String email) {
+		super();
+		FirstName = firstName;
+		LastName = lastName;
+		UserType = type;
+		UserName = userName;
+		PW = password;
+		Email = email;
+	
+	}
+
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
+	public String getFirstName() {
+		return FirstName;
+	}
+
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+
+	public String getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+
+	
+
+	public String getUserName() {
+		return UserName;
+	}
+
+	public void setUserName(String userName) {
+		UserName = userName;
+	}
+
+	
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+
+
+	public String getUserType() {
+		return UserType;
+	}
+
+
+
+	public void setUserType(String userType) {
+		UserType = userType;
+	}
+
+
+
+	public String getPW() {
+		return PW;
+	}
+
+
+
+	public void setPW(String pW) {
+		PW = pW;
+	}
+
+
+
+	public Integer getRatingAvg() {
+		return RatingAvg;
+	}
+
+
+
+	public void setRatingAvg(Integer ratingAvg) {
+		RatingAvg = ratingAvg;
+	}
 
 	
 	

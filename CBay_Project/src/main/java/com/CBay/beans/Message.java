@@ -32,37 +32,37 @@ public class Message {
 	private Order order;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="UserID")
-	private User user1;
+	@JoinColumn(name="SenderID")
+	private User Sender;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="UserID")
-	private User user2;
+	@JoinColumn(name="ResponderID")
+	private User Responder;
 	
 	@Column
-	private String Message;
+	private String MessageContent;
 	
 	@Column
 	private String Subject;
 
-	public Message(Integer iD, Integer threadID, Order order, User user1, User user2, String message, String subject) {
+	public Message(Integer iD, Integer threadID, Order order, User sender, User responder, String message, String subject) {
 		super();
 		ID = iD;
 		ThreadID = threadID;
 		this.order = order;
-		this.user1 = user1;
-		this.user2 = user2;
-		Message = message;
+		Sender = sender;
+		Responder = responder;
+		MessageContent = message;
 		Subject = subject;
 	}
 
-	public Message(Integer threadID, Order order, User user1, User user2, String message, String subject) {
+	public Message(Integer threadID, Order order, User sender, User responder, String message, String subject) {
 		super();
 		ThreadID = threadID;
 		this.order = order;
-		this.user1 = user1;
-		this.user2 = user2;
-		Message = message;
+		Sender = sender;
+		Responder = responder;
+		MessageContent = message;
 		Subject = subject;
 	}
 
@@ -90,28 +90,28 @@ public class Message {
 		this.order = order;
 	}
 
-	public User getUser1() {
-		return user1;
+	public User getSender() {
+		return Sender;
 	}
 
-	public void setUser1(User user1) {
-		this.user1 = user1;
+	public void setSender(User sender) {
+		Sender = sender;
 	}
 
-	public User getUser2() {
-		return user2;
+	public User getResponder() {
+		return Responder;
 	}
 
-	public void setUser2(User user2) {
-		this.user2 = user2;
+	public void setResponder(User responder) {
+		Responder = responder;
 	}
 
-	public String getMessage() {
-		return Message;
+	public String getMessageContent() {
+		return MessageContent;
 	}
 
-	public void setMessage(String message) {
-		Message = message;
+	public void setMessageContent(String messageContent) {
+		MessageContent = messageContent;
 	}
 
 	public String getSubject() {

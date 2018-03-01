@@ -12,9 +12,8 @@ public class ItemDao {
 	public void insertItem(Item item){
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
-		//Integer item_id = null;
+		Integer item_id = null;
 		try{
-			//Open a transaction stream for our session.
 			tx = session.beginTransaction();
 			session.save(item);
 			tx.commit();

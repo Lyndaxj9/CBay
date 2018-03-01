@@ -37,33 +37,30 @@ public class Rating {
 	@Column
 	private String TextRatingItem;
 	
-	@Column
+	// SEE IF WE WILL NEED THESE COLUMNS 
+	/*@Column
 	private Integer NumRatingSeller;
 	
 	@Column
-	private String TextRatingSeller;
+	private String TextRatingSeller;*/
 
-	public Rating(Integer iD, User user, Item item, Integer numRatingItem, String textRatingItem,
-			Integer numRatingSeller, String textRatingSeller) {
+	public Rating(Integer iD, User user, Item item, Integer numRatingItem, String textRatingItem) {
 		super();
 		ID = iD;
 		this.user = user;
 		this.item = item;
 		NumRatingItem = numRatingItem;
 		TextRatingItem = textRatingItem;
-		NumRatingSeller = numRatingSeller;
-		TextRatingSeller = textRatingSeller;
+		
 	}
 
-	public Rating(User user, Item item, Integer numRatingItem, String textRatingItem, Integer numRatingSeller,
-			String textRatingSeller) {
+	public Rating(User user, Item item, Integer numRatingItem, String textRatingItem) {
 		super();
 		this.user = user;
 		this.item = item;
 		NumRatingItem = numRatingItem;
 		TextRatingItem = textRatingItem;
-		NumRatingSeller = numRatingSeller;
-		TextRatingSeller = textRatingSeller;
+		
 	}
 
 	public Integer getID() {
@@ -106,21 +103,7 @@ public class Rating {
 		TextRatingItem = textRatingItem;
 	}
 
-	public Integer getNumRatingSeller() {
-		return NumRatingSeller;
-	}
-
-	public void setNumRatingSeller(Integer numRatingSeller) {
-		NumRatingSeller = numRatingSeller;
-	}
-
-	public String getTextRatingSeller() {
-		return TextRatingSeller;
-	}
-
-	public void setTextRatingSeller(String textRatingSeller) {
-		TextRatingSeller = textRatingSeller;
-	}
+	
 
 	
 	
