@@ -42,6 +42,16 @@ public class UserApi {
 		return new User();
 	}
 	
+	//-- get one user from the database via username, password, type
+	//-- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
+	@GET
+	@Path("/get/{username}/{password}/{type}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUserIndex(@PathParam("username") String username, 
+			@PathParam("password")String password, @PathParam("type")String type){
+		return new User();
+	}
+	
 	//-- insert and if successful return success
 	//-- if it is not return unsuccessful.
 	@POST
