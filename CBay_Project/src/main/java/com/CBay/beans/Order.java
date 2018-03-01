@@ -63,6 +63,10 @@ public class Order {
 		Quantity = quantity;
 	}
 
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getID() {
 		return ID;
 	}
