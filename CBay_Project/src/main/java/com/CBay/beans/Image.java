@@ -23,7 +23,7 @@ public class Image {
 	@Column(name="ImageID")
 	@SequenceGenerator(sequenceName="IMAGE_ID_SEQ", name="IMAGE_ID_SEQ")
 	@GeneratedValue(generator="IMAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
@@ -35,9 +35,9 @@ public class Image {
 	@Column(name="FileName")
 	private String FileName;
 
-	public Image(Integer iD, Item item, Blob image, String fileName) {
+	public Image(Integer id, Item item, Blob image, String fileName) {
 		super();
-		ID = iD;
+		this.id = id;
 		this.item = item;
 		Image = image;
 		FileName = fileName;
@@ -54,12 +54,12 @@ public class Image {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
 	public Item getItem() {

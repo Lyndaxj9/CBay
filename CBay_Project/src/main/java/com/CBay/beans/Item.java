@@ -25,7 +25,7 @@ public class Item {
 	@Column(name="ItemID")
 	@SequenceGenerator(sequenceName="ITEM_ID_SEQ", name="ITEM_ID_SEQ")
 	@GeneratedValue(generator="ITEM_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="UserID")
@@ -53,10 +53,10 @@ public class Item {
 	private Set<Rating> RatingText;*/
 
 	
-	public Item(Integer iD, User user, String name, String description, Set<Image> image, Integer price,
+	public Item(Integer id, User user, String name, String description, Set<Image> image, Integer price,
 			Integer ratingAvg) {
 		super();
-		ID = iD;
+		this.id = id;
 		this.user = user;
 		ItemName = name;
 		Description = description;
@@ -97,12 +97,12 @@ public class Item {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
 	public User getUser() {

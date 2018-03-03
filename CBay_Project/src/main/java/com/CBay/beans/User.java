@@ -21,7 +21,7 @@ public class User {
 	@Column(name="UserID")
 	@SequenceGenerator(sequenceName="USER_ID_SEQ", name="USER_ID_SEQ")
 	@GeneratedValue(generator="USER_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
 	@Column(name="FirstName")
 	private String FirstName;
@@ -47,10 +47,10 @@ public class User {
 	@Column(name="Description")
 	private String Description;
 
-	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,
+	public User(Integer id, String firstName, String lastName, String type, String userName, String password,
 			String email, Integer rating, String description) {
 		super();
-		ID = iD;
+		this.id = id;
 		FirstName = firstName;
 		LastName = lastName;
 		UserType = type;
@@ -95,12 +95,12 @@ public class User {
 
 
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
