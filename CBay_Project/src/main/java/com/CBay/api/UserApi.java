@@ -49,7 +49,7 @@ public class UserApi {
 	@GET
 	@Path("/get/{username}/{password}/{type}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean loginUser(@PathParam("username") String username, 
+	public Integer loginUser(@PathParam("username") String username, 
 			@PathParam("password")String password, @PathParam("type")String type){
 		return UserService.LoginBuyer(username, password);
 	}
