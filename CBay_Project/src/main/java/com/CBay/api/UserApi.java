@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.User;
+import com.CBay.service.UserService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -21,6 +22,7 @@ import com.CBay.beans.User;
 //-- http://34.217.96.20:8089/CBay/rest/user
 @Path("/user")
 public class UserApi {
+
 
 	//-- this will return all the users in the database.
 	//-- past in below for testing.
@@ -40,6 +42,16 @@ public class UserApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUserIndex(@PathParam("id") int id){
 		return new User();
+	}
+	
+	//-- get one user from the database via username, password, type
+	//-- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
+	@GET
+	@Path("/get/{username}/{password}/{type}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public boolean loginUser(@PathParam("username") String username, 
+			@PathParam("password")String password, @PathParam("type")String type){
+		return UserService.LoginBuyer(username, password);
 	}
 	
 	//-- insert and if successful return success
