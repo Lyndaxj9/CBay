@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import oracle.sql.TIMESTAMP;
+
 @Entity
 @Table(name="MESSAGE")
 public class Message {
@@ -20,11 +22,12 @@ public class Message {
 	@Column(name="MessageID")
 	@SequenceGenerator(sequenceName="MESSAGE_ID_SEQ", name="MESSAGE_ID_SEQ")
 	@GeneratedValue(generator="MESSAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
 	
-	@Column
-	private Integer ThreadID;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="ThreadID")
+	private MessageThread ThreadID;
 	
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -39,50 +42,56 @@ public class Message {
 	@JoinColumn(name="ResponderID")
 	private User Responder;
 	
-	@Column
+	@Column(name="MessageContent")
 	private String MessageContent;
 	
-	@Column
+	@Column(name="Subject")
 	private String Subject;
 
-	public Message(Integer iD, Integer threadID, Order order, User sender, User responder, String message, String subject) {
+	@Column(name="MessageTimeStamp")
+	private TIMESTAMP MessageTimeStamp;
+
+	public Message(Integer id, MessageThread threadID, Order order, User sender, User responder, String messageContent,
+			String subject, TIMESTAMP messageTimeStamp) {
 		super();
-		ID = iD;
+		this.id = id;
 		ThreadID = threadID;
 		this.order = order;
 		Sender = sender;
 		Responder = responder;
-		MessageContent = message;
+		MessageContent = messageContent;
 		Subject = subject;
+		MessageTimeStamp = messageTimeStamp;
 	}
 
-	public Message(Integer threadID, Order order, User sender, User responder, String message, String subject) {
+	public Message(MessageThread threadID, Order order, User sender, User responder, String messageContent,
+			String subject) {
 		super();
 		ThreadID = threadID;
 		this.order = order;
 		Sender = sender;
 		Responder = responder;
-		MessageContent = message;
+		MessageContent = messageContent;
 		Subject = subject;
 	}
 
 	public Message() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getThreadID() {
+	public MessageThread getThreadID() {
 		return ThreadID;
 	}
 
-	public void setThreadID(Integer threadID) {
+	public void setThreadID(MessageThread threadID) {
 		ThreadID = threadID;
 	}
 
@@ -126,6 +135,14 @@ public class Message {
 		Subject = subject;
 	}
 
+	public TIMESTAMP getMessageTimeStamp() {
+		return MessageTimeStamp;
+	}
+
+	public void setMessageTimeStamp(TIMESTAMP messageTimeStamp) {
+		MessageTimeStamp = messageTimeStamp;
+	}
+	
 	
 	
 

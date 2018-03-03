@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import oracle.sql.TIMESTAMP;
+
 
 @Entity
 @Table(name="ORDERS")
@@ -21,66 +23,60 @@ public class Order {
 
 	
 	@Id
-	@Column(name="TransactionID")
-	@SequenceGenerator(sequenceName="TRANS_ID_SEQ", name="TRANS_ID_SEQ")
-	@GeneratedValue(generator="TRANS_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
-	
+	@Column(name="OrderID")
 	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ")
 	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer OrderID;
+	private Integer id;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
 	private Item item;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="UserID")
-	private User user;
+	@JoinColumn(name="BuyerID")
+	private User buyer;
 	
-	@Column
+	@Column(name="Status")
 	private String Status;
 	
-	@Column
-	private Integer Quantity;
+	@Column(name="TotalItems")
+	private Integer TotalItems;
+	
+	@Column(name="OrderTimeStamp")
+	private TIMESTAMP OrderTimeStamp;
 
-	public Order(Integer iD, Integer orderID, Item item, User user, String status, Integer quantity) {
+	public Order(Integer id, Item item, User buyer, String status, Integer totalItems, TIMESTAMP orderTimeStamp) {
 		super();
-		ID = iD;
-		OrderID = orderID;
+		this.id = id;
 		this.item = item;
-		this.user = user;
+		this.buyer = buyer;
 		Status = status;
-		Quantity = quantity;
+		TotalItems = totalItems;
+		OrderTimeStamp = orderTimeStamp;
+	}
+	
+	
+
+	public Order(Item item, User buyer, String status, Integer totalItems) {
+		super();
+		this.item = item;
+		this.buyer = buyer;
+		Status = status;
+		TotalItems = totalItems;
 	}
 
-	public Order(Integer orderID, Item item, User user, String status, Integer quantity) {
-		super();
-		OrderID = orderID;
-		this.item = item;
-		this.user = user;
-		Status = status;
-		Quantity = quantity;
-	}
+
 
 	public Order() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
-	}
-
-	public Integer getOrderID() {
-		return OrderID;
-	}
-
-	public void setOrderID(Integer orderID) {
-		OrderID = orderID;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Item getItem() {
@@ -91,12 +87,12 @@ public class Order {
 		this.item = item;
 	}
 
-	public User getUser() {
-		return user;
+	public User getBuyer() {
+		return buyer;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setBuyer(User buyer) {
+		this.buyer = buyer;
 	}
 
 	public String getStatus() {
@@ -107,15 +103,26 @@ public class Order {
 		Status = status;
 	}
 
-	public Integer getQuantity() {
-		return Quantity;
+	public Integer getTotalItems() {
+		return TotalItems;
 	}
 
-	public void setQuantity(Integer quantity) {
-		Quantity = quantity;
+	public void setTotalItems(Integer totalItems) {
+		TotalItems = totalItems;
 	}
 
-	
+
+
+	public TIMESTAMP getOrderTimeStamp() {
+		return OrderTimeStamp;
+	}
+
+
+
+	public void setOrderTimeStamp(TIMESTAMP orderTimeStamp) {
+		OrderTimeStamp = orderTimeStamp;
+	}
+
 	
 	
 }

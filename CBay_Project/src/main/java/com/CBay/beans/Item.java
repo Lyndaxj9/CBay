@@ -31,13 +31,13 @@ public class Item {
 	@JoinColumn(name="UserID")
 	private User user;
 	
-	@Column
+	@Column(name="ItemName")
 	private String ItemName;
 	
-	@Column
+	@Column(name="Description")
 	private String Description;
 	 
-	@Column
+	@Column(name="Price")
 	private Integer Price;
 	
 	// map this to the Image Table instead
@@ -45,7 +45,7 @@ public class Item {
 	private Set<Image> Image;*/
 	
 	
-	@Column
+	@Column(name="RatingAvg")
 	private Integer RatingAvg;
 	
 	// map this to the Rating Table instead

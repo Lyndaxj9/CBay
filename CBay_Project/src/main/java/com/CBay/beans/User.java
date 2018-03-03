@@ -23,27 +23,28 @@ public class User {
 	@GeneratedValue(generator="USER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer ID;
 	
-	@Column
+	@Column(name="FirstName")
 	private String FirstName;
 	
-	@Column
+	@Column(name="LastName")
 	private String LastName;
 	
-	@Column
+	@Column(name="UserType")
 	private String UserType;
 	
-	@Column(unique = true)
+	@Column(name="UserName")
 	private String UserName;
-	@Column
+	
+	@Column(name="PW")
 	private String PW;
 	
-	@Column(unique = true)
+	@Column(name="Email")
 	private String Email;
 	
-	
+	@Column(name="RatingAvg")
 	private Integer RatingAvg;
 	
-	@Column
+	@Column(name="Description")
 	private String Description;
 
 	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,

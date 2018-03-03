@@ -29,10 +29,10 @@ public class Image {
 	@JoinColumn(name="ItemID")
 	private Item item;
 	
-	@Column
+	@Column(name="Image")
 	private Blob Image;
 	
-	@Column
+	@Column(name="FileName")
 	private String FileName;
 
 	public Image(Integer iD, Item item, Blob image, String fileName) {
