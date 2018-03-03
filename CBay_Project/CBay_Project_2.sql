@@ -181,7 +181,7 @@ CREATE SEQUENCE MESSAGE_ID_SEQ
     
 DROP SEQUENCE THREAD_ID_SEQ;
 CREATE SEQUENCE THREAD_ID_SEQ
-    start with 60000
+    start with 1000
     increment by 1;
 
 DROP SEQUENCE IMAGE_ID_SEQ;
@@ -204,5 +204,7 @@ commit;
 delete from CLIENT;
 
 select * from CLIENT;
+select * from THREADS;
+
 
 select USER_ID_SEQ.nextval from dual;

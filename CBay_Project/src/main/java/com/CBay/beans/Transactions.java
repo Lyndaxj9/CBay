@@ -23,22 +23,22 @@ public class Transactions {
 	@GeneratedValue(generator="TRANS_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	// @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="OrderID")
-	private Order order;
+	private Integer OrderId;
 	
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	// @OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
-	private Item item;
+	private Integer ItemId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	// @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="BuyerID")
-	private User buyer;
+	private Integer BuyerId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	// @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SellerID")
-	private User seller;
+	private Integer SellerId;
 	
 	@Column(name="Status")
 	private String Status;
@@ -46,29 +46,31 @@ public class Transactions {
 	@Column(name="Quantity")
 	private Integer Quantity;
 
-	public Transactions(Integer id, Order order, Item item, User buyer, User seller, String status, Integer quantity) {
+	public Transactions(Integer id, Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status,
+			Integer quantity) {
 		super();
 		this.id = id;
-		this.order = order;
-		this.item = item;
-		this.buyer = buyer;
-		this.seller = seller;
+		OrderId = orderId;
+		ItemId = itemId;
+		BuyerId = buyerId;
+		SellerId = sellerId;
 		Status = status;
 		Quantity = quantity;
 	}
 
-	public Transactions(Order order, Item item, User buyer, User seller, String status, Integer quantity) {
+	public Transactions(Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status,
+			Integer quantity) {
 		super();
-		this.order = order;
-		this.item = item;
-		this.buyer = buyer;
-		this.seller = seller;
+		OrderId = orderId;
+		ItemId = itemId;
+		BuyerId = buyerId;
+		SellerId = sellerId;
 		Status = status;
 		Quantity = quantity;
 	}
 
 	public Transactions() {
-		
+		super();
 	}
 
 	public Integer getId() {
@@ -79,36 +81,36 @@ public class Transactions {
 		this.id = id;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Integer getOrderId() {
+		return OrderId;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderId(Integer orderId) {
+		OrderId = orderId;
 	}
 
-	public Item getItem() {
-		return item;
+	public Integer getItemId() {
+		return ItemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItemId(Integer itemId) {
+		ItemId = itemId;
 	}
 
-	public User getBuyer() {
-		return buyer;
+	public Integer getBuyerId() {
+		return BuyerId;
 	}
 
-	public void setBuyer(User buyer) {
-		this.buyer = buyer;
+	public void setBuyerId(Integer buyerId) {
+		BuyerId = buyerId;
 	}
 
-	public User getSeller() {
-		return seller;
+	public Integer getSellerId() {
+		return SellerId;
 	}
 
-	public void setSeller(User seller) {
-		this.seller = seller;
+	public void setSellerId(Integer sellerId) {
+		SellerId = sellerId;
 	}
 
 	public String getStatus() {
@@ -126,6 +128,8 @@ public class Transactions {
 	public void setQuantity(Integer quantity) {
 		Quantity = quantity;
 	}
+
+	
 
 	
 	

@@ -23,9 +23,9 @@ public class SellerRating {
 	private Integer id;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="UserID")
-	private User user;
+	private Integer userId;
 	
 //	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 //	@JoinColumn(name="ItemID")
@@ -37,17 +37,17 @@ public class SellerRating {
 	@Column(name="TextRating")
 	private String TextRating;
 
-	public SellerRating(Integer id, User user, Integer numRating, String textRating) {
+	public SellerRating(Integer id, Integer user, Integer numRating, String textRating) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.userId = user;
 		NumRating = numRating;
 		TextRating = textRating;
 	}
 
-	public SellerRating(User user, Integer numRating, String textRating) {
+	public SellerRating(Integer user, Integer numRating, String textRating) {
 		super();
-		this.user = user;
+		this.userId = user;
 		NumRating = numRating;
 		TextRating = textRating;
 	}
@@ -64,12 +64,12 @@ public class SellerRating {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getUser() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Integer user) {
+		this.userId = user;
 	}
 
 	public Integer getNumRating() {

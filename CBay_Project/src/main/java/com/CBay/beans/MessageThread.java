@@ -1,18 +1,20 @@
 package com.CBay.beans;
 
-import javax.persistence.CascadeType;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import oracle.sql.TIMESTAMP;
+import org.hibernate.annotations.CreationTimestamp;
+
+
 
 @Entity
 @Table(name="THREADS")
@@ -25,29 +27,31 @@ public class MessageThread {
 	@GeneratedValue(generator="THREAD_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SenderID")
-	private User Sender;
+	private Integer SenderId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ResponderID")
-	private User Responder;
+	private Integer ResponderId;
 	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="ThreadTimeStamp")
-	private TIMESTAMP ThreadTimeStamp;
+	private Calendar ThreadTimeStamp;
 
-	public MessageThread(Integer id, User sender, User responder, TIMESTAMP threadTimeStamp) {
+	public MessageThread(Integer id, Integer sender, Integer responder, Calendar threadTimeStamp) {
 		super();
 		this.id = id;
-		Sender = sender;
-		Responder = responder;
+		SenderId = sender;
+		ResponderId = responder;
 		ThreadTimeStamp = threadTimeStamp;
 	}
 
-	public MessageThread(User sender, User responder) {
+	public MessageThread(Integer sender, Integer responder) {
 		super();
-		Sender = sender;
-		Responder = responder;
+		SenderId = sender;
+		ResponderId = responder;
 	}
 
 	public MessageThread() {
@@ -62,27 +66,27 @@ public class MessageThread {
 		this.id = id;
 	}
 
-	public User getSender() {
-		return Sender;
+	public Integer getSender() {
+		return SenderId;
 	}
 
-	public void setSender(User sender) {
-		Sender = sender;
+	public void setSender(Integer sender) {
+		SenderId = sender;
 	}
 
-	public User getResponder() {
-		return Responder;
+	public Integer getResponder() {
+		return ResponderId;
 	}
 
-	public void setResponder(User responder) {
-		Responder = responder;
+	public void setResponder(Integer responder) {
+		ResponderId = responder;
 	}
 
-	public TIMESTAMP getThreadTimeStamp() {
+	public Calendar getThreadTimeStamp() {
 		return ThreadTimeStamp;
 	}
 
-	public void setThreadTimeStamp(TIMESTAMP threadTimeStamp) {
+	public void setThreadTimeStamp(Calendar threadTimeStamp) {
 		ThreadTimeStamp = threadTimeStamp;
 	}
 	

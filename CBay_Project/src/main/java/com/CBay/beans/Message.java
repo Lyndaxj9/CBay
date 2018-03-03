@@ -1,5 +1,7 @@
 package com.CBay.beans;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import oracle.sql.TIMESTAMP;
 
@@ -25,22 +31,22 @@ public class Message {
 	private Integer id;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ThreadID")
-	private MessageThread ThreadID;
+	private Integer ThreadID;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="TransactionID")
-	private Order order;
+	private Integer Transaction;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SenderID")
-	private User Sender;
+	private Integer Sender;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ResponderID")
-	private User Responder;
+	private Integer Responder;
 	
 	@Column(name="MessageContent")
 	private String MessageContent;
@@ -48,15 +54,17 @@ public class Message {
 	@Column(name="Subject")
 	private String Subject;
 
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="MessageTimeStamp")
-	private TIMESTAMP MessageTimeStamp;
+	private Calendar MessageTimeStamp;
 
-	public Message(Integer id, MessageThread threadID, Order order, User sender, User responder, String messageContent,
-			String subject, TIMESTAMP messageTimeStamp) {
+	public Message(Integer id, Integer threadID, Integer transaction, Integer sender, Integer responder,
+			String messageContent, String subject, Calendar messageTimeStamp) {
 		super();
 		this.id = id;
 		ThreadID = threadID;
-		this.order = order;
+		Transaction = transaction;
 		Sender = sender;
 		Responder = responder;
 		MessageContent = messageContent;
@@ -64,11 +72,11 @@ public class Message {
 		MessageTimeStamp = messageTimeStamp;
 	}
 
-	public Message(MessageThread threadID, Order order, User sender, User responder, String messageContent,
+	public Message(Integer threadID, Integer transaction, Integer sender, Integer responder, String messageContent,
 			String subject) {
 		super();
 		ThreadID = threadID;
-		this.order = order;
+		Transaction = transaction;
 		Sender = sender;
 		Responder = responder;
 		MessageContent = messageContent;
@@ -76,7 +84,7 @@ public class Message {
 	}
 
 	public Message() {
-		
+		super();
 	}
 
 	public Integer getId() {
@@ -87,35 +95,35 @@ public class Message {
 		this.id = id;
 	}
 
-	public MessageThread getThreadID() {
+	public Integer getThreadID() {
 		return ThreadID;
 	}
 
-	public void setThreadID(MessageThread threadID) {
+	public void setThreadID(Integer threadID) {
 		ThreadID = threadID;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Integer getTransaction() {
+		return Transaction;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setTransaction(Integer transaction) {
+		Transaction = transaction;
 	}
 
-	public User getSender() {
+	public Integer getSender() {
 		return Sender;
 	}
 
-	public void setSender(User sender) {
+	public void setSender(Integer sender) {
 		Sender = sender;
 	}
 
-	public User getResponder() {
+	public Integer getResponder() {
 		return Responder;
 	}
 
-	public void setResponder(User responder) {
+	public void setResponder(Integer responder) {
 		Responder = responder;
 	}
 
@@ -135,15 +143,14 @@ public class Message {
 		Subject = subject;
 	}
 
-	public TIMESTAMP getMessageTimeStamp() {
+	public Calendar getMessageTimeStamp() {
 		return MessageTimeStamp;
 	}
 
-	public void setMessageTimeStamp(TIMESTAMP messageTimeStamp) {
+	public void setMessageTimeStamp(Calendar messageTimeStamp) {
 		MessageTimeStamp = messageTimeStamp;
 	}
-	
-	
+
 	
 
 }

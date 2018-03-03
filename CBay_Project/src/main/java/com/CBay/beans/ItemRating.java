@@ -22,9 +22,9 @@ public class ItemRating {
 	@GeneratedValue(generator="ITEM_RATING_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
-	private Item item;
+	private Integer ItemId;
 	
 	@Column(name="NumRating")
 	private Integer NumRating;
@@ -32,17 +32,17 @@ public class ItemRating {
 	@Column(name="TextRating")
 	private String TextRating;
 
-	public ItemRating(Integer id, Item item, Integer numRating, String textRating) {
+	public ItemRating(Integer id, Integer item, Integer numRating, String textRating) {
 		super();
 		this.id = id;
-		this.item = item;
+		this.ItemId = item;
 		NumRating = numRating;
 		TextRating = textRating;
 	}
 
-	public ItemRating(Item item, Integer numRating, String textRating) {
+	public ItemRating(Integer item, Integer numRating, String textRating) {
 		super();
-		this.item = item;
+		this.ItemId = item;
 		NumRating = numRating;
 		TextRating = textRating;
 	}
@@ -59,12 +59,12 @@ public class ItemRating {
 		this.id = id;
 	}
 
-	public Item getItem() {
-		return item;
+	public Integer getItem() {
+		return ItemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Integer item) {
+		this.ItemId = item;
 	}
 
 	public Integer getNumRating() {

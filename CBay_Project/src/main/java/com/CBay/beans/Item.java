@@ -27,9 +27,9 @@ public class Item {
 	@GeneratedValue(generator="ITEM_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	//@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="UserID")
-	private User user;
+	private Integer UserId;
 	
 	@Column(name="ItemName")
 	private String ItemName;
@@ -53,11 +53,11 @@ public class Item {
 	private Set<Rating> RatingText;*/
 
 	
-	public Item(Integer id, User user, String name, String description, Set<Image> image, Integer price,
+	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price,
 			Integer ratingAvg) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -65,9 +65,9 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(User user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
+	public Item(Integer user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
 		super();
-		this.user = user;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -75,9 +75,9 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(User user, String name, String description, Set<Image> image, Integer price) {
+	public Item(Integer user, String name, String description, Set<Image> image, Integer price) {
 		super();
-		this.user = user;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -105,12 +105,12 @@ public class Item {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getUser() {
+		return UserId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Integer user) {
+		this.UserId = user;
 	}
 
 	

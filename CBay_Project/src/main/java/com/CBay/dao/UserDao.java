@@ -3,9 +3,11 @@ package com.CBay.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.CBay.beans.MessageThread;
 import com.CBay.beans.User;
 import com.CBay.util.HibernateUtil;
 
@@ -85,6 +87,30 @@ public class UserDao {
 		return user;
 			
 		}
-	
-	
+
+	public List<MessageThread> getUserMessageThreads(Integer id) {
+		List<MessageThread> threads = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			String hql = "FROM MessageThread WHERE SenderID= :ID OR ResponderID= :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", id);
+			threads = query.list();
+			return threads;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+		
+	}
 }

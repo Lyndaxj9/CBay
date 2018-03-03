@@ -1,5 +1,8 @@
 package com.CBay.service;
 
+import java.util.List;
+
+import com.CBay.beans.MessageThread;
 import com.CBay.beans.User;
 import com.CBay.dao.UserDao;
 
@@ -65,7 +68,6 @@ public class UserService {
 		
 	}
 	
-	
 	/* 
 	 * Call this method whenever any user Registers OR login successfully
 	 * For Successful Registration :
@@ -77,9 +79,15 @@ public class UserService {
 	 * 			user.getSomething();
 	*/
 	public static User getUserInfo(Integer Id) {
+		
 		UserDao dao = new UserDao();
-
 		return dao.getUserById(Id);	
+	}
+	
+	public static List<MessageThread> viewUserMessageThreads(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getUserMessageThreads(Id);	
 	}
 	
 }

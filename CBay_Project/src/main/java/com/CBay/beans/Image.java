@@ -25,9 +25,9 @@ public class Image {
 	@GeneratedValue(generator="IMAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
-	private Item item;
+	private Integer ItemId;
 	
 	@Column(name="Image")
 	private Blob Image;
@@ -35,17 +35,17 @@ public class Image {
 	@Column(name="FileName")
 	private String FileName;
 
-	public Image(Integer id, Item item, Blob image, String fileName) {
+	public Image(Integer id, Integer item, Blob image, String fileName) {
 		super();
 		this.id = id;
-		this.item = item;
+		ItemId = item;
 		Image = image;
 		FileName = fileName;
 	}
 
-	public Image(Item item, Blob image, String fileName) {
+	public Image(Integer item, Blob image, String fileName) {
 		super();
-		this.item = item;
+		ItemId = item;
 		Image = image;
 		FileName = fileName;
 	}
@@ -62,12 +62,12 @@ public class Image {
 		this.id = id;
 	}
 
-	public Item getItem() {
-		return item;
+	public Integer getItem() {
+		return ItemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Integer item) {
+		ItemId = item;
 	}
 
 	public Blob getImage() {

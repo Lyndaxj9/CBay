@@ -1,6 +1,8 @@
 package com.CBay.beans;
 
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import oracle.sql.TIMESTAMP;
 
@@ -28,13 +34,13 @@ public class Order {
 	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	//@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
-	private Item item;
+	private Integer ItemId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="BuyerID")
-	private User buyer;
+	private Integer buyerId;
 	
 	@Column(name="Status")
 	private String Status;
@@ -42,14 +48,16 @@ public class Order {
 	@Column(name="TotalItems")
 	private Integer TotalItems;
 	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="OrderTimeStamp")
-	private TIMESTAMP OrderTimeStamp;
+	private Calendar OrderTimeStamp;
 
-	public Order(Integer id, Item item, User buyer, String status, Integer totalItems, TIMESTAMP orderTimeStamp) {
+	public Order(Integer id, Integer item, Integer buyer, String status, Integer totalItems, Calendar orderTimeStamp) {
 		super();
 		this.id = id;
-		this.item = item;
-		this.buyer = buyer;
+		this.ItemId = item;
+		buyerId = buyer;
 		Status = status;
 		TotalItems = totalItems;
 		OrderTimeStamp = orderTimeStamp;
@@ -57,14 +65,13 @@ public class Order {
 	
 	
 
-	public Order(Item item, User buyer, String status, Integer totalItems) {
+	public Order(Integer item, Integer buyer, String status, Integer totalItems) {
 		super();
-		this.item = item;
-		this.buyer = buyer;
+		this.ItemId = item;
+		buyerId = buyer;
 		Status = status;
 		TotalItems = totalItems;
 	}
-
 
 
 	public Order() {
@@ -79,20 +86,21 @@ public class Order {
 		this.id = id;
 	}
 
-	public Item getItem() {
-		return item;
+	public Integer getItem() {
+		return ItemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Integer item) {
+		this.ItemId = item;
 	}
 
-	public User getBuyer() {
-		return buyer;
+	public Integer getBuyerId() {
+		
+		return buyerId;
 	}
 
-	public void setBuyer(User buyer) {
-		this.buyer = buyer;
+	public void setBuyer(Integer buyer) {
+		this.buyerId = buyer;
 	}
 
 	public String getStatus() {
@@ -113,13 +121,13 @@ public class Order {
 
 
 
-	public TIMESTAMP getOrderTimeStamp() {
+	public Calendar getOrderTimeStamp() {
 		return OrderTimeStamp;
 	}
 
 
 
-	public void setOrderTimeStamp(TIMESTAMP orderTimeStamp) {
+	public void setOrderTimeStamp(Calendar orderTimeStamp) {
 		OrderTimeStamp = orderTimeStamp;
 	}
 
