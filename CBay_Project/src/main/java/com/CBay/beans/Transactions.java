@@ -19,7 +19,7 @@ public class Transactions {
 	
 	@Id
 	@Column(name="TransactionID")
-	@SequenceGenerator(sequenceName="TRANS_ID_SEQ", name="TRANS_ID_SEQ")
+	@SequenceGenerator(sequenceName="TRANS_ID_SEQ", name="TRANS_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="TRANS_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

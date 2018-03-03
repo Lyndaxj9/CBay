@@ -20,7 +20,7 @@ public class Message {
 	
 	@Id
 	@Column(name="MessageID")
-	@SequenceGenerator(sequenceName="MESSAGE_ID_SEQ", name="MESSAGE_ID_SEQ")
+	@SequenceGenerator(sequenceName="MESSAGE_ID_SEQ", name="MESSAGE_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="MESSAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

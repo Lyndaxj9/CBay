@@ -10,8 +10,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 
-		//UserService.InsertBuyer("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com");
-		System.out.println(UserService.LoginBuyer("JDoe", "JDoe"));
+		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
+		System.out.println(UserService.InsertSeller("Bobbert", "Bob", "BBobbert", "BBobbert", "Bobbert@bob.com"));
+		
+		
 		
 		System.exit(0);
 	}

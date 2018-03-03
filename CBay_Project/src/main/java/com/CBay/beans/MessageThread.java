@@ -21,7 +21,7 @@ public class MessageThread {
 	
 	@Id
 	@Column(name="ThreadID")
-	@SequenceGenerator(sequenceName="THREAD_ID_SEQ", name="THREAD_ID_SEQ")
+	@SequenceGenerator(sequenceName="THREAD_ID_SEQ", name="THREAD_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="THREAD_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

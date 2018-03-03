@@ -12,29 +12,29 @@ import com.CBay.util.HibernateUtil;
 public class UserDao {
 
 	public void insertUser(User user){
-	Session session = HibernateUtil.getSession();
-	Transaction tx = null;
-	//Integer user_id = null;
-	try{
-		tx = session.beginTransaction();
-	
-		session.save(user);
-		tx.commit();
 		
-	}catch(HibernateException e){
-		if(tx!=null){
-			tx.rollback();
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		//Integer user_id = null;
+		try{
+			tx = session.beginTransaction();
+		
+			session.save(user);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
-		e.printStackTrace();
-	}finally{
-		session.close();
-	}
 	}
 
-	public boolean LoginUser(String username, String password, String Type) {
+	public Integer LoginUser(String username, String password, String Type) {
+		
 		List<User> AllUsers = null;
-		User user = null;
-		boolean ValidLogin = false;
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		
@@ -46,7 +46,7 @@ public class UserDao {
 			for (User u : AllUsers) {
 				System.out.println(u.getUserName() + " " + u.getPW() + " " + u.getUserType());
 				if((u.getUserName().equals(username)) && (u.getPW().equals(password)) && (u.getUserType().equals(Type)))
-					return true;
+					return u.getId();
 				
 			}
 			
@@ -58,6 +58,33 @@ public class UserDao {
 		}finally{
 			session.close();
 		}
-		return false;
+		return null;
 	}
+	
+	
+	public User getUserById(Integer Id) {
+		User user = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			
+			user = (User)session.get(User.class, Id);
+			
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return user;
+			
+		}
+	
+	
 }

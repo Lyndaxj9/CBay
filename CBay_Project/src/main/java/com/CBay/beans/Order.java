@@ -24,7 +24,7 @@ public class Order {
 	
 	@Id
 	@Column(name="OrderID")
-	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ")
+	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

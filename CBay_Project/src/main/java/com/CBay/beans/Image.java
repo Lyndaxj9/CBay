@@ -21,7 +21,7 @@ public class Image {
 
 	@Id
 	@Column(name="ImageID")
-	@SequenceGenerator(sequenceName="IMAGE_ID_SEQ", name="IMAGE_ID_SEQ")
+	@SequenceGenerator(sequenceName="IMAGE_ID_SEQ", name="IMAGE_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="IMAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

@@ -19,7 +19,7 @@ public class User {
 
 	@Id
 	@Column(name="UserID")
-	@SequenceGenerator(sequenceName="USER_ID_SEQ", name="USER_ID_SEQ")
+	@SequenceGenerator(sequenceName="USER_ID_SEQ", name="USER_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="USER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
@@ -47,6 +47,7 @@ public class User {
 	@Column(name="Description")
 	private String Description;
 
+	
 	public User(Integer id, String firstName, String lastName, String type, String userName, String password,
 			String email, Integer rating, String description) {
 		super();

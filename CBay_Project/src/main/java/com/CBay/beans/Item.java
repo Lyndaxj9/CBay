@@ -23,7 +23,7 @@ public class Item {
 	
 	@Id
 	@Column(name="ItemID")
-	@SequenceGenerator(sequenceName="ITEM_ID_SEQ", name="ITEM_ID_SEQ")
+	@SequenceGenerator(sequenceName="ITEM_ID_SEQ", name="ITEM_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="ITEM_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	

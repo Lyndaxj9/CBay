@@ -18,7 +18,7 @@ public class SellerRating {
 
 	@Id
 	@Column(name="RatingID")
-	@SequenceGenerator(sequenceName="SELLER_RATING_ID_SEQ", name="SELLER_RATING_ID_SEQ")
+	@SequenceGenerator(sequenceName="SELLER_RATING_ID_SEQ", name="SELLER_RATING_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="SELLER_RATING_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
