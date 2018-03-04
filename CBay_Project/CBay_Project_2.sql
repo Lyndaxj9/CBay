@@ -57,7 +57,7 @@ CREATE TABLE ORDERS
 CREATE TABLE TRANSACTIONS
 (
     TransactionID NUMBER(6) NOT NULL,
-    OrderID NUMBER(6) NOT NULL,
+    OrderID NUMBER(6),
     ItemID NUMBER(6) NOT NULL,
     BuyerID NUMBER(6) NOT NULL,
     SellerID NUMBER(6) NOT NULL,
@@ -201,7 +201,7 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from CLIENT;
+delete from THREADS;
 
 select * from CLIENT;
 select * from THREADS;

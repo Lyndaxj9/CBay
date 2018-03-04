@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+	
+	<class name="com.CBay.beans.ItemRating" table="ITEMRATING">
+		<meta attribute="class-description">
+			All Items Ratings
+		</meta>
+		
+		<id name="id" type="int" column="RatingID">
+			<generator class="native">
+				<param name="sequence">ITEM_RATING_ID_SEQ</param>
+			</generator>
+		</id>
+		
+		<property name="ItemId" column="ItemID" type="int" ></property>
+		<property name="NumRating" column="NumRating" type="int" ></property>
+		<property name="TextRating" column="TextRating" type="string"></property>
+		
+		
+	</class>
+	
+   
+
+	</hibernate-mapping>

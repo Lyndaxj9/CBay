@@ -50,6 +50,12 @@ public class Image {
 		FileName = fileName;
 	}
 
+	public Image(Integer itemId, Blob image) {
+		super();
+		ItemId = itemId;
+		Image = image;
+	}
+
 	public Image() {
 		// TODO Auto-generated constructor stub
 	}

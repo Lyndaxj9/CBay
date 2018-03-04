@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+	
+	<class name="com.CBay.beans.Transactions" table="TRANSACTIONS">
+		<meta attribute="class-description">
+			All Transactions
+		</meta>
+		
+		<id name="id" type="int" column="TransactionID">
+			<generator class="native">
+				<param name="sequence">TRANS_ID_SEQ</param>
+			</generator>
+		</id>
+		
+		<property name="OrderId" column="OrderID" type="int" ></property>
+		<property name="ItemId" column="ItemID" type="int" ></property>
+		<property name="BuyerId" column="BuyerID" type="int" ></property>
+		<property name="SellerId" column="SellerID" type="int" ></property>
+		<property name="Status" column="Status" type="string" ></property>
+		<property name="Quantity" column="Quantity" type="int"></property>
+		
+
+		
+	</class>
+	
+   
+
+	</hibernate-mapping>

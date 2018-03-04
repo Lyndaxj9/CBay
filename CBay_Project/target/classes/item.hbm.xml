@@ -8,18 +8,20 @@
 	
 	<class name="com.CBay.beans.Item" table="ITEM">
 		<meta attribute="class-description">
-			All Items Here
+			All Items
 		</meta>
 		
-		<id name="ID" type="int" column="ItemID">
+		<id name="id" type="int" column="ItemID">
 			<generator class="native">
 				<param name="sequence">ITEM_ID_SEQ</param>
 			</generator>
 		</id>
 		
-		<property name="Name" type="string" ></property>
-		<property name="Description" type="string"></property>
-		<property name="Price" type="int"></property>
+		<property name="UserId" column="UserID" type="int" ></property>
+		<property name="ItemName" column="ItemName" type="string" ></property>
+		<property name="Description" column="Description" type="string"></property>
+		<property name="Price" column="Price" type="int"></property>
+		<property name="RatingAvg" column="RatingAvg" type="int" ></property>
 
 		
 	</class>
