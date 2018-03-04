@@ -1,0 +1,12 @@
+<div>
+    <form *ngIf="canEdit; else elseBlock">
+        <div *ngFor="let x of dbresult">
+            <input type='text' value={{x}}>
+        </div>
+    </form>
+    
+    
+    <ng-template #elseBlock>
+        <p>{{data}}</p>
+    </ng-template>
+</div>

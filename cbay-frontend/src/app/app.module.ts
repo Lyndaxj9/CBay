@@ -5,10 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
+//Components
+import { EntityDisplayComponent } from './components/entitydisplay/entitydisplay.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EntityDisplayComponent
   ],
   imports: [
     BrowserModule,
