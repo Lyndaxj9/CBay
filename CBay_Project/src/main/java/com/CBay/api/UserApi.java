@@ -11,7 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
+import com.CBay.beans.Item;
 import com.CBay.beans.User;
 import com.CBay.service.UserService;
 
@@ -49,9 +51,18 @@ public class UserApi {
 	@GET
 	@Path("/get/{username}/{password}/{type}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Integer loginUser(@PathParam("username") String username, 
+	public Response loginUser(@PathParam("username") String username, 
 			@PathParam("password")String password, @PathParam("type")String type){
-		return UserService.LoginBuyer(username, password);
+		Response response = Response.status(200).
+                entity(UserService.LoginBuyer(username, password)).
+                header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .header("Access-Control-Allow-Headers", "Content-Type")
+                .allow("OPTIONS")
+                .build();
+
+	 return response;
+		//return UserService.LoginBuyer(username, password);
 	}
 	
 	//-- insert and if successful return success
