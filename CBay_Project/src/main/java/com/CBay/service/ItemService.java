@@ -1,12 +1,12 @@
 package com.CBay.service;
 
 
+import java.io.FileOutputStream;
 import java.util.List;
 
+import com.CBay.beans.Image;
 import com.CBay.beans.Item;
-import com.CBay.beans.Order;
 import com.CBay.dao.ItemDao;
-import com.CBay.dao.UserDao;
 
 public class ItemService {
 
@@ -25,11 +25,25 @@ public class ItemService {
 		
 	}
 	
+	
+	
+	/*
+	 * to retrieve the Image from here, iterate through this list as following (In the API/Servlet level)
+	 * 	
+	 * 		for(Image img : ItemService.getImageByItemId(ItemID)) {
+	 * 			FileOutputStream outputStream = new FileOutputStream("WHATEVER FILENAME IT WILL BE CALLED [SOMETHING.JPG]");
+	 * 			outputStream.write(img.getImage());
+	 * 			outputStream.close();
+	 * 		}
+	 * 
+	 */
 	public static List<Image> getImageByItemId(Integer ItemId) {
-			
-			ItemDao dao = new ItemDao();
-			return dao.getItemImages(ItemId);	
-		}
+	
+		ItemDao dao = new ItemDao();
+		List<Image> image = dao.getItemImages(ItemId);
+		
+		return image;
+	}
 	
 	
 	

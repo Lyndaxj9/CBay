@@ -1,12 +1,14 @@
 package com.CBay.main;
 
-import com.CBay.beans.MessageThread;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.CBay.beans.Image;
 import com.CBay.service.ItemService;
-import com.CBay.service.UserService;
 
 public class Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 /*		
  
@@ -23,10 +25,19 @@ public class Driver {
 		for(MessageThread m : UserService.viewUserMessageThreads(10001))
 			System.out.println(m.getId());
 			
-*/
+
 		
-		//ItemService.createItem(10001, "Tv", "Samsung Tv", 200);
-		ItemService.addItemImage("C:/Users/Amr Hosny/Desktop/BashSnip1.png", 20000);
+		ItemService.createItem(10001, "Tv", "Samsung Tv", 200);
+		ItemService.addItemImage("C:/Users/Amr Hosny/Desktop/Test1.txt", 20000);
+		
+		for(Image file : ItemService.getImageByItemId(20000)) {
+			
+			FileOutputStream outputStream = new FileOutputStream("C:/Users/Amr Hosny/Desktop/Test1.txt");
+			outputStream.write(file.getImage());
+			outputStream.close();
+		}
+		
+	*/	
 		
 		System.exit(0);
 	}

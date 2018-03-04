@@ -10,11 +10,13 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
+import com.CBay.beans.MessageThread;
 import com.CBay.util.HibernateUtil;
 
 public class ItemDao {
@@ -117,7 +119,27 @@ public class ItemDao {
 	}
 
 	public List<Image> getItemImages(Integer itemId) {
-		// TODO Auto-generated method stub
+		List<Image> image = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			String hql = "FROM Image WHERE ItemId= :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", itemId);
+			image = query.list();
+			return image;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 		return null;
 	}
 
