@@ -34,10 +34,6 @@ public class Order {
 	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
-	//@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="ItemID")
-	private Integer ItemId;
-	
 	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="BuyerID")
 	private Integer buyerId;
@@ -53,10 +49,9 @@ public class Order {
 	@Column(name="OrderTimeStamp")
 	private Calendar OrderTimeStamp;
 
-	public Order(Integer id, Integer item, Integer buyer, String status, Integer totalItems, Calendar orderTimeStamp) {
+	public Order(Integer id, Integer buyer, Integer totalItems, String status, Calendar orderTimeStamp) {
 		super();
 		this.id = id;
-		this.ItemId = item;
 		buyerId = buyer;
 		Status = status;
 		TotalItems = totalItems;
@@ -65,9 +60,8 @@ public class Order {
 	
 	
 
-	public Order(Integer item, Integer buyer, String status, Integer totalItems) {
+	public Order(Integer buyer, Integer totalItems, String status) {
 		super();
-		this.ItemId = item;
 		buyerId = buyer;
 		Status = status;
 		TotalItems = totalItems;
@@ -84,14 +78,6 @@ public class Order {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getItem() {
-		return ItemId;
-	}
-
-	public void setItem(Integer item) {
-		this.ItemId = item;
 	}
 
 	public Integer getBuyerId() {

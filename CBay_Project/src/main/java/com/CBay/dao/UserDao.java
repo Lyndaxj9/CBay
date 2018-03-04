@@ -7,7 +7,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.CBay.beans.Item;
 import com.CBay.beans.MessageThread;
+import com.CBay.beans.Order;
+import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.util.HibernateUtil;
 
@@ -112,5 +115,83 @@ public class UserDao {
 		}
 		return null;
 		
+	}
+
+	public List<Item> getSellerItems(Integer id) {
+		
+		List<Item> item = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			String hql = "FROM Item WHERE UserId = :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", id);
+			item = query.list();
+			return item;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+	
+	public List<Transactions> getUserTransactions(Integer id) {
+			
+			List<Transactions> tran = null;
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			
+			try{
+				
+				tx = session.beginTransaction();
+				String hql = "FROM Transactions WHERE BuyerId = :ID OR SellerId = :ID";
+				Query query = session.createQuery(hql);
+				query.setParameter("ID", id);
+				tran = query.list();
+				return tran;
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}
+			return null;
+		}
+	
+	public List<Order> getUserOrder(Integer id) {
+		
+		List<Order> order = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			String hql = "FROM Order WHERE buyerId = :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", id);
+			order = query.list();
+			return order;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
 	}
 }

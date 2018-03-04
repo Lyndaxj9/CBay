@@ -12,7 +12,6 @@ public class ItemDao {
 	public void insertItem(Item item){
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
-		Integer item_id = null;
 		try{
 			tx = session.beginTransaction();
 			session.save(item);
@@ -26,8 +25,8 @@ public class ItemDao {
 		}finally{
 			session.close();
 		}
-		
-		
+			
 	}
 
+	
 }

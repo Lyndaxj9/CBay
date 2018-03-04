@@ -46,8 +46,7 @@ public class Transactions {
 	@Column(name="Quantity")
 	private Integer Quantity;
 
-	public Transactions(Integer id, Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status,
-			Integer quantity) {
+	public Transactions(Integer id, Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status, Integer quantity) {
 		super();
 		this.id = id;
 		OrderId = orderId;
@@ -58,10 +57,18 @@ public class Transactions {
 		Quantity = quantity;
 	}
 
-	public Transactions(Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status,
-			Integer quantity) {
+	public Transactions(Integer orderId, Integer itemId, Integer buyerId, Integer sellerId, String status, Integer quantity) {
 		super();
 		OrderId = orderId;
+		ItemId = itemId;
+		BuyerId = buyerId;
+		SellerId = sellerId;
+		Status = status;
+		Quantity = quantity;
+	}
+
+	public Transactions(Integer itemId, Integer buyerId, Integer sellerId, String status, Integer quantity) {
+		super();
 		ItemId = itemId;
 		BuyerId = buyerId;
 		SellerId = sellerId;

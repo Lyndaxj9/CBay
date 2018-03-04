@@ -2,7 +2,10 @@ package com.CBay.service;
 
 import java.util.List;
 
+import com.CBay.beans.Item;
 import com.CBay.beans.MessageThread;
+import com.CBay.beans.Order;
+import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.dao.UserDao;
 
@@ -88,6 +91,24 @@ public class UserService {
 		
 		UserDao dao = new UserDao();
 		return dao.getUserMessageThreads(Id);	
+	}
+	
+	public static List<Item> viewSellerItems(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getSellerItems(Id);	
+	}
+	
+	public static List<Transactions> viewUserTransactions(Integer Id) {
+			
+			UserDao dao = new UserDao();
+			return dao.getUserTransactions(Id);	
+		}
+	
+	public static List<Order> viewBuyerOrder(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getUserOrder(Id);	
 	}
 	
 }

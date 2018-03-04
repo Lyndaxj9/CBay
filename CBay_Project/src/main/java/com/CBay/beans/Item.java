@@ -53,8 +53,7 @@ public class Item {
 	private Set<Rating> RatingText;*/
 
 	
-	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price,
-			Integer ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
 		super();
 		this.id = id;
 		this.UserId = user;
@@ -65,7 +64,7 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(Integer user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
+	public Item(Integer user, String name, String description, Integer price, Integer ratingAvg) {
 		super();
 		this.UserId = user;
 		ItemName = name;
@@ -75,7 +74,7 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(Integer user, String name, String description, Set<Image> image, Integer price) {
+	public Item(Integer user, String name, String description, Integer price) {
 		super();
 		this.UserId = user;
 		ItemName = name;

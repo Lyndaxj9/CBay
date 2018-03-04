@@ -59,8 +59,7 @@ public class Message {
 	@Column(name="MessageTimeStamp")
 	private Calendar MessageTimeStamp;
 
-	public Message(Integer id, Integer threadID, Integer transaction, Integer sender, Integer responder,
-			String messageContent, String subject, Calendar messageTimeStamp) {
+	public Message(Integer id, Integer threadID, Integer transaction, Integer sender, Integer responder, String messageContent, String subject, Calendar messageTimeStamp) {
 		super();
 		this.id = id;
 		ThreadID = threadID;
@@ -72,8 +71,7 @@ public class Message {
 		MessageTimeStamp = messageTimeStamp;
 	}
 
-	public Message(Integer threadID, Integer transaction, Integer sender, Integer responder, String messageContent,
-			String subject) {
+	public Message(Integer threadID, Integer transaction, Integer sender, Integer responder, String messageContent, String subject) {
 		super();
 		ThreadID = threadID;
 		Transaction = transaction;
