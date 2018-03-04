@@ -1,6 +1,8 @@
 package com.CBay.beans;
 
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import oracle.sql.TIMESTAMP;
 
 
 @Entity
@@ -21,82 +29,64 @@ public class Order {
 
 	
 	@Id
-	@Column(name="TransactionID")
-	@SequenceGenerator(sequenceName="TRANS_ID_SEQ", name="TRANS_ID_SEQ")
-	@GeneratedValue(generator="TRANS_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
-	
-	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ")
+	@Column(name="OrderID")
+	@SequenceGenerator(sequenceName="ORDER_ID_SEQ", name="ORDER_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="ORDER_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer OrderID;
+	private Integer id;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="ItemID")
-	private Item item;
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="BuyerID")
+	private Integer buyerId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="UserID")
-	private User user;
-	
-	@Column
+	@Column(name="Status")
 	private String Status;
 	
-	@Column
-	private Integer Quantity;
+	@Column(name="TotalItems")
+	private Integer TotalItems;
+	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="OrderTimeStamp")
+	private Calendar OrderTimeStamp;
 
-	public Order(Integer iD, Integer orderID, Item item, User user, String status, Integer quantity) {
+	public Order(Integer id, Integer buyer, Integer totalItems, String status, Calendar orderTimeStamp) {
 		super();
-		ID = iD;
-		OrderID = orderID;
-		this.item = item;
-		this.user = user;
+		this.id = id;
+		buyerId = buyer;
 		Status = status;
-		Quantity = quantity;
+		TotalItems = totalItems;
+		OrderTimeStamp = orderTimeStamp;
+	}
+	
+	
+
+	public Order(Integer buyer, Integer totalItems, String status) {
+		super();
+		buyerId = buyer;
+		Status = status;
+		TotalItems = totalItems;
 	}
 
-	public Order(Integer orderID, Item item, User user, String status, Integer quantity) {
-		super();
-		OrderID = orderID;
-		this.item = item;
-		this.user = user;
-		Status = status;
-		Quantity = quantity;
-	}
 
 	public Order() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getOrderID() {
-		return OrderID;
+	public Integer getBuyerId() {
+		
+		return buyerId;
 	}
 
-	public void setOrderID(Integer orderID) {
-		OrderID = orderID;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setBuyer(Integer buyer) {
+		this.buyerId = buyer;
 	}
 
 	public String getStatus() {
@@ -107,15 +97,26 @@ public class Order {
 		Status = status;
 	}
 
-	public Integer getQuantity() {
-		return Quantity;
+	public Integer getTotalItems() {
+		return TotalItems;
 	}
 
-	public void setQuantity(Integer quantity) {
-		Quantity = quantity;
+	public void setTotalItems(Integer totalItems) {
+		TotalItems = totalItems;
 	}
 
-	
+
+
+	public Calendar getOrderTimeStamp() {
+		return OrderTimeStamp;
+	}
+
+
+
+	public void setOrderTimeStamp(Calendar orderTimeStamp) {
+		OrderTimeStamp = orderTimeStamp;
+	}
+
 	
 	
 }

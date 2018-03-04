@@ -1,73 +1,116 @@
 package com.CBay.service;
 
+import java.util.List;
+
+import com.CBay.beans.Item;
+import com.CBay.beans.MessageThread;
+import com.CBay.beans.Order;
+import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.dao.UserDao;
 
 public class UserService {
 
-	public static void InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email);
 		dao.insertUser(user);
+		return user.getId();
+		
 	}
 	
-	public static void InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Seller", Username, PW, Email);
 		dao.insertUser(user);
+		return user.getId();
+
 	}
 	
-	public static void InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email);
 		dao.insertUser(user);
+		return user.getId();
+
 	}
 	
-	public static void InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Admin", Username, PW, Email);
 		dao.insertUser(user);
+		return user.getId();
+
 	}
 	
-	public static boolean LoginBuyer(String Username, String Password) {
+	public static Integer LoginBuyer(String Username, String Password) {
 		UserDao dao = new UserDao();
-		if(dao.LoginUser(Username, Password, "Buyer"))
-			return true;
-		else
-			return false;
-			
-		}
+		return dao.LoginUser(Username, Password, "Buyer");
+	
+	}
 	
 		
-	public static boolean LoginSeller(String Username, String Password) {
+	public static Integer LoginSeller(String Username, String Password) {
 		UserDao dao = new UserDao();
 
-		if(dao.LoginUser(Username, Password, "Seller"))
-			return true;
-		
-		return false;
-			
-		}
+		return dao.LoginUser(Username, Password, "Seller");
 	
+	}
 	
-	public static boolean LoginMod(String Username, String Password) {
+	public static Integer LoginMod(String Username, String Password) {
 		UserDao dao = new UserDao();
 
-		if(dao.LoginUser(Username, Password, "Moderator"))
-			return true;
+		return dao.LoginUser(Username, Password, "Moderator");
 		
-		return false;
-			
-		}
+	}
 	
-	public static boolean LoginAdmin(String Username, String Password) {
+	public static Integer LoginAdmin(String Username, String Password) {
 		UserDao dao = new UserDao();
 
-		if(dao.LoginUser(Username, Password, "Admin"))
-			return true;
+		return dao.LoginUser(Username, Password, "Admin");	
 		
-		return false;
+	}
+	
+	/* 
+	 * Call this method whenever any user Registers OR login successfully
+	 * For Successful Registration :
+	 * 			User user = getUserInfo(InsertBuyer("name", "username", "pw" etc)
+	 * For Successful Login :
+	 * 			User user = getUserInfo(LoginBuyer("username", "pw"))
+	 * 
+	 * 	Then to retrieve the data to populate the profile page 
+	 * 			user.getSomething();
+	*/
+	public static User getUserInfo(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getUserById(Id);	
+	}
+	
+	public static List<MessageThread> viewUserMessageThreads(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getUserMessageThreads(Id);	
+	}
+	
+	public static List<Item> viewSellerItems(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getSellerItems(Id);	
+	}
+	
+	public static List<Transactions> viewUserTransactions(Integer Id) {
 			
+			UserDao dao = new UserDao();
+			return dao.getUserTransactions(Id);	
 		}
+	
+	public static List<Order> viewBuyerOrder(Integer Id) {
+		
+		UserDao dao = new UserDao();
+		return dao.getUserOrder(Id);	
+	}
+	
+	
 	
 }

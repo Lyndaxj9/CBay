@@ -23,21 +23,21 @@ public class Item {
 	
 	@Id
 	@Column(name="ItemID")
-	@SequenceGenerator(sequenceName="ITEM_ID_SEQ", name="ITEM_ID_SEQ")
+	@SequenceGenerator(sequenceName="ITEM_ID_SEQ", name="ITEM_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="ITEM_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	//@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="UserID")
-	private User user;
+	private Integer UserId;
 	
-	@Column
+	@Column(name="ItemName")
 	private String ItemName;
 	
-	@Column
+	@Column(name="Description")
 	private String Description;
 	 
-	@Column
+	@Column(name="Price")
 	private Integer Price;
 	
 	// map this to the Image Table instead
@@ -45,7 +45,7 @@ public class Item {
 	private Set<Image> Image;*/
 	
 	
-	@Column
+	@Column(name="RatingAvg")
 	private Integer RatingAvg;
 	
 	// map this to the Rating Table instead
@@ -53,11 +53,10 @@ public class Item {
 	private Set<Rating> RatingText;*/
 
 	
-	public Item(Integer iD, User user, String name, String description, Set<Image> image, Integer price,
-			Integer ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
 		super();
-		ID = iD;
-		this.user = user;
+		this.id = id;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -65,9 +64,9 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(User user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
+	public Item(Integer user, String name, String description, Integer price, Integer ratingAvg) {
 		super();
-		this.user = user;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -75,9 +74,9 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(User user, String name, String description, Set<Image> image, Integer price) {
+	public Item(Integer user, String name, String description, Integer price) {
 		super();
-		this.user = user;
+		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
@@ -97,20 +96,20 @@ public class Item {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getUser() {
+		return UserId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Integer user) {
+		this.UserId = user;
 	}
 
 	

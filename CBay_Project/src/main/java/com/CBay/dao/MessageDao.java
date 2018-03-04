@@ -4,20 +4,22 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.CBay.beans.Order;
-import com.CBay.beans.Transactions;
+import com.CBay.beans.Message;
+import com.CBay.beans.MessageThread;
 import com.CBay.util.HibernateUtil;
 
-public class OrderDao {
+public class MessageDao {
 
-	public void insertOrder(Order order){
+	
+public void insertMessageThread(MessageThread thread){
+		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
-		
+		//Integer user_id = null;
 		try{
 			tx = session.beginTransaction();
 		
-			session.save(order);
+			session.save(thread);
 			tx.commit();
 			
 		}catch(HibernateException e){
@@ -30,15 +32,17 @@ public class OrderDao {
 		}
 	}
 
-	public void insertTransaction(Transactions tran) {
+
+
+public void insertMessage(Message msg) {
 	
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
-		
+		//Integer user_id = null;
 		try{
 			tx = session.beginTransaction();
 		
-			session.save(tran);
+			session.save(msg);
 			tx.commit();
 			
 		}catch(HibernateException e){
@@ -49,7 +53,7 @@ public class OrderDao {
 		}finally{
 			session.close();
 		}
-		
+	
+	
 	}
-
 }

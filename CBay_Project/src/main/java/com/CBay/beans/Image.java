@@ -21,32 +21,44 @@ public class Image {
 
 	@Id
 	@Column(name="ImageID")
-	@SequenceGenerator(sequenceName="IMAGE_ID_SEQ", name="IMAGE_ID_SEQ")
+	@SequenceGenerator(sequenceName="IMAGE_ID_SEQ", name="IMAGE_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="IMAGE_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ItemID")
-	private Item item;
+	private Integer ItemId;
 	
-	@Column
-	private Blob Image;
+	@Column(name="Image")
+	private byte[] Image;
 	
-	@Column
+	@Column(name="FileName")
 	private String FileName;
 
-	public Image(Integer iD, Item item, Blob image, String fileName) {
+	public Image(Integer id, Integer item, byte[] image, String fileName) {
 		super();
-		ID = iD;
-		this.item = item;
+		this.id = id;
+		ItemId = item;
 		Image = image;
 		FileName = fileName;
 	}
 
-	public Image(Item item, Blob image, String fileName) {
+	public Image(Integer item, byte[] image, String fileName) {
 		super();
-		this.item = item;
+		ItemId = item;
 		Image = image;
+		FileName = fileName;
+	}
+
+	public Image(Integer itemId, byte[] image) {
+		super();
+		ItemId = itemId;
+		Image = image;
+	}
+
+	public Image(Integer itemId, String fileName) {
+		super();
+		ItemId = itemId;
 		FileName = fileName;
 	}
 
@@ -54,27 +66,27 @@ public class Image {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
-	public Item getItem() {
-		return item;
+	public Integer getItem() {
+		return ItemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Integer item) {
+		ItemId = item;
 	}
 
-	public Blob getImage() {
+	public byte[] getImage() {
 		return Image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		Image = image;
 	}
 

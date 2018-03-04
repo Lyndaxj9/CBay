@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.CBay.beans.Rating;
+import com.CBay.beans.SellerRating;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -28,8 +28,8 @@ public class RatingApi {
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Rating> getAllRatings(){
-		return new ArrayList<Rating>();
+	public List<SellerRating> getAllRatings(){
+		return new ArrayList<SellerRating>();
 	}
 	
 	//-- get one rating from the database via id.
@@ -38,8 +38,8 @@ public class RatingApi {
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Rating getRatingIndex(@PathParam("id") int id){
-		return new Rating();
+	public SellerRating getRatingIndex(@PathParam("id") int id){
+		return new SellerRating();
 	}
 	
 	//-- insert and if successful return success
@@ -48,7 +48,7 @@ public class RatingApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertRating(Rating rating){
+	public String insertRating(SellerRating rating){
 		return "success";
 	}
 	

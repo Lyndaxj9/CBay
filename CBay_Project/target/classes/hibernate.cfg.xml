@@ -41,8 +41,11 @@
 		<mapping class="com.CBay.beans.Item"/>
 		<mapping class="com.CBay.beans.User"/>
 		<mapping class="com.CBay.beans.Order"/>
-		<mapping class="com.CBay.beans.Rating"/>
+		<mapping class="com.CBay.beans.Transactions"/>
+		<mapping class="com.CBay.beans.ItemRating"/>
+		<mapping class="com.CBay.beans.SellerRating"/>
 		<mapping class="com.CBay.beans.Message"/>
+		<mapping class="com.CBay.beans.MessageThread"/>
 		<mapping class="com.CBay.beans.Image"/>
 		
 		

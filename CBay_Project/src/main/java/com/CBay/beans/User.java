@@ -19,37 +19,39 @@ public class User {
 
 	@Id
 	@Column(name="UserID")
-	@SequenceGenerator(sequenceName="USER_ID_SEQ", name="USER_ID_SEQ")
+	@SequenceGenerator(sequenceName="USER_ID_SEQ", name="USER_ID_SEQ", allocationSize=1)
 	@GeneratedValue(generator="USER_ID_SEQ", strategy=GenerationType.SEQUENCE)
-	private Integer ID;
+	private Integer id;
 	
-	@Column
+	@Column(name="FirstName")
 	private String FirstName;
 	
-	@Column
+	@Column(name="LastName")
 	private String LastName;
 	
-	@Column
+	@Column(name="UserType")
 	private String UserType;
 	
-	@Column(unique = true)
+	@Column(name="UserName")
 	private String UserName;
-	@Column
+	
+	@Column(name="PW")
 	private String PW;
 	
-	@Column(unique = true)
+	@Column(name="Email")
 	private String Email;
 	
-	
+	@Column(name="RatingAvg")
 	private Integer RatingAvg;
 	
-	@Column
+	@Column(name="Description")
 	private String Description;
 
-	public User(Integer iD, String firstName, String lastName, String type, String userName, String password,
+	
+	public User(Integer id, String firstName, String lastName, String type, String userName, String password,
 			String email, Integer rating, String description) {
 		super();
-		ID = iD;
+		this.id = id;
 		FirstName = firstName;
 		LastName = lastName;
 		UserType = type;
@@ -94,12 +96,12 @@ public class User {
 
 
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
