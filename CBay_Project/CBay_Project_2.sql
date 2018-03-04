@@ -142,7 +142,7 @@ CREATE TABLE IMAGE
     ImageID NUMBER(6) NOT NULL,
     ItemID NUMBER(6) NOT NULL,
     Image Blob,
-    FileName VARCHAR2(20) NOT NULL,
+    FileName VARCHAR2(300) NOT NULL,
     CONSTRAINT PK_IMAGE PRIMARY KEY  (ImageID),
     CONSTRAINT FK_ITEM_IN_IMAGE FOREIGN KEY (ItemID) 
     REFERENCES ITEM (ItemID)  ON DELETE CASCADE
@@ -205,6 +205,9 @@ delete from THREADS;
 
 select * from CLIENT;
 select * from THREADS;
+select * from ITEM;
+select * from IMAGE;
+
 
 
 select USER_ID_SEQ.nextval from dual;

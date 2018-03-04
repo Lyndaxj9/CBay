@@ -30,12 +30,12 @@ public class Image {
 	private Integer ItemId;
 	
 	@Column(name="Image")
-	private Blob Image;
+	private byte[] Image;
 	
 	@Column(name="FileName")
 	private String FileName;
 
-	public Image(Integer id, Integer item, Blob image, String fileName) {
+	public Image(Integer id, Integer item, byte[] image, String fileName) {
 		super();
 		this.id = id;
 		ItemId = item;
@@ -43,17 +43,23 @@ public class Image {
 		FileName = fileName;
 	}
 
-	public Image(Integer item, Blob image, String fileName) {
+	public Image(Integer item, byte[] image, String fileName) {
 		super();
 		ItemId = item;
 		Image = image;
 		FileName = fileName;
 	}
 
-	public Image(Integer itemId, Blob image) {
+	public Image(Integer itemId, byte[] image) {
 		super();
 		ItemId = itemId;
 		Image = image;
+	}
+
+	public Image(Integer itemId, String fileName) {
+		super();
+		ItemId = itemId;
+		FileName = fileName;
 	}
 
 	public Image() {
@@ -76,11 +82,11 @@ public class Image {
 		ItemId = item;
 	}
 
-	public Blob getImage() {
+	public byte[] getImage() {
 		return Image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		Image = image;
 	}
 

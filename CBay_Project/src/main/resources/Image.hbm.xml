@@ -18,7 +18,7 @@
 		</id>
 		
 		<property name="ItemId" column="ItemID" type="int" ></property>
-		<property name="Image" column="Image" type="blob" ></property>
+		<property name="Image" column="Image" type="binary" ></property>
 		<property name="FileName" column="FileName" type="string"></property>
 		
 

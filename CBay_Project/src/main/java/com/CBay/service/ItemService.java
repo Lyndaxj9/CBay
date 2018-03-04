@@ -1,10 +1,12 @@
 package com.CBay.service;
 
-import java.sql.Blob;
 
-import com.CBay.beans.Image;
+import java.util.List;
+
 import com.CBay.beans.Item;
+import com.CBay.beans.Order;
 import com.CBay.dao.ItemDao;
+import com.CBay.dao.UserDao;
 
 public class ItemService {
 
@@ -16,15 +18,18 @@ public class ItemService {
 		return item.getId();
 	}
 	
-public static Integer addItemImage(Blob image, Integer ItemId) {
-		
+	public static Integer addItemImage(String FilePath, Integer ItemId) {
+
 		ItemDao dao = new ItemDao();
-		Image img = new Image(ItemId, image);
-		dao.insertImage(img);
-		return img.getId();
+		return dao.insertImage(FilePath, ItemId);
+		
 	}
 	
-	
+	public static List<Image> getImageByItemId(Integer ItemId) {
+			
+			ItemDao dao = new ItemDao();
+			return dao.getItemImages(ItemId);	
+		}
 	
 	
 	
