@@ -19,28 +19,26 @@ export class EntityDisplayComponent implements OnInit {
     ngOnInit() {
         this.itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
         this.itemInfo = {
-            /*itemid: '20000',
+            itemid: '20000',
             userid: '10001',
             itemname: 'Tv',
             description: 'Samsung Tv',
             price: '200',
-            ratingavg: '0'*/
+            ratingavg: '0'
         };
 
         this.userInfo = {
+            /*
             userid: '10001',
             username: 'BBobbert',
             email: 'B@gmail.com',
             description: 'I am a very trustworthy seller.',
             rating: '4.7/5'
+            */
         };
 
         this.set_page_data();
     }
-
-    data = 'name';
-
-    canEdit: boolean = true;
 
     get_item() {
         this.itemId = '20000';
@@ -64,7 +62,7 @@ export class EntityDisplayComponent implements OnInit {
     }
 
     keys(): Array<string> {
-        return Object.keys(this.itemInfo);
+        return Object.keys(this.dataToPage);
     }
 
     toggleEdit() {
@@ -75,15 +73,16 @@ export class EntityDisplayComponent implements OnInit {
         // TODO send data back to db
         this.toggleEdit();
     }
-    
+
     set_page_data() {
-        if(this.itemInfo == {} && this.userInfo != {}) {
+        // Object.keys(obj).length isn't supported by IE8
+        if (Object.keys(this.itemInfo).length === 0 && Object.keys(this.userInfo).length > 0) {
             this.dataToPage = this.userInfo;
-            console.log("display userinfo");
-        } else if(this.itemInfo != {} && this.userInfo == {}) {
+            console.log('display userinfo');
+        } else if (Object.keys(this.itemInfo).length > 0 && Object.keys(this.userInfo).length === 0) {
             this.dataToPage = this.itemInfo;
-            console.log("display iteminfo");
+            console.log('display iteminfo');
         }
-        console.log("set_page_data()");
+        console.log('set_page_data()');
     }
 }

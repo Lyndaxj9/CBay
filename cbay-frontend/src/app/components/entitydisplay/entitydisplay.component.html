@@ -3,16 +3,11 @@
         <div *ngFor="let key of keys()">
             <label>{{key}}</label>
             <div>
-                <input type='text' value={{userInfo[key]}} name={{key}} [disabled]=disableEdit>
+                <input type='text' value={{dataToPage[key]}} name={{key}} [disabled]=disableEdit>
             </div>
         </div>
     </form>
 
-    <!--   
-<ng-template #elseBlock>
-<p>{{data}}</p>
-</ng-template>
--->
     <button type='button' (click)='get_item()'>GET ITEM</button>
     <button type='button' *ngIf='disableEdit' (click)='toggleEdit()'>EDIT INFO</button>
     <button type='button' *ngIf='!disableEdit' (click)='save_changes()'>SAVE CHANGES</button>
