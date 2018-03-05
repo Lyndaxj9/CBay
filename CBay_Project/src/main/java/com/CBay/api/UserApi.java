@@ -51,17 +51,9 @@ public class UserApi {
 	@GET
 	@Path("/get/{username}/{password}/{type}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginUser(@PathParam("username") String username, 
+	public Integer loginUser(@PathParam("username") String username, 
 			@PathParam("password")String password, @PathParam("type")String type){
-		Response response = Response.status(200).
-                entity(UserService.LoginBuyer(username, password)).
-                header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-                .header("Access-Control-Allow-Headers", "Content-Type")
-                .allow("OPTIONS")
-                .build();
-
-	 return response;
+		return UserService.LoginBuyer(username, password);
 		//return UserService.LoginBuyer(username, password);
 	}
 	

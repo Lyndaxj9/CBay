@@ -39,24 +39,9 @@ public class ItemApi {
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getItemIndex(@PathParam("id") int id){
-		 Response response = Response.status(200).
-	                entity(new Item()).
-	                header("Access-Control-Allow-Origin", "*")
-	                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-	                .header("Access-Control-Allow-Headers", "Content-Type")
-	                .allow("OPTIONS")
-	                .build();
-
-		 return response;
-		//return new Item();
-	}
-	
-	/*
-	 * public Item getItemIndex(@PathParam("id") int id){
+	public Item getItemIndex(@PathParam("id") int id){
 		return new Item();
-}
-	 */
+	}
 	
 	//-- insert and if successful return success
 	//-- if it is not return unsuccessful.
