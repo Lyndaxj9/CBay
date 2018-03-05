@@ -9,26 +9,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class EntityDisplayComponent implements OnInit {
     public itemId: string;
     public itemUrl: string;
+    public itemInfo;
+    public disableEdit = true;
+    
     constructor(public http: HttpClient) {}
     
     ngOnInit() {
         this.itemId;
-        this.itemUrl = `http://localhost:8089/CBay_Project/rest/item/get`;
+        this.itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
+        this.itemInfo = {
+        itemid: '20000',
+        userid: '10001',
+        itemname: 'Tv',
+        description: 'Samsung Tv',
+        price: '200',
+        ratingavg: '0'
+        };
     }
 
-    public itemInfo = {
-        itemid: '',
-        userid: '',
-        itemname: '',
-        description: '',
-        price: '',
-        ratingavg: ''
-    };
-
     data = 'name';
-    dbresult = [
-        2, 'Bobbert', 'seller', 'b@gmail.com', 'I am a very trustworthy seller', '4.5/5'
-    ];
+
     canEdit: boolean = true;
 
     get_item() {
@@ -41,7 +41,7 @@ export class EntityDisplayComponent implements OnInit {
             console.log(error);
         });
     }
-    
+
     get_item_data(): Promise<any> {
         const httpOptions = {
             headers: new HttpHeaders({
@@ -50,5 +50,18 @@ export class EntityDisplayComponent implements OnInit {
         };
         return this.http.get(this.itemUrl + '/' + this.itemId, httpOptions)
         .toPromise();
+    }
+
+    keys(): Array<string> {
+        return Object.keys(this.itemInfo);
+    }
+
+    toggleEdit() {
+        this.disableEdit = !this.disableEdit;
+    }
+
+    save_changes() {
+        // TODO send data back to db
+        this.toggleEdit();
     }
 }
