@@ -53,8 +53,7 @@ public class UserApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Integer loginUser(@PathParam("username") String username, 
 			@PathParam("password")String password, @PathParam("type")String type){
-		return UserService.LoginBuyer(username, password);
-		//return UserService.LoginBuyer(username, password);
+		return UserService.LoginSeller(username, password);
 	}
 	
 	//-- insert and if successful return success

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    this.type = 'buyer';
+    this.type = 'seller';
     console.log('username : ' + this.username);
     console.log('password : ' + this.password);
     console.log('type : ' + this.type);
