@@ -77,7 +77,7 @@ export class EntityDisplayComponent implements OnInit {
         // Object.keys(obj).length isn't supported by IE8
         if (Object.keys(this.itemInfo).length === 0 && Object.keys(this.userInfo).length > 0) {
             this.dataToPage = this.userInfo;
-            delete this.dataToPage.username;
+            //delete this.dataToPage.username;
             console.log('display userinfo');
         } else if (Object.keys(this.itemInfo).length > 0 && Object.keys(this.userInfo).length === 0) {
             this.dataToPage = this.itemInfo;
