@@ -1,16 +1,40 @@
 <div>
-    <form>
-        <div *ngFor="let key of keys()">
+    <form *ngIf="currentUserId === userIdNum; else elseBlock">
+        <h3>{{name}}</h3>
+        <div *ngFor="let key of keys(this.dataToPage)">
             <label>{{key}}</label>
             <div>
                 <input type='text' class='form-control' value={{dataToPage[key]}} name={{key}} [disabled]=disableEdit>
             </div>
         </div>
-        
-        <button type='button' (click)='get_item()'>GET ITEM</button>
+
+        <div *ngIf="!nonEditableData()">
+            <div *ngFor="let key of keys(this.nonEditable)">
+                <label>{{key}}</label>
+                <p>{{nonEditable[key]}}</p>
+            </div>
+        </div>
+
         <button type='button' *ngIf='disableEdit' (click)='toggleEdit()'>EDIT INFO</button>
         <button type='button' *ngIf='!disableEdit' (click)='save_changes()'>SAVE CHANGES</button>
     </form>
 
+    <ng-template #elseBlock>
+        <h3>{{name}}</h3>
+        <div *ngFor="let key of keys(this.dataToPage)">
+            <label>{{key}}</label>
+            <div>
+                <p>{{dataToPage[key]}}</p>
+            </div>
+        </div>
+        
+        <div *ngIf="!nonEditableData()">
+            <div *ngFor="let key of keys(this.nonEditable)">
+                <label>{{key}}</label>
+                <p>{{nonEditable[key]}}</p>
+            </div>
+        </div>
+    </ng-template>
 
+    <button type='button' (click)='get_user()'>GET USER</button>
 </div>

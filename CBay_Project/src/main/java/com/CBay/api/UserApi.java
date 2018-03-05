@@ -43,7 +43,7 @@ public class UserApi {
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUserIndex(@PathParam("id") int id){
-		return new User();
+		return UserService.getUserInfo(id);
 	}
 	
 	//-- get one user from the database via username, password, type

@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
     this.confirm_password = '';
     this.username = '';
     this.email = '';
-    this.url = `http://54.213.131.230:8089/CBay/rest/user/get`;
-    //this.url = `http://localhost:8089/CBay_Project/rest/user/get`;
+    // this.url = `http://54.213.131.230:8089/CBay/rest/user/get`;
+    this.url = `http://localhost:8089/CBay_Project/rest/user/get`;
   }
 
   login() {
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
     console.log('type : ' + this.type);
     console.log(this.url + '/' + this.username + '/' + this.password + '/' + this.type);
     this.get_user_data().then(user_data => {
+        localStorage.setItem('userid', user_data);
       console.log(user_data);
     }).catch(error => {
       console.log(error);
