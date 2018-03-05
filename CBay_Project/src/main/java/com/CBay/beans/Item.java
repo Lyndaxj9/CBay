@@ -91,6 +91,15 @@ public class Item {
 		Description = description;
 		Price = price;
 	}
+	
+
+	public Item(Integer id, String itemName, Integer price, String description) {
+		super();
+		this.id = id;
+		ItemName = itemName;
+		Description = description;
+		Price = price;
+	}
 
 	public Item() {
 		// TODO Auto-generated constructor stub
@@ -100,19 +109,25 @@ public class Item {
 		return id;
 	}
 
-	public void setID(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getUser() {
+	public Integer getUserId() {
 		return UserId;
 	}
 
-	public void setUser(Integer user) {
-		this.UserId = user;
+	public void setUserId(Integer userId) {
+		UserId = userId;
 	}
 
-	
+	public String getItemName() {
+		return ItemName;
+	}
+
+	public void setItemName(String itemName) {
+		ItemName = itemName;
+	}
 
 	public String getDescription() {
 		return Description;
@@ -122,14 +137,13 @@ public class Item {
 		Description = description;
 	}
 
-	/*public Set<Image> getImage() {
-		return image;
+	public Integer getPrice() {
+		return Price;
 	}
 
-	public void setImage(Set<Image> image) {
-		this.image = image;
-	}*/
-
+	public void setPrice(Integer price) {
+		Price = price;
+	}
 
 	public Integer getRatingAvg() {
 		return RatingAvg;
@@ -139,13 +153,7 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	/*public Set<Rating> getRatingText() {
-		return RatingText;
-	}
-
-	public void setRatingText(Set<Rating> ratingText) {
-		RatingText = ratingText;
-	}*/
+	
 
 	
 	

@@ -201,7 +201,7 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from THREADS;
+delete from IMAGE;
 
 select * from CLIENT;
 select * from THREADS;

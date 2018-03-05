@@ -64,6 +64,20 @@ public class User {
 	
 	
 
+	public User(Integer id, String firstName, String lastName, String userName, String pW, String email,
+			String description) {
+		super();
+		this.id = id;
+		FirstName = firstName;
+		LastName = lastName;
+		UserName = userName;
+		PW = pW;
+		Email = email;
+		Description = description;
+	}
+
+
+
 	public User(String firstName, String lastName, String type, String userName, String password, String email,
 			Integer rating, String description) {
 		super();

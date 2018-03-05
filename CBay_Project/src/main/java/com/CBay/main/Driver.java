@@ -4,7 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.CBay.beans.Image;
+import com.CBay.beans.User;
 import com.CBay.service.ItemService;
+import com.CBay.service.UserService;
 
 public class Driver {
 
@@ -14,6 +16,7 @@ public class Driver {
  
  		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
 		System.out.println(UserService.InsertSeller("Bobbert", "Bob", "BBobbert", "BBobbert", "Bobbert@bob.com"));
+		
 		
 		System.out.println(UserService.getUserInfo(UserService.LoginSeller("JDoe", "JDoe")).getFirstName());
 		
@@ -38,6 +41,11 @@ public class Driver {
 		}
 		
 	*/	
+		//System.out.println(UserService.InsertSeller("dogbert", "dog", "DogbertDog", "DogbertDog", "Dog@gmai.com"));
+		//User user = new User(10001, "John", "Doe", "JDoe", "JDoe", "Jdoe22@gmail.com", "My Description Here");
+		//UserService.EditUserInfo(10020, "dogbert", "dog", "DogbertDog", "Dog123456789", "Dogbert@gmail.com", "My Description Here");
+		
+		ItemService.editItem(20000, "Laptop", 700, "Tv turn to a Laptop");
 		
 		System.exit(0);
 	}

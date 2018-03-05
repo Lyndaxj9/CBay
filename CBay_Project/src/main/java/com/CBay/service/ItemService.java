@@ -1,11 +1,12 @@
 package com.CBay.service;
 
 
-import java.io.FileOutputStream;
 import java.util.List;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
+import com.CBay.beans.ItemRating;
+import com.CBay.beans.User;
 import com.CBay.dao.ItemDao;
 
 public class ItemService {
@@ -28,6 +29,7 @@ public class ItemService {
 	
 	
 	/*
+	 * 
 	 * to retrieve the Image from here, iterate through this list as following (In the API/Servlet level)
 	 * 	
 	 * 		for(Image img : ItemService.getImageByItemId(ItemID)) {
@@ -44,6 +46,32 @@ public class ItemService {
 		
 		return image;
 	}
+	
+	
+	public static Integer insertItemRating(Integer ItemID, Integer NumRating, String Comment) {
+		
+		ItemDao dao = new ItemDao();
+		ItemRating rating = new ItemRating(ItemID, NumRating, Comment);
+		
+		dao.addItemRatingAndComment(rating); 
+		return rating.getId();
+		
+	}
+	
+	
+	public static void editItem(Integer ItemId, String ItemName, Integer Price, String Description) {
+		
+		ItemDao dao = new ItemDao();
+		Item item = new Item(ItemId, ItemName, Price, Description);
+		dao.changeItemInfo(item);
+		
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	

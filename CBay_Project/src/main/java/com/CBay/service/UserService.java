@@ -112,5 +112,11 @@ public class UserService {
 	}
 	
 	
-	
+	public static void EditUserInfo(Integer Id, String FirstName, String LastName, String Username,
+									String PW, String Email, String Description) {
+		
+		UserDao dao = new UserDao();
+		User user = new User(Id, FirstName, LastName, Username, PW, Email, Description);
+		dao.changeUserInfo(user);
+	}
 }

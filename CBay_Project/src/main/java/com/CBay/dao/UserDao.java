@@ -194,4 +194,34 @@ public class UserDao {
 		}
 		return null;
 	}
+	
+	public void changeUserInfo(User UserEdit) {
+			
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			User user = null;
+			try{
+				tx = session.beginTransaction();
+				user = (User)session.get(User.class, UserEdit.getId());
+				user.setFirstName(UserEdit.getFirstName());
+				user.setLastName(UserEdit.getLastName());
+				user.setUserName(UserEdit.getUserName());
+				user.setPW(UserEdit.getPW());
+				user.setEmail(UserEdit.getEmail());
+				user.setDescription(UserEdit.getDescription());
+				session.update(user);
+				tx.commit();
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}		
+	}
+	
+	
+	
 }

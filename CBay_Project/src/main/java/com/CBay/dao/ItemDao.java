@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,12 +13,13 @@ import org.hibernate.Transaction;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
-import com.CBay.beans.MessageThread;
+import com.CBay.beans.ItemRating;
 import com.CBay.util.HibernateUtil;
 
 public class ItemDao {
 
 	public void insertItem(Item item){
+		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		try{
@@ -38,26 +36,6 @@ public class ItemDao {
 			session.close();
 		}
 			
-	}
-
-	public void insertImage(Image img) {
-		
-		Session session = HibernateUtil.getSession();
-		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
-			session.save(img);
-			tx.commit();
-			
-		}catch(HibernateException e){
-			if(tx!=null){
-				tx.rollback();
-			}
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		
 	}
 
 	public Integer insertImage(String filePath, Integer itemId) {
@@ -142,6 +120,69 @@ public class ItemDao {
 		}
 		return null;
 	}
+
+	public void addItemRatingAndComment(ItemRating rating) {
+
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			session.save(rating);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
+
+	public void changeItemInfo(Item ItemEdit) {
+		
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		Item item = null;
+		try{
+			tx = session.beginTransaction();
+			item = (Item)session.get(Item.class, ItemEdit.getId());
+			item.setItemName(ItemEdit.getItemName());
+			item.setPrice(ItemEdit.getPrice());
+			item.setDescription(ItemEdit.getDescription());
+			session.update(item);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}		
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 }
