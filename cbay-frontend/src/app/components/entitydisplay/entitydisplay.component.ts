@@ -13,28 +13,27 @@ export class EntityDisplayComponent implements OnInit {
     public userInfo;
     public dataToPage = {};
     public disableEdit = true;
+    public name: string;
 
     constructor(public http: HttpClient) {}
 
     ngOnInit() {
         this.itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
         this.itemInfo = {
-            itemid: '20000',
+            /*itemid: '20000',
             userid: '10001',
             itemname: 'Tv',
             description: 'Samsung Tv',
             price: '200',
-            ratingavg: '0'
+            ratingavg: '0'*/
         };
 
         this.userInfo = {
-            /*
             userid: '10001',
             username: 'BBobbert',
             email: 'B@gmail.com',
             description: 'I am a very trustworthy seller.',
             rating: '4.7/5'
-            */
         };
 
         this.set_page_data();
@@ -78,6 +77,7 @@ export class EntityDisplayComponent implements OnInit {
         // Object.keys(obj).length isn't supported by IE8
         if (Object.keys(this.itemInfo).length === 0 && Object.keys(this.userInfo).length > 0) {
             this.dataToPage = this.userInfo;
+            delete this.dataToPage.username;
             console.log('display userinfo');
         } else if (Object.keys(this.itemInfo).length > 0 && Object.keys(this.userInfo).length === 0) {
             this.dataToPage = this.itemInfo;

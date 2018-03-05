@@ -3,12 +3,14 @@
         <div *ngFor="let key of keys()">
             <label>{{key}}</label>
             <div>
-                <input type='text' value={{dataToPage[key]}} name={{key}} [disabled]=disableEdit>
+                <input type='text' class='form-control' value={{dataToPage[key]}} name={{key}} [disabled]=disableEdit>
             </div>
         </div>
+        
+        <button type='button' (click)='get_item()'>GET ITEM</button>
+        <button type='button' *ngIf='disableEdit' (click)='toggleEdit()'>EDIT INFO</button>
+        <button type='button' *ngIf='!disableEdit' (click)='save_changes()'>SAVE CHANGES</button>
     </form>
 
-    <button type='button' (click)='get_item()'>GET ITEM</button>
-    <button type='button' *ngIf='disableEdit' (click)='toggleEdit()'>EDIT INFO</button>
-    <button type='button' *ngIf='!disableEdit' (click)='save_changes()'>SAVE CHANGES</button>
+
 </div>
