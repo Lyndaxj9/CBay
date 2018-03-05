@@ -10,21 +10,32 @@ export class EntityDisplayComponent implements OnInit {
     public itemId: string;
     public itemUrl: string;
     public itemInfo;
+    public userInfo;
+    public dataToPage = {};
     public disableEdit = true;
-    
+
     constructor(public http: HttpClient) {}
-    
+
     ngOnInit() {
-        this.itemId;
         this.itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
         this.itemInfo = {
-        itemid: '20000',
-        userid: '10001',
-        itemname: 'Tv',
-        description: 'Samsung Tv',
-        price: '200',
-        ratingavg: '0'
+            /*itemid: '20000',
+            userid: '10001',
+            itemname: 'Tv',
+            description: 'Samsung Tv',
+            price: '200',
+            ratingavg: '0'*/
         };
+
+        this.userInfo = {
+            userid: '10001',
+            username: 'BBobbert',
+            email: 'B@gmail.com',
+            description: 'I am a very trustworthy seller.',
+            rating: '4.7/5'
+        };
+
+        this.set_page_data();
     }
 
     data = 'name';
@@ -49,7 +60,7 @@ export class EntityDisplayComponent implements OnInit {
             })
         };
         return this.http.get(this.itemUrl + '/' + this.itemId, httpOptions)
-        .toPromise();
+            .toPromise();
     }
 
     keys(): Array<string> {
@@ -63,5 +74,16 @@ export class EntityDisplayComponent implements OnInit {
     save_changes() {
         // TODO send data back to db
         this.toggleEdit();
+    }
+    
+    set_page_data() {
+        if(this.itemInfo == {} && this.userInfo != {}) {
+            this.dataToPage = this.userInfo;
+            console.log("display userinfo");
+        } else if(this.itemInfo != {} && this.userInfo == {}) {
+            this.dataToPage = this.itemInfo;
+            console.log("display iteminfo");
+        }
+        console.log("set_page_data()");
     }
 }

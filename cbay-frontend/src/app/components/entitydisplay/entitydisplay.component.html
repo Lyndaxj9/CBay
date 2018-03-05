@@ -3,7 +3,7 @@
         <div *ngFor="let key of keys()">
             <label>{{key}}</label>
             <div>
-                <input type='text' value={{itemInfo[key]}} name={{key}} [disabled]=disableEdit>
+                <input type='text' value={{userInfo[key]}} name={{key}} [disabled]=disableEdit>
             </div>
         </div>
     </form>
