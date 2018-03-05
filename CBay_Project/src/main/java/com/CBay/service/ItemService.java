@@ -26,6 +26,12 @@ public class ItemService {
 		
 	}
 	
+	public static Item getItemById(Integer ItemId) {
+		
+		ItemDao dao = new ItemDao();
+		return dao.getItemById(ItemId);
+	}
+	
 	
 	
 	/*
@@ -65,8 +71,38 @@ public class ItemService {
 		Item item = new Item(ItemId, ItemName, Price, Description);
 		dao.changeItemInfo(item);
 		
-		
+	
 	}
+	
+	
+	public static List<String> getItemComments(Integer ItemId){
+		
+		ItemDao dao = new ItemDao();
+		List<String> comments = null;
+		List<ItemRating> ratings = dao.getItemRating(ItemId);
+		
+		for (ItemRating r : ratings) {
+			
+			comments.add(r.getTextRating());
+		}
+		
+		return comments;
+	}
+	
+	
+	public static List<Integer> getItemAverageRating(Integer ItemId){
+			
+			ItemDao dao = new ItemDao();
+			List<Integer> avg = null;
+			List<ItemRating> ratings = dao.getItemRating(ItemId);
+			
+			for (ItemRating r : ratings) {
+				
+				avg.add(r.getNumRating());
+			}
+			
+			return avg;
+		}
 	
 	
 	

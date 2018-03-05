@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
 import com.CBay.beans.ItemRating;
+import com.CBay.beans.User;
 import com.CBay.util.HibernateUtil;
 
 public class ItemDao {
@@ -101,8 +102,7 @@ public class ItemDao {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		
-		try{
-			
+		try{	
 			tx = session.beginTransaction();
 			String hql = "FROM Image WHERE ItemId= :ID";
 			Query query = session.createQuery(hql);
@@ -120,6 +120,8 @@ public class ItemDao {
 		}
 		return null;
 	}
+	
+	
 
 	public void addItemRatingAndComment(ItemRating rating) {
 
@@ -164,10 +166,57 @@ public class ItemDao {
 		}		
 	}
 	
-	
-	
 
 	
+	public List<ItemRating> getItemRating(Integer ItemId){
+			
+			List<ItemRating> rating = null;
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			
+			try{	
+				tx = session.beginTransaction();
+				String hql = "FROM ItemRating WHERE ItemId= :ID";
+				Query query = session.createQuery(hql);
+				query.setParameter("ID", ItemId);
+				rating = query.list();
+				return rating;
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}
+			return null;
+		
+		}
+
+	public Item getItemById(Integer itemId) {
+		Item item = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{
+			
+			tx = session.beginTransaction();
+			
+			item = (Item)session.get(Item.class, itemId);
+			
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return item;
+			
+		}
 	
 	
 	

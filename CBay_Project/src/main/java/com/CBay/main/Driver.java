@@ -40,13 +40,17 @@ public class Driver {
 			outputStream.close();
 		}
 		
-	*/	
-		//System.out.println(UserService.InsertSeller("dogbert", "dog", "DogbertDog", "DogbertDog", "Dog@gmai.com"));
-		//User user = new User(10001, "John", "Doe", "JDoe", "JDoe", "Jdoe22@gmail.com", "My Description Here");
-		//UserService.EditUserInfo(10020, "dogbert", "dog", "DogbertDog", "Dog123456789", "Dogbert@gmail.com", "My Description Here");
+		
+		System.out.println(UserService.InsertSeller("dogbert", "dog", "DogbertDog", "DogbertDog", "Dog@gmai.com"));
+		User user = new User(10001, "John", "Doe", "JDoe", "JDoe", "Jdoe22@gmail.com", "My Description Here");
+		UserService.EditUserInfo(10020, "dogbert", "dog", "DogbertDog", "Dog123456789", "Dogbert@gmail.com", "My Description Here");
 		
 		ItemService.editItem(20000, "Laptop", 700, "Tv turn to a Laptop");
+		*/
 		
+		System.out.println(ItemService.getItemById(20000));
+		
+		//ItemService.insertItemRating(20000, 5, "This Tv is really Nice");
 		System.exit(0);
 	}
 
