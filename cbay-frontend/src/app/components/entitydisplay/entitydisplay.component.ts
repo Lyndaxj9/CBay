@@ -20,6 +20,12 @@ export class EntityDisplayComponent implements OnInit {
     public dataToPage = {};
     public nonEditable = {};
     public disableEdit = true;
+    public data = {
+                id: 0,
+                name: '',
+                editAble: {},
+                nonEditable: {}
+            };
 
     constructor(public http: HttpClient) {}
 
@@ -75,44 +81,47 @@ export class EntityDisplayComponent implements OnInit {
             .toPromise();
     }
 
+    get_user_new() {
+        this.userModel = new Client(this.http);
+        const aUser = this.userModel.get('10001');
+        console.log('the user : ' + aUser);
+    }
+
     get_user() {
         this.userId = localStorage.getItem('userid');
         this.currentUserId = '10001';
         console.log('current user: ' + this.currentUserId + 'compare user: ' + this.userId);
         this.userModel = new Client(this.http);
+        this.get_user_new();
         // console.log(this.userUrl + '/' + this.userId);
         this.userModel.get(this.userId).then(user_data => {
-        // this.get_user_data().then(user_data => {
-            this.dataToPage = {};
-            this.nonEditable = {};
-
-            delete user_data['PW'];
-
-            this.name = user_data['userName'];
-            this.userId = user_data['id'];
-            this.nonEditable['User Type'] = user_data['userType'];
-            this.dataToPage['First Name'] = user_data['firstName'];
-            this.dataToPage['Last Name'] = user_data['lastName'];
-            this.dataToPage['e-mail'] = user_data['email'];
-
-            delete user_data['userName'];
-            delete user_data['id'];
-            delete user_data['userType'];
-
             console.log(user_data);
+
+            let userID;
+            let name;
+            let editAble = {};
+            let nonEditable = {};
+            // this.password = user_data['PW'];
+            // delete user_data['PW'];
+
+            userID = user_data['id'];
+            name = user_data['userName'];
+            editAble['First Name'] = user_data['firstName'];
+            editAble['Last Name'] = user_data['lastName'];
+            editAble['e-mail'] = user_data['email'];
+            nonEditable['User Type'] = user_data['userType'];
+
+            // TODO how to get this as an accessable object
+            this.data = {
+                id: userID,
+                name: name,
+                editAble: editAble,
+                nonEditable: nonEditable
+            };
+            console.log("user: " + this.data['editAble']);
         }).catch(error => {
             console.log(error);
         });
-    }
-
-    get_user_data(): Promise<any> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json'
-            })
-        };
-        return this.http.get(this.userUrl + '/' + this.userId, httpOptions)
-            .toPromise();
     }
 
     keys(obj): Array<string> {
@@ -129,6 +138,6 @@ export class EntityDisplayComponent implements OnInit {
     }
 
     nonEditableData() {
-        return this.nonEditable === {};
+        return this.data.nonEditable === {};
     }
 }
