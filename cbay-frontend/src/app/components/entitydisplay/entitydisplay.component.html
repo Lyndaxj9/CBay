@@ -1,5 +1,5 @@
 <div>
-    <form *ngIf="currentUserId === userIdNum; else elseBlock">
+    <form *ngIf="currentUserId == userId; else elseBlock">
         <h3>{{name}}</h3>
         <div *ngFor="let key of keys(this.dataToPage)">
             <label>{{key}}</label>
@@ -37,4 +37,5 @@
     </ng-template>
 
     <button type='button' (click)='get_user()'>GET USER</button>
+    <button type='button' (click)='get_item()'>GET ITEM</button>
 </div>
