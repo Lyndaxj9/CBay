@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../../shared/models/client';
+import { Item } from '../../shared/models/item';
 
 @Component({
     selector: 'app-entity-display',
@@ -10,12 +11,10 @@ import { Client } from '../../shared/models/client';
 export class EntityDisplayComponent implements OnInit {
     public itemId: string;
     public userId: string;
-    public currentUserId = '0';
+    public currentUserId;
     public itemUrl: string;
-    public userUrl: string;
-    public itemInfo;
-    public userInfo;
     public userModel;
+    public itemModel;
     public name: string;
     public dataToPage = {};
     public nonEditable = {};
@@ -30,40 +29,27 @@ export class EntityDisplayComponent implements OnInit {
     constructor(public http: HttpClient) {}
 
     ngOnInit() {
-        console.log(this.currentUserId);
-        this.itemUrl = `http://localhost:8089/CBay_Project/rest/item/get`;
-        this.itemInfo = {
-           /* itemid: '20000',
-            userid: '10001',
-            itemname: 'Tv',
-            description: 'Samsung Tv',
-            price: '200',
-            ratingavg: '0'*/
-        };
-
-        this.userUrl = `http://localhost:8089/CBay_Project/rest/user/get`;
-        this.userInfo = {
-            /*userid: '10001',
-            username: 'BBobbert',
-            email: 'B@gmail.com',
-            description: 'I am a very trustworthy seller.',
-            rating: '4.7/5'*/
-        };
+        this.currentUserId = sessionStorage.getItem('userid');
+        console.log('current user: ' + this.currentUserId);
     }
 
     get_item() {
-        this.itemId = '20000';
+        this.itemId = '418';
         console.log(this.itemId);
-        console.log(this.itemUrl + '/' + this.itemId);
-        this.get_item_data().then(item_data => {
-            this.dataToPage = {};
-            this.nonEditable = {};
+        this.itemModel = new Item(this.http);
 
-            this.name = item_data['itemName'];
-            this.userId = item_data['userId'];
-            this.nonEditable['Price'] = item_data['price'];
-            this.nonEditable['Product Rating'] = item_data['ratingAvg'];
-            this.dataToPage['Description'] = item_data['description'];
+        this.itemModel.get(this.itemId).then(item_data => {
+            this.data.id = item_data['id'];
+            this.data.name = item_data['itemName'];
+
+            this.data.editAble['Description'] = item_data['description'];
+
+            this.userModel = new Client(this.http);
+            this.userModel.get(item_data['userId']).then(user_data => {
+                this.data.nonEditable['Seller'] = user_data['userName'];
+                this.data.nonEditable['Price'] = item_data['price'];
+                this.data.nonEditable['Product Rating'] = item_data['ratingAvg'];
+            });
 
             console.log(item_data);
         }).catch(error => {
@@ -71,29 +57,12 @@ export class EntityDisplayComponent implements OnInit {
         });
     }
 
-    get_item_data(): Promise<any> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json'
-            })
-        };
-        return this.http.get(this.itemUrl + '/' + this.itemId, httpOptions)
-            .toPromise();
-    }
-
-    get_user_new() {
-        this.userModel = new Client(this.http);
-        const aUser = this.userModel.get('10001');
-        console.log('the user : ' + aUser);
-    }
-
     get_user() {
-        this.userId = localStorage.getItem('userid');
+        this.userId = sessionStorage.getItem('userid');
         this.currentUserId = '10001';
         console.log('current user: ' + this.currentUserId + 'compare user: ' + this.userId);
         this.userModel = new Client(this.http);
-        this.get_user_new();
-        // console.log(this.userUrl + '/' + this.userId);
+
         this.userModel.get(this.userId).then(user_data => {
             console.log(user_data);
 
@@ -118,7 +87,7 @@ export class EntityDisplayComponent implements OnInit {
                 editAble: editAble,
                 nonEditable: nonEditable
             };
-            console.log("user: " + this.data['editAble']);
+            console.log('user: ' + this.data['editAble']);
         }).catch(error => {
             console.log(error);
         });

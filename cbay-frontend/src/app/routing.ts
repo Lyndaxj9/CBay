@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ItemsearchComponent } from './components/itemsearch/itemsearch.component';
 import { MessageComponent } from './components/message/message.component';
@@ -22,6 +22,10 @@ export const appRoutes: Routes = [
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+        path: '',
+        component: HomeComponent
     }
     /*
         create path for homepage

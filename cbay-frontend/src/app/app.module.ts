@@ -5,13 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
+import { appRoutes } from './routing';
 // Components
 import { EntityDisplayComponent } from './components/entitydisplay/entitydisplay.component';
 import { MessageComponent } from './components/message/message.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ItemsearchComponent } from './components/itemsearch/itemsearch.component';
 import { CartComponent } from './components/cart/cart.component';
-import { appRoutes } from './routing';
+import { LogintempComponent } from './components/logintemp/logintemp.component';
+import { RegistertempComponent } from './components/registertemp/registertemp.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { appRoutes } from './routing';
     MessageComponent,
     ProfileComponent,
     ItemsearchComponent,
-    CartComponent
+    CartComponent,
+    LogintempComponent,
+    RegistertempComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
