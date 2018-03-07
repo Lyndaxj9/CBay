@@ -4,7 +4,7 @@
         <div *ngFor="let key of keys(this.data.editAble)">
             <label>{{key}}</label>
             <div>
-                <input type='text' class='form-control' value={{this.data.editAble[key]}} name={{key}} [disabled]=disableEdit>
+                <input type='text' class='form-control' [(ngModel)]="this.data.editAble[key]" name={{key}} [disabled]=disableEdit>
             </div>
         </div>
 

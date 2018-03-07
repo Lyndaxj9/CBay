@@ -153,6 +153,12 @@ public class Item {
 		RatingAvg = avg;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", UserId=" + UserId + ", ItemName=" + ItemName + ", Description=" + Description
+				+ ", Price=" + Price + ", RatingAvg=" + RatingAvg + "]";
+	}
+
 	
 
 	

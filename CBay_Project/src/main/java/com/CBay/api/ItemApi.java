@@ -3,6 +3,7 @@ package com.CBay.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -60,7 +61,10 @@ public class ItemApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update")
-	public String updateItem(Item item) {
+	public String updateItem(JsonObject json) {
+		System.out.println(json);
+		
+		ItemService.editItem(json.getInt("id"), json.getString("itemName"), json.getInt("price"), json.getString("description"));
 		return "success";
 	}
 

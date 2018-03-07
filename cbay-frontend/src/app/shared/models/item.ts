@@ -38,11 +38,11 @@ export class Item {
     update() {
         const req = this.http.post('http://localhost:8089/CBay_Project/rest/item/update', {
             id: this.itemid,
-            ItemName: this.itemname,
-            Price: this.price,
-            Description: this.description
+            itemName: this.itemname,
+            description: this.description,
+            price: this.price
         }, {responseType: 'text'});
-
+        console.log('desc being sent: ' + this.description);
         return req;
     }
 }
