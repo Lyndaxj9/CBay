@@ -1,12 +1,18 @@
 package com.CBay.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.CBay.beans.Item;
+import com.CBay.beans.ItemRating;
 import com.CBay.beans.MessageThread;
 import com.CBay.beans.Order;
+import com.CBay.beans.SellerRating;
 import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
+import com.CBay.dao.ItemDao;
 import com.CBay.dao.UserDao;
 
 public class UserService {
@@ -118,5 +124,70 @@ public class UserService {
 		UserDao dao = new UserDao();
 		User user = new User(Id, FirstName, LastName, Username, PW, Email, Description);
 		dao.changeUserInfo(user);
+	}
+	
+	
+	public static Integer insertSellerRating(Integer UserId, Integer NumRating, String Comment) {
+			
+			UserDao dao = new UserDao();
+			SellerRating rating = new SellerRating(UserId, NumRating, Comment);
+			
+			dao.addUserRatingAndComment(rating); 
+			return rating.getId();
+			
+		}
+		
+	
+	public static List<String> getItemComments(Integer UserId){
+		
+		UserDao dao = new UserDao();
+		List<String> comments = new ArrayList<String>();;
+		List<SellerRating> ratings = dao.getSellerRating(UserId);
+	
+		for (SellerRating r : ratings) {
+			
+			comments.add(r.getTextRating());
+		}
+		
+		return comments;
+	}
+	
+	
+	public static List<Integer> getSellerAverageRating(Integer UserId){
+			
+			UserDao dao = new UserDao();
+			List<Integer> avg = new ArrayList<Integer>();
+			List<SellerRating> ratings = dao.getSellerRating(UserId);
+			
+			for (SellerRating r : ratings) {
+				
+				avg.add(r.getNumRating());
+			}
+			
+			return avg;
+		}
+	
+	
+	public static Double calculateAvg(Integer UserId){
+		Double sum = 0.0;
+		List<Integer> average = getSellerAverageRating(UserId);
+		
+		for (Integer avg : average) {
+			
+			sum += avg;
+		}
+		
+		return sum/average.size();
+		
+	}
+	
+	
+	public static void updateItemAvg(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		double avg = new BigDecimal(calculateAvg(UserId)).setScale(3, RoundingMode.HALF_UP).doubleValue();
+		System.out.println(avg);
+		dao.updateSellerAvg(UserId, avg);
+		
 	}
 }

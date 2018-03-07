@@ -206,7 +206,16 @@ select * from CLIENT;
 select * from THREADS;
 select * from ITEM;
 select * from IMAGE;
+select * from ITEMRATING;
+select * from SELLERRATING;
 
+
+ALTER TABLE CLIENT
+MODIFY RatingAvg NUMBER(*,2);
+
+DELETE FROM CLIENT;
+
+--Update ITEM set RatingAvg = 0 Where ItemId = 20000;
 
 
 select USER_ID_SEQ.nextval from dual;

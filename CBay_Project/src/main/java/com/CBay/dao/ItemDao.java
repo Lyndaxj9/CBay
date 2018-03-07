@@ -217,6 +217,35 @@ public class ItemDao {
 		return item;
 			
 		}
+
+	public void updateItemAvg(Integer ItemId, Double avg) {
+		
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		Item item = null;
+		try{
+			tx = session.beginTransaction();
+			item = (Item)session.get(Item.class, ItemId);
+			item.setRatingAvg(avg);
+			session.update(item);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}	
+		
+		
+		
+		// need a list of all items 
+		
+	}
+		
+
 	
 	
 	

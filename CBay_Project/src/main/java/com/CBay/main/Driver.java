@@ -20,10 +20,10 @@ public class Driver {
 		
 		System.out.println(UserService.getUserInfo(UserService.LoginSeller("JDoe", "JDoe")).getFirstName());
 		
-		MessageService.createMessageThread(10001, 10002);
-		MessageService.createMessageThread(10001, 10002);
-		MessageService.createMessageThread(10002, 10001);
-		MessageService.createMessageThread(10002, 10001);
+		MessageService.createMessageThread(10001, 10000);
+		MessageService.createMessageThread(10001, 10000);
+		MessageService.createMessageThread(10000, 10001);
+		MessageService.createMessageThread(10000, 10001);
 		
 		for(MessageThread m : UserService.viewUserMessageThreads(10001))
 			System.out.println(m.getId());
@@ -46,11 +46,40 @@ public class Driver {
 		UserService.EditUserInfo(10020, "dogbert", "dog", "DogbertDog", "Dog123456789", "Dogbert@gmail.com", "My Description Here");
 		
 		ItemService.editItem(20000, "Laptop", 700, "Tv turn to a Laptop");
-		*/
+		
+		
+		ItemService.createItem(10001, "Tv", "Samsung Tv", 200);
+		ItemService.editItem(20000, "Laptop", 700, "Tv turn to a Laptop");
 		
 		System.out.println(ItemService.getItemById(20000));
 		
-		//ItemService.insertItemRating(20000, 5, "This Tv is really Nice");
+		ItemService.insertItemRating(20000, 3, "This Tv is ok");
+		ItemService.insertItemRating(20000, 4, "This Tv is good");
+		ItemService.insertItemRating(20000, 5, "This Tv is great");
+		ItemService.insertItemRating(20000, 1, "This Tv is bad");
+		ItemService.insertItemRating(20000, 2, "This Tv is not bad");
+		ItemService.insertItemRating(20000, 1, "This Tv is ok");
+		
+		
+		
+		for(String comment : ItemService.getItemComments(20000)) {
+			
+			System.out.println(comment);
+		}
+
+		
+		ItemService.updateItemAvg(20000);
+		
+	*/
+		
+		
+		
+		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
+		System.out.println(UserService.InsertSeller("Bobbert", "Bob", "BBobbert", "BBobbert", "Bobbert@bob.com"));
+		
+		
+		
+		
 		System.exit(0);
 	}
 

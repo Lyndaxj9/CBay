@@ -46,14 +46,14 @@ public class Item {
 	
 	
 	@Column(name="RatingAvg")
-	private Integer RatingAvg;
+	private Double RatingAvg;
 	
 	// map this to the Rating Table instead
 	/*@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
 	private Set<Rating> RatingText;*/
 
 	
-	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Integer ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Double ratingAvg) {
 		super();
 		this.id = id;
 		this.UserId = user;
@@ -64,7 +64,7 @@ public class Item {
 		RatingAvg = ratingAvg;
 	}
 
-	public Item(Integer user, String name, String description, Integer price, Integer ratingAvg) {
+	public Item(Integer user, String name, String description, Integer price, Double ratingAvg) {
 		super();
 		this.UserId = user;
 		ItemName = name;
@@ -145,12 +145,12 @@ public class Item {
 		Price = price;
 	}
 
-	public Integer getRatingAvg() {
+	public Double getRatingAvg() {
 		return RatingAvg;
 	}
 
-	public void setRatingAvg(Integer ratingAvg) {
-		RatingAvg = ratingAvg;
+	public void setRatingAvg(Double avg) {
+		RatingAvg = avg;
 	}
 
 	

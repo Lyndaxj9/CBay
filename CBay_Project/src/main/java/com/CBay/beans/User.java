@@ -42,14 +42,14 @@ public class User {
 	private String Email;
 	
 	@Column(name="RatingAvg")
-	private Integer RatingAvg;
+	private Double RatingAvg;
 	
 	@Column(name="Description")
 	private String Description;
 
 	
 	public User(Integer id, String firstName, String lastName, String type, String userName, String password,
-			String email, Integer rating, String description) {
+			String email, Double rating, String description) {
 		super();
 		this.id = id;
 		FirstName = firstName;
@@ -79,7 +79,7 @@ public class User {
 
 
 	public User(String firstName, String lastName, String type, String userName, String password, String email,
-			Integer rating, String description) {
+			Double rating, String description) {
 		super();
 		FirstName = firstName;
 		LastName = lastName;
@@ -189,14 +189,14 @@ public class User {
 
 
 
-	public Integer getRatingAvg() {
+	public Double getRatingAvg() {
 		return RatingAvg;
 	}
 
 
 
-	public void setRatingAvg(Integer ratingAvg) {
-		RatingAvg = ratingAvg;
+	public void setRatingAvg(Double avg) {
+		RatingAvg = avg;
 	}
 
 	

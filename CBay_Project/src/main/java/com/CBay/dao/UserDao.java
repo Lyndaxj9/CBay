@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.CBay.beans.Item;
+import com.CBay.beans.ItemRating;
 import com.CBay.beans.MessageThread;
 import com.CBay.beans.Order;
+import com.CBay.beans.SellerRating;
 import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.util.HibernateUtil;
@@ -223,5 +225,75 @@ public class UserDao {
 	}
 	
 	
+	
+	public void addUserRatingAndComment(SellerRating rating) {
+
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			session.save(rating);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
+	
+	
+	public List<SellerRating> getSellerRating(Integer UserId){
+		
+		List<SellerRating> rating = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{	
+			tx = session.beginTransaction();
+			String hql = "FROM SellerRating WHERE UserId= :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", UserId);
+			rating = query.list();
+			return rating;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	
+	}
+	
+	
+	public void updateSellerAvg(Integer UserId, Double avg) {
+			
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			User user = null;
+			try{
+				tx = session.beginTransaction();
+				user = (User)session.get(Item.class, UserId);
+				user.setRatingAvg(avg);
+				session.update(user);
+				tx.commit();
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}		
+	}
+		
 	
 }

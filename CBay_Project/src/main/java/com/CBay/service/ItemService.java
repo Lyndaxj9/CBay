@@ -1,20 +1,24 @@
 package com.CBay.service;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
 import com.CBay.beans.ItemRating;
-import com.CBay.beans.User;
 import com.CBay.dao.ItemDao;
+
+
 
 public class ItemService {
 
 	public static Integer createItem(Integer SellerId, String ItemName, String Description, Integer Price) {
 		
 		ItemDao dao = new ItemDao();
-		Item item = new Item(SellerId, ItemName, Description, Price, 0);
+		Item item = new Item(SellerId, ItemName, Description, Price, 0.0);
 		dao.insertItem(item);
 		return item.getId();
 	}
@@ -78,9 +82,9 @@ public class ItemService {
 	public static List<String> getItemComments(Integer ItemId){
 		
 		ItemDao dao = new ItemDao();
-		List<String> comments = null;
+		List<String> comments = new ArrayList<String>();;
 		List<ItemRating> ratings = dao.getItemRating(ItemId);
-		
+
 		for (ItemRating r : ratings) {
 			
 			comments.add(r.getTextRating());
@@ -93,7 +97,7 @@ public class ItemService {
 	public static List<Integer> getItemAverageRating(Integer ItemId){
 			
 			ItemDao dao = new ItemDao();
-			List<Integer> avg = null;
+			List<Integer> avg = new ArrayList<Integer>();
 			List<ItemRating> ratings = dao.getItemRating(ItemId);
 			
 			for (ItemRating r : ratings) {
@@ -105,7 +109,34 @@ public class ItemService {
 		}
 	
 	
+	public static Double calculateAvg(Integer ItemId){
+		Double sum = 0.0;
+		List<Integer> average = getItemAverageRating(ItemId);
+		
+		for (Integer avg : average) {
+			
+			sum += avg;
+		}
+		
+		return sum/average.size();
+		
+	}
 	
+	
+	public static void updateItemAvg(Integer ItemId) {
+		
+		ItemDao dao = new ItemDao();
+		double avg = new BigDecimal(calculateAvg(ItemId)).setScale(3, RoundingMode.HALF_UP).doubleValue();
+		System.out.println(avg);
+		dao.updateItemAvg(ItemId, avg);
+		
+	}
+
+	
+	
+	
+	// need a list of all items 
+	// need a list of items by user 
 	
 	
 	

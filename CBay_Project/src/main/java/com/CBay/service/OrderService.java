@@ -24,4 +24,12 @@ public class OrderService {
 	}
 	
 	
+	// list of order and their status
+	
+	// change status of the order, with that change the status of each transaction 
+	
+	// set status of transactions to in cart, ordered, shipped and delivered
+	
+	// git all orders for the Admin and Mod to see
+	
 }
