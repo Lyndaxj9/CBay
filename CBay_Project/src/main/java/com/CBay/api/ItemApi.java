@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.CBay.beans.Item;
+import com.CBay.service.ItemService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -40,7 +41,7 @@ public class ItemApi {
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Item getItemIndex(@PathParam("id") int id){
-		return new Item();
+		return ItemService.getItemById(id);
 	}
 	
 	//-- insert and if successful return success
