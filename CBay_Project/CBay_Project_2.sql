@@ -213,9 +213,12 @@ select * from SELLERRATING;
 ALTER TABLE CLIENT
 MODIFY RatingAvg NUMBER(*,2);
 
-DELETE FROM CLIENT;
+ALTER TABLE CLIENT
+MODIFY Description VARCHAR2(1000);
 
---Update ITEM set RatingAvg = 0 Where ItemId = 20000;
+DELETE FROM ITEM;
+
+Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 
 
 select USER_ID_SEQ.nextval from dual;

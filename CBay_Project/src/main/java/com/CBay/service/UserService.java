@@ -138,7 +138,7 @@ public class UserService {
 		}
 		
 	
-	public static List<String> getItemComments(Integer UserId){
+	public static List<String> getSellerComments(Integer UserId){
 		
 		UserDao dao = new UserDao();
 		List<String> comments = new ArrayList<String>();;
@@ -182,7 +182,7 @@ public class UserService {
 	}
 	
 	
-	public static void updateItemAvg(Integer UserId) {
+	public static void updateSellerAvg(Integer UserId) {
 		
 		UserDao dao = new UserDao();
 		double avg = new BigDecimal(calculateAvg(UserId)).setScale(3, RoundingMode.HALF_UP).doubleValue();

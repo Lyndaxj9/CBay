@@ -273,14 +273,15 @@ public class UserDao {
 	}
 	
 	
-	public void updateSellerAvg(Integer UserId, Double avg) {
+	public void updateSellerAvg(Integer UserId, double avg) {
 			
 			Session session = HibernateUtil.getSession();
 			Transaction tx = null;
 			User user = null;
 			try{
 				tx = session.beginTransaction();
-				user = (User)session.get(Item.class, UserId);
+				//System.out.println(UserId + "  " + avg);
+				user = (User)session.get(User.class, UserId);
 				user.setRatingAvg(avg);
 				session.update(user);
 				tx.commit();
