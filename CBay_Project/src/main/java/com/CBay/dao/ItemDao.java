@@ -238,11 +238,30 @@ public class ItemDao {
 		}finally{
 			session.close();
 		}	
+				
+	}
+
+	
+	
+	public List<Item> getAllItems() {
+		List<Item> items = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
 		
-		
-		
-		// need a list of all items 
-		
+		try{	
+			tx = session.beginTransaction();
+			items = session.createQuery("FROM Item").list();
+			return items;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
 	}
 		
 

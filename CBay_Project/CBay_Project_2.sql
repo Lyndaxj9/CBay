@@ -216,9 +216,9 @@ MODIFY RatingAvg NUMBER(*,2);
 ALTER TABLE CLIENT
 MODIFY Description VARCHAR2(1000);
 
-DELETE FROM ITEM;
+--DELETE FROM ITEM;
 
-Update CLIENT set RatingAvg = 0 Where UserId = 10000;
+--Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 
 
-select USER_ID_SEQ.nextval from dual;
+--select USER_ID_SEQ.nextval from dual;

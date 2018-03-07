@@ -186,8 +186,74 @@ public class UserService {
 		
 		UserDao dao = new UserDao();
 		double avg = new BigDecimal(calculateAvg(UserId)).setScale(3, RoundingMode.HALF_UP).doubleValue();
-		System.out.println(avg);
+
 		dao.updateSellerAvg(UserId, avg);
 		
 	}
+	
+	
+	public static List<User> getAllUser() {
+		
+		UserDao dao = new UserDao();
+		return dao.getAllUsers();
+	}
+	
+	public static List<User> getAllBuyers() {
+		
+		List<User> Buyers = new ArrayList<User>();
+		
+		for(User user : getAllUser()) {
+			
+			if(user.getUserType().equals("Buyer")) {
+				Buyers.add(user);
+			}
+		}
+		return Buyers;
+	}
+
+
+
+	public static List<User> getAllSellers() {
+			
+			List<User> Sellers = new ArrayList<User>();
+			
+			for(User user : getAllUser()) {
+				
+				if(user.getUserType().equals("Seller")) {
+					Sellers.add(user);
+				}
+			}
+			return Sellers;
+		}
+	
+	
+	
+	public static List<User> getAllMods() {
+		
+		List<User> Mods = new ArrayList<User>();
+		
+		for(User user : getAllUser()) {
+			
+			if(user.getUserType().equals("Moderator")) {
+				Mods.add(user);
+			}
+		}
+		return Mods;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

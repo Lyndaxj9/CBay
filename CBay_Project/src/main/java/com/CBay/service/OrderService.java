@@ -1,5 +1,7 @@
 package com.CBay.service;
 
+import java.util.List;
+
 import com.CBay.beans.Order;
 import com.CBay.beans.Transactions;
 import com.CBay.dao.OrderDao;
@@ -9,7 +11,7 @@ public class OrderService {
 	public static Integer createOrder(Integer BuyerId, Integer ItemTotal) {
 		
 		OrderDao dao = new OrderDao();
-		Order order = new Order(BuyerId, ItemTotal, "Pending");
+		Order order = new Order(BuyerId, ItemTotal, "Created");
 		dao.insertOrder(order);
 		return order.getId();
 	}
@@ -18,18 +20,56 @@ public class OrderService {
 	public static Integer createTransaction(Integer ItemId, Integer BuyerId, Integer SellerId, String Status, Integer Quantity) {
 			
 		OrderDao dao = new OrderDao();
-		Transactions tran = new Transactions(ItemId, BuyerId, SellerId, Status, Quantity);
+		Transactions tran = new Transactions(ItemId, BuyerId, SellerId, "In-Chart", Quantity);
 		dao.insertTransaction(tran);
 		return tran.getId();
 	}
 	
+	public static void updateTransactionCheckedOut(Integer TransactionId) {
+		
+		OrderDao dao = new OrderDao();
+		dao.updateTransactionStatus(TransactionId, "Checked-Out");
+	}
 	
-	// list of order and their status
+	public static void updateTransactionShipped(Integer TransactionId) {
+			
+			OrderDao dao = new OrderDao();
+			dao.updateTransactionStatus(TransactionId, "Shipped");
+	}
 	
-	// change status of the order, with that change the status of each transaction 
+	public static void updateTransactionDelivered(Integer TransactionId) {
+		
+		OrderDao dao = new OrderDao();
+		dao.updateTransactionStatus(TransactionId, "Delivered");
+	}
 	
-	// set status of transactions to in cart, ordered, shipped and delivered
+	public static Order getOrderById(Integer OrderId){
+		
+		OrderDao dao = new OrderDao();
+		return dao.getOrderById(OrderId);
+	}
 	
-	// git all orders for the Admin and Mod to see
+	public static List<Order> getAllOrders(){
+		
+		OrderDao dao = new OrderDao();
+		return dao.getAllOrders();
+	}
+	
+	public static List<Transactions> getAllTransactions(){
+			
+		OrderDao dao = new OrderDao();
+		return dao.getAllTransactions();
+	}
+		
+	public static List<Transactions> getTransactionsByOrderId(Integer OrderId){
+		
+		OrderDao dao = new OrderDao();
+		return dao.getAllTransactionByOrder(OrderId);
+	}
+	
+	
+	
+
+	
 	
 }

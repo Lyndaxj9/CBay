@@ -293,8 +293,65 @@ public class UserDao {
 				e.printStackTrace();
 			}finally{
 				session.close();
-			}		
+			}	
+			
 	}
+	
+	
+	public List<User> getAllUsers() {
+		List<User> user = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{	
+			tx = session.beginTransaction();
+			user = session.createQuery("FROM User").list();
+			return user;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	
 }

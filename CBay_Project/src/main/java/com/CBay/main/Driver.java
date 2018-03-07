@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.CBay.beans.Image;
+import com.CBay.beans.Item;
 import com.CBay.beans.User;
 import com.CBay.service.ItemService;
 import com.CBay.service.UserService;
@@ -86,12 +87,8 @@ public class Driver {
 		
 		ItemService.updateItemAvg(20000);
 		
-	*/
-		
 
-		
-
-		/*UserService.insertSellerRating(10000, 3, "This Seller is fine I guess");
+		UserService.insertSellerRating(10000, 3, "This Seller is fine I guess");
 		UserService.insertSellerRating(10000, 0, "This Seller is horrible");
 		UserService.insertSellerRating(10000, 2, "This Seller is ok but ...");
 		UserService.insertSellerRating(10000, 5, "This Seller is the greatests");
@@ -99,14 +96,29 @@ public class Driver {
 		UserService.insertSellerRating(10000, 3, "This Seller is good");
 
 		for(String comment : UserService.getSellerComments(10000)) {
-			
 			System.out.println(comment);
-
 		}
 		
-		*/
-		
 		UserService.updateSellerAvg(10000);
+
+		for(Item item : ItemService.getAllItems()) {
+			
+			System.out.println(item.getId());
+		}
+		
+		
+		System.out.println(UserService.getAllBuyers());
+		System.out.println(UserService.getAllSellers());
+		System.out.println(UserService.getAllMods());
+		System.out.println(UserService.getAllUser());
+		
+		
+	*/
+		
+		
+
+		
+		
 		System.exit(0);
 	}
 

@@ -37,6 +37,12 @@ public class ItemService {
 	}
 	
 	
+	public static List<Item> getAllItems() {
+			
+			ItemDao dao = new ItemDao();
+			return dao.getAllItems();
+		}
+	
 	
 	/*
 	 * 
