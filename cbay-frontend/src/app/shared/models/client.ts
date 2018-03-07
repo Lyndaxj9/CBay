@@ -24,6 +24,8 @@ export class Client {
         this.lastname = userInfo.lastName;
         this.email = userInfo.email;
         this.password = userInfo.PW;
+        this.description = userInfo.description;
+        this.rating = userInfo.ratingavg;
     }
 
     get_userName() {
