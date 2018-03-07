@@ -1,5 +1,7 @@
 package com.CBay.service;
 
+import java.util.List;
+
 import com.CBay.beans.Message;
 import com.CBay.beans.MessageThread;
 import com.CBay.dao.MessageDao;
@@ -20,6 +22,34 @@ public class MessageService {
 		Message msg = new Message(ThreadId, TransactionId, SenderId, ResponderId, MessageContent, Subject);
 		dao.insertMessage(msg);
 		return msg.getId();
+		
+	}
+	
+	public static List<Message> getAllMessages() {
+		
+		MessageDao dao = new MessageDao();
+		return dao.getAllMessages();
+
+	}
+	
+	public static List<Message> getAllMessagesByThread(Integer ThreadId) {
+			
+			MessageDao dao = new MessageDao();
+			return dao.getAllMessagesByThread(ThreadId);
+	
+		}
+	
+	public static List<MessageThread> getAllThreads() {
+		
+		MessageDao dao = new MessageDao();
+		return dao.getAllThreads();
+	
+	}
+	
+	public static List<MessageThread> getAllThreadsByUser(Integer UserId) {
+		
+		MessageDao dao = new MessageDao();
+		return dao.getAllThreadsByUser(UserId);
 	
 	}
 	
