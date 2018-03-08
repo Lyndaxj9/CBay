@@ -18,13 +18,13 @@ import com.CBay.beans.SellerRating;
 //-- update, delete or insert information in 
 //-- the database.
 //-- example :
-//-- http://34.217.96.20:8089/CBay/rest/rating
-@Path("/rating")
-public class RatingApi {
+//-- http://34.217.96.20:8089/CBay/rest/sellerrating
+@Path("/sellerrating")
+public class SellerRatingApi {
 
 	//-- this will return all the rating in the database.
 	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/rating/get/all
+	//-- http://34.217.96.20:8089/CBay/rest/sellerrating/get/all
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,7 +34,7 @@ public class RatingApi {
 	
 	//-- get one rating from the database via id.
 	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/rating/get/{id}
+	//-- http://34.217.96.20:8089/CBay/rest/sellerrating/get/{id}
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +56,7 @@ public class RatingApi {
 	//-- if the user exist the return success
 	//-- else just return error.
 	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/rating/delete/{id}
+	//-- http://34.217.96.20:8089/CBay/rest/sellerrating/delete/{id}
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
