@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Item } from '../../shared/models/item';
+import { Order } from '../../shared/models/order';
 
 @Component({
     selector: 'app-singleitem',
@@ -10,11 +11,13 @@ import { Item } from '../../shared/models/item';
 export class SingleitemComponent implements OnInit {
     itemModel: Item;
     itemQuantity: number;
+    orderModel: Order;
 
     constructor(public http: HttpClient) { }
 
     ngOnInit() {
         this.itemModel = new Item(this.http);
+        this.orderModel = new Order(this.http);
 
         this.itemModel.get(20000).then(item_data => {
             this.itemModel.set_all_values(item_data);
@@ -27,8 +30,23 @@ export class SingleitemComponent implements OnInit {
     }
 
     add_to_cart() {
-        console.log('add_to_cart ' + this.itemQuantity + ' item(s)');
-        // check to make sure not adding more than is available
+        if (this.itemQuantity <= this.itemModel.quantity) {
+            console.log('add_to_cart ' + this.itemQuantity + ' item(s)');
+            this.orderModel.itemid = this.itemModel.itemid;
+            this.orderModel.buyerid = parseInt(sessionStorage.getItem('userid'), 10);
+            this.orderModel.sellerid = this.itemModel.userid;
+            this.orderModel.quantity = this.itemQuantity;
+
+            this.orderModel.insert().subscribe(
+                res => {
+                    console.log(res);
+                },
+                err => {
+                    console.log(err);
+                });
+        } else {
+            console.log('insuffient amount');
+        }
     }
 
 }

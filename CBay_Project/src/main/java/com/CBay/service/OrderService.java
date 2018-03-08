@@ -20,7 +20,7 @@ public class OrderService {
 	public static Integer createTransaction(Integer ItemId, Integer BuyerId, Integer SellerId, Integer Quantity) {
 			
 		OrderDao dao = new OrderDao();
-		Transactions tran = new Transactions(ItemId, BuyerId, SellerId, "In-Chart", Quantity);
+		Transactions tran = new Transactions(ItemId, BuyerId, SellerId, "In-Cart", Quantity);
 		dao.insertTransaction(tran);
 		return tran.getId();
 	}

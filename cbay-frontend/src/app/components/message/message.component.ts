@@ -28,7 +28,7 @@ export class MessageComponent implements OnInit {
             }
         );
     }
-    
+
     format_date() {
         // TODO make date/timestamp better looking
     }
@@ -39,7 +39,7 @@ export class MessageComponent implements OnInit {
         this.messageModel.post_new_msg().subscribe(
             res => {
                 console.log(res);
-                window.location.reload();
+                // window.location.reload();
             },
             err => {
                 console.log(err);
