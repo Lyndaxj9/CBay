@@ -18,8 +18,8 @@ import com.CBay.beans.Item;
 import com.CBay.beans.User;
 import com.CBay.service.UserService;
 
-//-- represents the url to go to to get, 
-//-- update, delete or insert information in 
+//-- represents the url to go to to get,
+//-- update, delete or insert information in
 //-- the database.
 //-- example :
 //-- http://34.217.96.20:8089/CBay/rest/user
@@ -58,22 +58,42 @@ public class UserApi {
 
 	// -- insert and if successful return success
 	// -- if it is not return unsuccessful.
+	// -- http://34.217.96.20:8089/CBay/rest/user/post
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertUser(User user) {
-		return "success";
+	public Integer insertUser(JsonObject json) {
+		String type = json.getString("type");
+		Integer id = null;
+		if(type.equals("buyer")){
+			//-- String FirstName, String LastName, String Username, String PW, String Email
+			id = UserService.InsertBuyer(json.getString("firstname"), json.getString("lastname"),
+			json.getString("username"),json.getString("pw"), json.getString("email"));
+		}
+		else if(type.equals("seller")){
+			//-- String FirstName, String LastName, String Username, String PW, String Email
+			id = UserService.InsertSeller(json.getString("firstname"), json.getString("lastname"),
+			json.getString("username"),json.getString("pw"), json.getString("email"));
+		}
+		else if(type.equals("mod")){
+			//-- String FirstName, String LastName, String Username, String PW, String Email
+			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
+			json.getString("username"),json.getString("pw"), json.getString("email"));
+		}
+
+		return id;
 	}
 
 	// -- insert and if successful return success
 	// -- if it is not return unsuccessful.
+	// -- http://34.217.96.20:8089/CBay/rest/user/edit
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/edit")
 	public String editUser(JsonObject json) {
-		UserService.EditUserInfo(json.getInt("id"), json.getString("firstname"), json.getString("lastname"), json.getString("username"), 
+		UserService.EditUserInfo(json.getInt("id"), json.getString("firstname"), json.getString("lastname"), json.getString("username"),
 				json.getString("pw"), json.getString("email"), json.getString("description"));
 		System.out.println(json);
 		return "success";
