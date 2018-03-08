@@ -14,7 +14,7 @@ export class Item {
 
     constructor (public http: HttpClient) { }
 
-    set_all_valuse(itemInfo: any) {
+    set_all_values(itemInfo: any) {
         this.itemid = itemInfo.id;
         this.userid = itemInfo.userId;
         this.itemname = itemInfo.itemName;
@@ -42,7 +42,7 @@ export class Item {
             description: this.description,
             price: this.price
         }, {responseType: 'text'});
-        console.log('desc being sent: ' + this.description);
+
         return req;
     }
 }

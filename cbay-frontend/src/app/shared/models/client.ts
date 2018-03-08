@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 export class Client {
     userid: number;
@@ -40,6 +41,21 @@ export class Client {
         };
         return this.http.get(this.userUrl + '/' + id, httpOptions)
             .toPromise();
+    }
+
+    update() {
+        const req = this.http.post('http://localhost:8089/CBay_Project/rest/user/edit', {
+            id: this.userid,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            username: this.username,
+            pw: this.password,
+            email: this.email,
+            description: this.description
+
+        }, {responseType: 'text'});
+
+        return req;
     }
 }
 

@@ -62,8 +62,6 @@ public class ItemApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update")
 	public String updateItem(JsonObject json) {
-		System.out.println(json);
-		
 		ItemService.editItem(json.getInt("id"), json.getString("itemName"), json.getInt("price"), json.getString("description"));
 		return "success";
 	}
