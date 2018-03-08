@@ -9,7 +9,7 @@ import { Item } from '../../shared/models/item';
 })
 export class SingleitemComponent implements OnInit {
     itemModel: Item;
-    itemPromise: Promise<any>;
+    itemQuantity: number;
 
     constructor(public http: HttpClient) { }
 
@@ -22,6 +22,13 @@ export class SingleitemComponent implements OnInit {
         }).catch(error => {
             console.log(error);
         });
+
+        this.itemQuantity = 1;
+    }
+
+    add_to_cart() {
+        console.log('add_to_cart ' + this.itemQuantity + ' item(s)');
+        // check to make sure not adding more than is available
     }
 
 }
