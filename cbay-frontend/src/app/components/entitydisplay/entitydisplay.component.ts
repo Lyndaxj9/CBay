@@ -55,11 +55,10 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
         this.data.id = this.anItem.itemid;
         this.data.name = this.anItem.itemname;
         this.data.editAble['Description'] = this.anItem.description;
-
         this.userId = '' + this.anItem.userid;
         const user = new Client(this.http);
 
-       /* this.imageModel = new Image(this.http);
+        /* this.imageModel = new Image(this.http);
         this.imageModel.get_images().subscribe(
             res => {
                 console.log(res);
@@ -72,8 +71,9 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
         user.get(this.userId).then(user_data => {
             // this.data.nonEditable['Seller'] = user_data['userName'];
             this.data['Seller'] = user_data['userName'];
-            this.data.nonEditable['Price'] = this.anItem.price;
+            this.data.nonEditable['Price'] = '$' + this.anItem.price;
             this.data.nonEditable['Product Rating'] = this.anItem.ratingavg;
+            this.data.nonEditable['Quantity'] = this.anItem.quantity;
         }).catch(error => {
             console.log(error);
             // TODO probably change to an item doesn't exist message or page
@@ -81,7 +81,7 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
     }
 
     get_user() {
-        this.userId = '10001';
+        this.userId = '' + this.aUser.userid;
         this.currentUserId = sessionStorage.getItem('userid');
         console.log('current user: ' + this.currentUserId + 'compare user: ' + this.userId);
 
@@ -123,7 +123,10 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
             this.aUser.firstname = this.data.editAble['First Name'];
             this.aUser.lastname = this.data.editAble['Last Name'];
             this.aUser.email = this.data.editAble['E-Mail'];
-            this.aUser.description = this.data.editAble['Description'];
+            if (this.aUser.usertype === 'Seller') {
+                this.aUser.description = this.data.editAble['Description'];   
+            }
+            console.log('entitydisplay desc: ' + this.aUser.description);
             const o = this.aUser.update();
             o.subscribe(
                 res => {

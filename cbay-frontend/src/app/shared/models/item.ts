@@ -47,4 +47,16 @@ export class Item {
 
         return req;
     }
+
+    post() {
+        const req = this.http.post('http://localhost:8089/CBay_Project/rest/item/post', {
+            sellerId: this.userid,
+            itemName: this.itemname,
+            description: this.description,
+            price: this.price,
+            quantity: this.quantity
+        }, {responseType: 'text'});
+
+        return req;
+    }
 }

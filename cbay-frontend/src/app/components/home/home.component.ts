@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
         if (!parseInt(sessionStorage.getItem('userid'), 10)) {
         } else {
             console.log("redirect to profile");
-            this.router.navigateByUrl('/profile');
+            this.router.navigate(['/profile', this.userid]);
         }
     }
 

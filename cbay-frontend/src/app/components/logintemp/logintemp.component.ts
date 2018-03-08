@@ -15,8 +15,9 @@ export class LogintempComponent {
 
     onSubmit() {
         this.submitted = true;
-        sessionStorage.setItem('userid', '10002');
-        this.router.navigateByUrl('/profile');
+        sessionStorage.setItem('userid', '10000');
+        sessionStorage.setItem('usertype', 'Seller');
+        this.router.navigate(['/profile', sessionStorage.getItem('userid')]);
     }
 
     // TODO: Remove this when we're done
