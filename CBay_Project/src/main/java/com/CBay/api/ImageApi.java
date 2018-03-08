@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Image;
+import com.CBay.service.ItemService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -40,6 +41,16 @@ public class ImageApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Image getImageIndex(@PathParam("id") int id){
 		return new Image();
+	}
+	
+	//-- get one user from the database via id.
+	//-- {id} = 3
+	//-- http://34.217.96.20:8089/CBay/rest/user/get/{id}
+	@GET
+	@Path("/get/itemimage/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Image> getImageByItemId(@PathParam("id") int id){
+		return ItemService.getImageByItemId(id);
 	}
 	
 	//-- insert and if successful return success

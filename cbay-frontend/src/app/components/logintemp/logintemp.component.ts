@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-logintemp',
@@ -10,9 +11,12 @@ export class LogintempComponent {
     model = new Client('', '');
     submitted = false;
 
+    constructor(public router: Router) { }
+
     onSubmit() {
         this.submitted = true;
-        sessionStorage.setItem('userid', '10001');
+        sessionStorage.setItem('userid', '10002');
+        this.router.navigateByUrl('/profile');
     }
 
     // TODO: Remove this when we're done

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     public type: string;
     public email: string;
     public url: string;
-    public userid: number;
+    userid: number;
 
     constructor(public http: HttpClient, public router: Router) { }
 
@@ -28,6 +28,12 @@ export class AppComponent implements OnInit {
         this.url = `http://localhost:8089/CBay_Project/rest/user/get`;
         console.log("current userid: " + this.userid);
     }
+    
+    ngOnChanges(changes: SimpleChanges) {
+        console.log("on changes");
+        console.log(changes);
+        this.userid = parseInt(sessionStorage.getItem('userid'), 10);
+    }
 
     login() {
         this.type = 'seller';
@@ -36,7 +42,6 @@ export class AppComponent implements OnInit {
         console.log('type : ' + this.type);
         console.log(this.url + '/' + this.username + '/' + this.password + '/' + this.type);
         this.get_user_data().then(user_data => {
-            localStorage.setItem('userid', user_data);
             console.log(user_data);
         }).catch(error => {
             console.log(error);
@@ -54,7 +59,7 @@ export class AppComponent implements OnInit {
         sessionStorage.clear();
         this.userid = null;
         console.log('logged out');
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/');
     }
 
     get_user_data(): Promise<any> {
