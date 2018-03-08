@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Order;
+import com.CBay.beans.Transactions;
 import com.CBay.service.OrderService;
 
 //-- represents the url to go to to get, 
@@ -42,6 +43,16 @@ public class OrderApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order getOrderIndex(@PathParam("id") int id){
 		return new Order();
+	}
+	
+	//-- this will return all the item in the database.
+	//-- past in below for testing.
+	//-- http://34.217.96.20:8089/CBay/rest/order/get/all
+	@GET
+	@Path("/get/cart/{id}/{status}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transactions> getAllTransInCart(@PathParam("id") int id, @PathParam("status") String status){
+		return OrderService.getTransactionByBuyerIdAndStatus(id, status);
 	}
 	
 	//-- insert and if successful return success

@@ -24,4 +24,11 @@ export class Order {
 
         return req;
     }
+
+    get_cart() {
+        const req = this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'In-Cart', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
 }
