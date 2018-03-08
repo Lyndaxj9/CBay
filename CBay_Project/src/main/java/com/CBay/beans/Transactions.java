@@ -75,6 +75,15 @@ public class Transactions {
 		Status = status;
 		Quantity = quantity;
 	}
+	
+	
+
+	public Transactions(Integer buyerId, String status, Integer quantity) {
+		super();
+		BuyerId = buyerId;
+		Status = status;
+		Quantity = quantity;
+	}
 
 	public Transactions() {
 		super();
