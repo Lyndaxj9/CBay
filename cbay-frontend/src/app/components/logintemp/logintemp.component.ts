@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-logintemp',
@@ -8,7 +9,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class LogintempComponent {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public router: Router) { }
 
     model = new Client('', '', '');
     submitted = false;
@@ -21,6 +22,9 @@ export class LogintempComponent {
       this.get_user_data().then(response => {
         console.log(response);
       });
+        this.submitted = true;
+        sessionStorage.setItem('userid', '10002');
+        this.router.navigateByUrl('/profile');
     }
 
     // TODO: Remove this when we're done

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../../shared/models/client';
 import { Item } from '../../shared/models/item';
+import { Image } from '../../shared/models/image';
 
 @Component({
     selector: 'app-entity-display',
@@ -18,9 +19,9 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
     public itemUrl: string;
     public userModel;
     public itemModel;
+    public imageModel;
     public name: string;
-    public dataToPage = {};
-    public nonEditable = {};
+    itemImage: any;
     public disableEdit = true;
     public data = {
         id: 0,
@@ -57,6 +58,17 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
 
         this.userId = '' + this.anItem.userid;
         const user = new Client(this.http);
+
+       /* this.imageModel = new Image(this.http);
+        this.imageModel.get_images().subscribe(
+            res => {
+                console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        );*/
+
         user.get(this.userId).then(user_data => {
             // this.data.nonEditable['Seller'] = user_data['userName'];
             this.data['Seller'] = user_data['userName'];
