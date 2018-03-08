@@ -32,7 +32,7 @@ public class OrderApi {
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Order> getAllOrders(){
-		return new ArrayList<Order>();
+		return OrderService.getAllOrders();
 	}
 	
 	//-- get one item from the database via id.

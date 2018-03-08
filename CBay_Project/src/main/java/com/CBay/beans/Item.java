@@ -38,7 +38,7 @@ public class Item {
 	private String Description;
 	 
 	@Column(name="Price")
-	private Integer Price;
+	private Double Price;
 	
 	@Column(name="Quantity")
 	private Integer Quantity;
@@ -50,7 +50,7 @@ public class Item {
 	
 
 	
-	public Item(Integer id, Integer user, String name, String description, Integer price, Integer quantity, Double ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Double price, Integer quantity, Double ratingAvg) {
 		super();
 		this.id = id;
 		this.UserId = user;
@@ -61,7 +61,7 @@ public class Item {
 		Quantity = quantity;
 	}
 
-	public Item(Integer user, String name, String description, Integer price, Integer quantity, Double ratingAvg) {
+	public Item(Integer user, String name, String description, Double price, Integer quantity, Double ratingAvg) {
 		super();
 		this.UserId = user;
 		ItemName = name;
@@ -72,7 +72,7 @@ public class Item {
 	}
 
 	
-	public Item(Integer user, String name, String description, Integer price) {
+	public Item(Integer user, String name, String description, Double price) {
 		super();
 		this.UserId = user;
 		ItemName = name;
@@ -83,7 +83,7 @@ public class Item {
 	
 	
 
-	public Item(String name, String description, Integer price) {
+	public Item(String name, String description, Double price) {
 		super();
 		ItemName = name;
 		Description = description;
@@ -91,7 +91,7 @@ public class Item {
 	}
 	
 
-	public Item(Integer id, String itemName, Integer price, String description) {
+	public Item(Integer id, String itemName, Double price, String description) {
 		super();
 		this.id = id;
 		ItemName = itemName;
@@ -135,11 +135,11 @@ public class Item {
 		Description = description;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return Price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		Price = price;
 	}
 
