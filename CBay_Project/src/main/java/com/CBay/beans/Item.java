@@ -40,40 +40,38 @@ public class Item {
 	@Column(name="Price")
 	private Integer Price;
 	
-	// map this to the Image Table instead
-	/*@OneToMany(mappedBy="ImageID", fetch=FetchType.EAGER)
-	private Set<Image> Image;*/
-	
+	@Column(name="Quantity")
+	private Integer Quantity;
 	
 	@Column(name="RatingAvg")
 	private Double RatingAvg;
 	
-	// map this to the Rating Table instead
-	/*@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
-	private Set<Rating> RatingText;*/
+	
+	
 
 	
-	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Double ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Integer price, Integer quantity, Double ratingAvg) {
 		super();
 		this.id = id;
 		this.UserId = user;
 		ItemName = name;
 		Description = description;
-		//this.image = image;
 		Price = price;
 		RatingAvg = ratingAvg;
+		Quantity = quantity;
 	}
 
-	public Item(Integer user, String name, String description, Integer price, Double ratingAvg) {
+	public Item(Integer user, String name, String description, Integer price, Integer quantity, Double ratingAvg) {
 		super();
 		this.UserId = user;
 		ItemName = name;
 		Description = description;
-		//this.image = image;
 		Price = price;
 		RatingAvg = ratingAvg;
+		Quantity = quantity;
 	}
 
+	
 	public Item(Integer user, String name, String description, Integer price) {
 		super();
 		this.UserId = user;
@@ -160,6 +158,13 @@ public class Item {
 	}
 
 	
+	public Integer getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		Quantity = quantity;
+	}
 
 	
 	

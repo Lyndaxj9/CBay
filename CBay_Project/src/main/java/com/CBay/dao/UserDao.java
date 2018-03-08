@@ -321,7 +321,45 @@ public class UserDao {
 	
 	
 	
+	public void approveSellerModAccounts(Integer UserId) {
+		
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		User user = null;
+		try{
+			tx = session.beginTransaction();
+			user = (User)session.get(User.class, UserId);
+			if(user.getApproval().equals("Pending")) {
+				user.setApproval("Approved");
+			}
+			session.update(user);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}	
+	}
 	
+	
+	
+		public boolean checkSellerModApproval(Integer UserId) {
+			
+			Session session = HibernateUtil.getSession();
+			User user = null;
+			user = (User)session.get(User.class, UserId);
+			session.close();
+			
+			if(user.getApproval().equals("Approved")) 
+				return true;
+			else
+				return false;
+				
+		}
 	
 	
 	

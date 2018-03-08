@@ -15,10 +15,10 @@ import com.CBay.dao.ItemDao;
 
 public class ItemService {
 
-	public static Integer createItem(Integer SellerId, String ItemName, String Description, Integer Price) {
+	public static Integer createItem(Integer SellerId, String ItemName, String Description, Integer quantity, Integer Price) {
 		
 		ItemDao dao = new ItemDao();
-		Item item = new Item(SellerId, ItemName, Description, Price, 0.0);
+		Item item = new Item(SellerId, ItemName, Description, Price, quantity, 0.0);
 		dao.insertItem(item);
 		return item.getId();
 	}
@@ -138,6 +138,15 @@ public class ItemService {
 		
 	}
 
+	public static List<Item> getItemBySeller(Integer SellerId) {
+		
+		ItemDao dao = new ItemDao();
+		List<Item> items = dao.getItemByUser(SellerId);
+		
+		return items;
+	}
+	
+	
 	
 	
 	

@@ -112,10 +112,16 @@ public class Driver {
 		System.out.println(UserService.getAllMods());
 		System.out.println(UserService.getAllUser());
 		
-		
+		System.out.println(UserService.InsertSeller("Robbert", "Rob", "RRob", "RRob", "Robbert@rob.com"));
+ 		System.out.println(UserService.checkApproval(10042));
+ 		UserService.approveAccount(10042);
+		System.out.println(UserService.checkApproval(10042));
+
 	*/
 		
-		
+
+
+ 		
 
 		
 		

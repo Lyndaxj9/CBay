@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.CBay.beans.Item;
 import com.CBay.beans.Order;
 import com.CBay.beans.Transactions;
 import com.CBay.util.HibernateUtil;
@@ -54,6 +55,30 @@ public class OrderDao {
 		}
 		
 	}
+	
+	public void insertOrderIdIntoTransaction(Integer TransactionId, Integer OrderId) {
+		
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		Transactions tran = null;
+		try{
+			tx = session.beginTransaction();
+			tran = (Transactions)session.get(Transactions.class, TransactionId);
+			tran.setOrderId(OrderId);
+			session.update(tran);
+			tx.commit();
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}			
+		
+		
+	}
 
 	public void updateTransactionStatus(Integer Id, String Status) {
 		Session session = HibernateUtil.getSession();
@@ -62,6 +87,13 @@ public class OrderDao {
 		try{
 			tx = session.beginTransaction();
 			tran = (Transactions)session.get(Transactions.class, Id);
+			
+			if(Status.equals("Checked-Out")) {
+				Item item = (Item)session.get(Item.class, tran.getItemId());
+				item.setQuantity(item.getQuantity() - tran.getQuantity());
+				session.update(item);
+			}
+			
 			tran.setStatus(Status);
 			session.update(tran);
 			tx.commit();

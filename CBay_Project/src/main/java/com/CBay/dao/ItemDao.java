@@ -199,6 +199,8 @@ public class ItemDao {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		
+		
+		
 		try{
 			
 			tx = session.beginTransaction();
@@ -266,7 +268,31 @@ public class ItemDao {
 		
 
 	
+	public List<Item> getItemByUser(Integer UserId){
+		
+		List<Item> item = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{	
+			tx = session.beginTransaction();
+			String hql = "FROM Item WHERE UserId= :ID";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", UserId);
+			item = query.list();
+			return item;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
 	
+	}
 	
 	
 	
