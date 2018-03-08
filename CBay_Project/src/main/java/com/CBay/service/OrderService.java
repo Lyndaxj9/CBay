@@ -68,11 +68,7 @@ public class OrderService {
 		return dao.getAllTransactionByOrder(OrderId);
 	}
 	
-	public static void addOrderIdToTransaction(Integer TransactionId, Integer OrderId){
-		
-		OrderDao dao = new OrderDao();
-		dao.insertOrderIdIntoTransaction(TransactionId, OrderId);;
-	}
+	
 	
 	public static void removeTransaction(Integer TransactionId){
 		
@@ -90,12 +86,22 @@ public class OrderService {
 			if (t.getBuyerId().equals(BuyerId) && t.getStatus().equals(Status)) {
 				
 				trans.add(dao.getTransactionById(t.getId()));
-
 			}
 		}
 		
 		return trans;
 	}
 	
+	
+	public static void addOrderIdToTransactionList (List<Integer> TransactionsId, Integer OrderId) {
+		
+		OrderDao dao = new OrderDao();
+
+		for(Integer tranId : TransactionsId) {
+			
+			dao.insertOrderIdIntoTransaction(tranId, OrderId);
+
+		}
+	}
 	
 }
