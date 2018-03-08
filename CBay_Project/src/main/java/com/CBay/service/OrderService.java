@@ -17,7 +17,7 @@ public class OrderService {
 	}
 	
 	
-	public static Integer createTransaction(Integer ItemId, Integer BuyerId, Integer SellerId, String Status, Integer Quantity) {
+	public static Integer createTransaction(Integer ItemId, Integer BuyerId, Integer SellerId, Integer Quantity) {
 			
 		OrderDao dao = new OrderDao();
 		Transactions tran = new Transactions(ItemId, BuyerId, SellerId, "In-Chart", Quantity);
