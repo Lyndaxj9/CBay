@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenericlistComponent implements OnInit {
   list = ['', '', '', '', '', '', '', '', '' , ''];
+  is_user_display = false;
+  is_cart_display = false;
+  is_item_display = false;
+  is_transaction_display = false;
+  is_review_display = false;
   temp_list = [];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
@@ -15,6 +20,11 @@ export class GenericlistComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.is_item_display = false;
+    this.is_user_display = false;
+    this.is_transaction_display = true;
+    this.is_review_display = false;
+    this.is_cart_display = false;
     //-- get list of information
     //-- and add it to temp list
     //-- that will display the items.
