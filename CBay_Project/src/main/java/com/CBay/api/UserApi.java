@@ -63,7 +63,7 @@ public class UserApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertUser(JsonObject json) {
+	public Integer insertUser(JsonObject json) {
 		String type = json.getString("type");
 		Integer id = null;
 		if(type.equals("buyer")){
@@ -80,9 +80,6 @@ public class UserApi {
 			//-- String FirstName, String LastName, String Username, String PW, String Email
 			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
 			json.getString("username"),json.getString("pw"), json.getString("email"));
-		}
-		else(type.equals("admin")){
-			id = null;
 		}
 
 		return id;
