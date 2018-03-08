@@ -6,6 +6,7 @@ import { ItemsearchComponent } from './components/itemsearch/itemsearch.componen
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
 import { MessageComponent } from './components/message/message.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {GenericlistComponent} from './components/genericlist/genericlist.component';
 
 export const appRoutes: Routes = [
     {
@@ -31,6 +32,10 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: HomeComponent
+    },
+    {
+      path: 'list',
+      component: GenericlistComponent
     }
     /*
         create path for homepage
