@@ -15,6 +15,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { LogintempComponent } from './components/logintemp/logintemp.component';
 import { RegistertempComponent } from './components/registertemp/registertemp.component';
 import { HomeComponent } from './components/home/home.component';
+import { SingleitemComponent } from './components/singleitem/singleitem.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HomeComponent } from './components/home/home.component';
     CartComponent,
     LogintempComponent,
     RegistertempComponent,
-    HomeComponent
+    HomeComponent,
+    SingleitemComponent
   ],
   imports: [
     BrowserModule,

@@ -199,6 +199,15 @@ public class User {
 		RatingAvg = avg;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserType=" + UserType
+				+ ", UserName=" + UserName + ", PW=" + PW + ", Email=" + Email + ", RatingAvg=" + RatingAvg
+				+ ", Description=" + Description + "]";
+	}
+
 	
 	
 	
