@@ -18,7 +18,7 @@ import com.CBay.util.HibernateUtil;
 
 public class UserDao {
 
-	public void insertUser(User user){
+	public void insertUser(User user) throws Exception{
 		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;

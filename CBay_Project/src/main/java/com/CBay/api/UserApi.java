@@ -18,6 +18,8 @@ import com.CBay.beans.Item;
 import com.CBay.beans.User;
 import com.CBay.service.UserService;
 
+import oracle.sql.ARRAY;
+
 //-- represents the url to go to to get,
 //-- update, delete or insert information in
 //-- the database.
@@ -33,7 +35,7 @@ public class UserApi {
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getAllUsers() {
-		return new ArrayList<User>();
+		return UserService.getAllUser();
 	}
 
 	// -- get one user from the database via id.
@@ -63,8 +65,11 @@ public class UserApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public Integer insertUser(JsonObject json) {
+	public String[] insertUser(JsonObject json) {
 		String type = json.getString("type");
+		String[] response;
+
+		response = new String[2];
 		Integer id = null;
 		if(type.equals("buyer")){
 			//-- String FirstName, String LastName, String Username, String PW, String Email
@@ -81,8 +86,11 @@ public class UserApi {
 			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
 			json.getString("username"),json.getString("pw"), json.getString("email"));
 		}
+		
+		response[0] = id.toString();
+		response[1] = type;
 
-		return id;
+		return response;
 	}
 
 	// -- insert and if successful return success

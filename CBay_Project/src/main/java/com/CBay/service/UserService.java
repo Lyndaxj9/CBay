@@ -17,35 +17,51 @@ import com.CBay.dao.UserDao;
 
 public class UserService {
 
-	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email)  {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email, "N/A");
-		dao.insertUser(user);
-		return user.getId();
+		try {
+			dao.insertUser(user);
+			return user.getId();
+		} catch (Exception e) {
+			return null;			
+		}
 		
 	}
 	
 	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Seller", Username, PW, Email, "Pending");
-		dao.insertUser(user);
-		return user.getId();
+		try {
+			dao.insertUser(user);
+			return user.getId();
+		} catch (Exception e) {
+			return null;			
+		}
 
 	}
 	
 	public static Integer InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email, "Pending");
-		dao.insertUser(user);
-		return user.getId();
+		try {
+			dao.insertUser(user);
+			return user.getId();
+		} catch (Exception e) {
+			return null;			
+		}
 
 	}
 	
 	public static Integer InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Admin", Username, PW, Email, "N/A");
-		dao.insertUser(user);
-		return user.getId();
+		try {
+			dao.insertUser(user);
+			return user.getId();
+		} catch (Exception e) {
+			return null;			
+		}
 
 	}
 	

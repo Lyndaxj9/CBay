@@ -137,10 +137,11 @@ public class Driver {
  		
  
  		
- 		OrderService.updateTransactionCheckedOut(30002);
+ 		//OrderService.updateTransactionCheckedOut(30002);
  		
- 		System.out.println(ItemService.getItemById(20000).getQuantity());
+ 		//System.out.println(ItemService.getItemById(20000).getQuantity());
 
+ 		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
 
 
 

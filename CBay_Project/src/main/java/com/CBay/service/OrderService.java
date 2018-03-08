@@ -1,5 +1,6 @@
 package com.CBay.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.CBay.beans.Order;
@@ -78,6 +79,22 @@ public class OrderService {
 		OrderDao dao = new OrderDao();
 		dao.removeTransaction(TransactionId);
 
+	}
+	
+	public static List<Transactions> getTransactionByBuyerIdAndStatus(Integer BuyerId, String Status){
+		
+		OrderDao dao = new OrderDao();
+
+		List <Transactions> trans = new ArrayList<Transactions>();
+		for (Transactions t : getAllTransactions()) {
+			if (t.getBuyerId().equals(BuyerId) && t.getStatus().equals(Status)) {
+				
+				trans.add(dao.getTransactionById(t.getId()));
+
+			}
+		}
+		
+		return trans;
 	}
 	
 	

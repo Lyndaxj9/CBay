@@ -222,9 +222,28 @@ public class OrderDao {
 		return order;
 			
 		}
-	
-	
-	
+
+	public Transactions getTransactionById(Integer TransactionId) {
+		
+		Transactions trans = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+			
+			try{
+				tx = session.beginTransaction();
+				trans = (Transactions)session.get(Transactions.class, TransactionId);
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}
+			return trans;
+				
+	}
 	
 	
 
