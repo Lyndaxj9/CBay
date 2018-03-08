@@ -208,6 +208,8 @@ select * from ITEM;
 select * from IMAGE;
 select * from ITEMRATING;
 select * from SELLERRATING;
+select * from TRANSACTIONS;
+
 
 
 ALTER TABLE CLIENT
@@ -224,7 +226,10 @@ ADD Quantity NUMBER(4);
 
 --ALTER TABLE ITEM
 --DROP COLUMN QUANTITY;
---DELETE FROM ITEM;
+DELETE FROM CLIENT;
+
+ALTER TABLE TRANSACTIONS
+MODIFY OrderId NUMBER(6) NULL;
 
 --Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 
