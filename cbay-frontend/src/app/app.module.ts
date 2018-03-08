@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
 import { GenericlistComponent } from './components/genericlist/genericlist.component';
 import { MessagelistComponent } from './components/messagelist/messagelist.component';
+import { AdditemComponent } from './components/additem/additem.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MessagelistComponent } from './components/messagelist/messagelist.compo
     HomeComponent,
     SingleitemComponent,
     GenericlistComponent,
-    MessagelistComponent
+    MessagelistComponent,
+    AdditemComponent
   ],
   imports: [
     BrowserModule,

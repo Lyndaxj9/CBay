@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div [hidden]="submitted">
+        <h1 style="text-align: center"> <u>Add An Item</u> </h1>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+          <div class="form-group">
+            <label for="name">Item Name:</label>
+            <input type="text" class="form-control" id="name"
+                   required
+                   [(ngModel)]="model.name" name="name"
+                   #name="ngModel">
+            <div [hidden]="name.valid || name.pristine"
+                 class="alert alert-danger">
+              The Item Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Item Description:</label>
+            <input type="text" class="form-control" id="description"
+                   required
+                   [(ngModel)]="model.description" name="description"
+                   #description="ngModel">
+            <div [hidden]="description.valid || description.pristine"
+                 class="alert alert-danger">
+              The Item Description is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price"
+                   required
+                   [(ngModel)]="model.price" name="price"
+                   #price="ngModel">
+            <div [hidden]="price.valid || price.pristine"
+                 class="alert alert-danger">
+              The Price of the item required
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Sign Up Here</button>
+          <button type="button" class="btn btn-default" (click)="reset(); heroForm.reset()">Reset Fields</button>
+          <i>with</i> reset
+
+          <div>
+          </div>
+          <!-- - -->
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .no-style .ng-valid {
+      border-left: 1px  solid #CCC
+    }
+
+    .no-style .ng-invalid {
+      border-left: 1px  solid #CCC
+    }
+  </style>
+</div>

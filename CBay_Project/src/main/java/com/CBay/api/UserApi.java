@@ -65,7 +65,7 @@ public class UserApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String[] insertUser(JsonObject json) {
+	public String insertUser(JsonObject json) {
 		String type = json.getString("type");
 		String[] response;
 
@@ -90,7 +90,7 @@ public class UserApi {
 		response[0] = id.toString();
 		response[1] = type;
 
-		return response;
+		return response[0];
 	}
 
 	// -- insert and if successful return success

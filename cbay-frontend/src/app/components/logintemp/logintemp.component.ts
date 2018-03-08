@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 export class LogintempComponent {
 
     model = new Client('', '');
-
     submitted = false;
 
     onSubmit() {
         this.submitted = true;
+        sessionStorage.setItem('userid', '10001');
     }
 
     // TODO: Remove this when we're done
