@@ -199,8 +199,6 @@ public class ItemDao {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		
-		
-		
 		try{
 			
 			tx = session.beginTransaction();

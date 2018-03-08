@@ -81,11 +81,17 @@ public class OrderService {
 
 	}
 	
-	public static List<Transactions> getTransactionBuyerStatusQuantity(){
+	public static List<Transactions> getTransactionByBuyerIdAndStatus(Integer BuyerId, String Status){
 		
+		OrderDao dao = new OrderDao();
+
 		List <Transactions> trans = new ArrayList<Transactions>();
 		for (Transactions t : getAllTransactions()) {
-			trans.add(new Transactions(t.getBuyerId(), t.getStatus(), t.getQuantity()));
+			if (t.getBuyerId().equals(BuyerId) && t.getStatus().equals(Status)) {
+				
+				trans.add(dao.getTransactionById(t.getId()));
+
+			}
 		}
 		
 		return trans;
