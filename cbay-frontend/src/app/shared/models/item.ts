@@ -9,6 +9,7 @@ export class Item {
     description: string;
     price: number;
     ratingavg: number;
+    quantity: number;
     itemUrl = `http://localhost:8089/CBay_Project/rest/item/get`;
     // itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
 

@@ -1,3 +1,19 @@
-<p>
-  message works!
-</p>
+<h1>Messaging</h1>
+<div>
+    <span>Concerning Transaction #{{messageModel.transid}}</span>
+</div>
+<div *ngFor="let msg of messages">
+    <span name="from">{{msg["sender"]}}</span> ->
+    <span name="to">{{msg["responder"]}}</span>
+    <br>
+    <span>{{msg["subject"]}}</span> <span>{{msg["messageTimeStamp"]}}</span>
+    <br>
+    <span>{{msg["messageContent"]}}</span>
+    <hr>
+</div>
+<div>
+    <div>
+        <input [(ngModel)]="messageModel.content" name="message">
+        <button type="button" (click)="onSend()">SEND</button>
+    </div>
+</div>

@@ -58,7 +58,8 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
         this.userId = '' + this.anItem.userid;
         const user = new Client(this.http);
         user.get(this.userId).then(user_data => {
-            this.data.nonEditable['Seller'] = user_data['userName'];
+            // this.data.nonEditable['Seller'] = user_data['userName'];
+            this.data['Seller'] = user_data['userName'];
             this.data.nonEditable['Price'] = this.anItem.price;
             this.data.nonEditable['Product Rating'] = this.anItem.ratingavg;
         }).catch(error => {
