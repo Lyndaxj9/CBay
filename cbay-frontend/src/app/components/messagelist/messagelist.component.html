@@ -1,0 +1,4 @@
+<h1>Messages</h1>
+<div class="col-md-12" *ngFor="let m of messageThreads">
+    <span><a (click)="set_msg($event)" name="{{m['id']}}">Message Thread #{{m['id']}}</a></span>
+</div>

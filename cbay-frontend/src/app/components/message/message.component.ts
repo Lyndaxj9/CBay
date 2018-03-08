@@ -14,9 +14,7 @@ export class MessageComponent implements OnInit {
     constructor(public http: HttpClient) { }
 
     ngOnInit() {
-        this.messageModel = new Message(this.http);
-
-        this.messageModel.get_thread_msg(1001).subscribe(
+        this.messageModel = new Message(this.http); this.messageModel.get_thread_msg(parseInt(localStorage.getItem('msgthread'))).subscribe(
             res => {
                 this.messages = res;
                 this.messageModel.transid = res[0]['transaction'];

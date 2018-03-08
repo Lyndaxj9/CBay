@@ -7,27 +7,27 @@ import { Component } from '@angular/core';
 })
 export class LogintempComponent {
 
-  model = new Client('', '');
+    model = new Client('', '');
 
-  submitted = false;
+    submitted = false;
 
-  onSubmit() {
-      this.submitted = true;
-  }
+    onSubmit() {
+        this.submitted = true;
+    }
 
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+    // TODO: Remove this when we're done
+    get diagnostic() { return JSON.stringify(this.model); }
 
-  reset() {
-    this.model = new Client('', '');
-  }
+    reset() {
+        this.model = new Client('', '');
+    }
 }
 
 export class Client {
 
-  constructor(
+    constructor(
     public userName: string,
-    public password: string,
-  ) {  }
+     public password: string,
+    ) {  }
 
 }

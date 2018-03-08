@@ -25,8 +25,15 @@ export class Message {
         return req;
     }
 
+    get_user_threads(userid: number) {
+        const req = this.http.get(this.messageUrl + '/get/thread/' + userid, {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
+
     get_thread_msg(thid: number) {
-        const req = this.http.get(this.messageUrl + '/get/thread/' + thid, {headers: new HttpHeaders({
+        const req = this.http.get(this.messageUrl + '/get/thread/msg/' + thid, {headers: new HttpHeaders({
             'Content-Type': 'application/json'
         })});
         return req;
