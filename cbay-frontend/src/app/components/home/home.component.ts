@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
         this.usertype = sessionStorage.getItem('usertype');
 
-        if (parseInt(sessionStorage.getItem('userid'), 10)) {
+        /*if (parseInt(sessionStorage.getItem('userid'), 10)) {
             this.router.navigateByUrl('\profile');
-        }
+        }*/
     }
 
 }
