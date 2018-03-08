@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-registertemp',
   templateUrl: './registertemp.component.html',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
 })
 export class RegistertempComponent {
 
+  constructor(public http: HttpClient){}
+
   clientType = ['buyer', 'seller',
     'moderator'];
+
+  clientModel: Client;
 
   passwords_dont_match = false;
 
@@ -18,7 +23,10 @@ export class RegistertempComponent {
 
   onSubmit() {
     if(this.model.password && this.model.password == this.model.confirm_password){
-      this.submitted = true;
+      this.submitted = false;
+      console.log(this.model.password + ' ' + this.model.userType + ' ' + this.model.email + ' '
+        + this.model.userName + ' ' + this.model.lastName + ' ' + this.model.firstName);
+
     }else{
       this.passwords_dont_match = true;
     }

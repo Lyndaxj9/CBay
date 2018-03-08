@@ -15,10 +15,11 @@ import com.CBay.dao.ItemDao;
 
 public class ItemService {
 
-	public static Integer createItem(Integer SellerId, String ItemName, String Description, Integer Price, Integer quantity) {
+	public static Integer createItem(Integer SellerId, String ItemName, String Description, Double Price, Integer quantity) {
 		
 		ItemDao dao = new ItemDao();
-		Item item = new Item(SellerId, ItemName, Description, Price, quantity, 0.0);
+		double price = new BigDecimal(Price).setScale(3, RoundingMode.HALF_UP).doubleValue();
+		Item item = new Item(SellerId, ItemName, Description, price, quantity, 0.0);
 		dao.insertItem(item);
 		return item.getId();
 	}
@@ -75,10 +76,11 @@ public class ItemService {
 	}
 	
 	
-	public static void editItem(Integer ItemId, String ItemName, Integer Price, String Description) {
+	public static void editItem(Integer ItemId, String ItemName, Double Price, String Description) {
 		
 		ItemDao dao = new ItemDao();
-		Item item = new Item(ItemId, ItemName, Price, Description);
+		double price = new BigDecimal(Price).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		Item item = new Item(ItemId, ItemName, price, Description);
 		dao.changeItemInfo(item);
 		
 	
@@ -99,8 +101,8 @@ public class ItemService {
 		return comments;
 	}
 	
-	
-	public static List<Integer> getItemAverageRating(Integer ItemId){
+	// Don't touch this method
+	public static List<Integer> getItemAverageRatingForCalculation(Integer ItemId){
 			
 			ItemDao dao = new ItemDao();
 			List<Integer> avg = new ArrayList<Integer>();
@@ -115,9 +117,10 @@ public class ItemService {
 		}
 	
 	
+	// Don't touch this method
 	public static Double calculateAvg(Integer ItemId){
 		Double sum = 0.0;
-		List<Integer> average = getItemAverageRating(ItemId);
+		List<Integer> average = getItemAverageRatingForCalculation(ItemId);
 		
 		for (Integer avg : average) {
 			
@@ -146,7 +149,11 @@ public class ItemService {
 		return items;
 	}
 	
-	
+	public static Double getItemAverageRating(Integer itemId){
+		
+		ItemDao dao = new ItemDao();
+		return dao.getItemById(itemId).getRatingAvg();
+	}
 	
 	
 	

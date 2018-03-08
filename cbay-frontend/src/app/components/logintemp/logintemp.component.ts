@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,12 +9,19 @@ import { Router } from '@angular/router';
 })
 export class LogintempComponent {
 
-    model = new Client('', '');
-    submitted = false;
+  constructor(public http: HttpClient, public router: Router) { }
 
-    constructor(public router: Router) { }
+    model = new Client('', '', '');
+    submitted = false;
+    url = 'http://54.213.131.230/CBay/rest/user/get';
+    clientType = ['buyer', 'seller',
+    'moderator'];
 
     onSubmit() {
+        this.submitted = false;
+      this.get_user_data().then(response => {
+        console.log(response);
+      });
         this.submitted = true;
         sessionStorage.setItem('userid', '10000');
         sessionStorage.setItem('usertype', 'Seller');
@@ -24,8 +32,18 @@ export class LogintempComponent {
     get diagnostic() { return JSON.stringify(this.model); }
 
     reset() {
-        this.model = new Client('', '');
+        this.model = new Client('', '', '');
     }
+
+  get_user_data(): Promise<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get(this.url + '/' + this.model.userName + '/' + this.model.password + '/' + this.model.type)
+      .toPromise();
+  }
 }
 
 export class Client {
@@ -33,6 +51,7 @@ export class Client {
     constructor(
     public userName: string,
      public password: string,
+    public type: string
     ) {  }
 
 }

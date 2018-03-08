@@ -11,7 +11,7 @@ public class OrderService {
 
 	
 	// dont touch this method
-	public static Integer createOrder(Integer BuyerId, Integer ItemTotal) {
+	private static Integer createOrder(Integer BuyerId, Integer ItemTotal) {
 		
 		OrderDao dao = new OrderDao();
 		Order order = new Order(BuyerId, ItemTotal, "Created");
@@ -30,7 +30,7 @@ public class OrderService {
 	}
 	
 	// dont touch this method
-	public static void updateTransactionCheckedOut(Integer TransactionId) {
+	private static void updateTransactionCheckedOut(Integer TransactionId) {
 		
 		OrderDao dao = new OrderDao();
 		dao.updateTransactionStatus(TransactionId, "Checked-Out");
@@ -106,6 +106,7 @@ public class OrderService {
 			
 			dao.insertOrderIdIntoTransaction(tranId, orderId);
 			updateTransactionCheckedOut(tranId);
+			
 
 		}
 	

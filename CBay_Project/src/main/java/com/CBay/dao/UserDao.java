@@ -53,7 +53,9 @@ public class UserDao {
 			
 			for (User u : AllUsers) {
 				System.out.println(u.getUserName() + " " + u.getPW() + " " + u.getUserType());
-				if((u.getUserName().equals(username)) && (u.getPW().equals(password)) && (u.getUserType().equals(Type)))
+				if((u.getUserName().toLowerCase().equals(username.toLowerCase())) && 
+						(u.getPW().toLowerCase().equals(password.toLowerCase())) && 
+						(u.getUserType().toLowerCase().equals(Type.toLowerCase())))
 					return u.getId();
 				
 			}
