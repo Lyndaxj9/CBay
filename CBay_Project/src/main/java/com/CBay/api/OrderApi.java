@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Order;
 import com.CBay.beans.Transactions;
+import com.CBay.service.ItemService;
 import com.CBay.service.OrderService;
 
 //-- represents the url to go to to get, 
@@ -55,15 +56,45 @@ public class OrderApi {
 		return OrderService.getTransactionByBuyerIdAndStatus(id, status);
 	}
 	
+	
+	/* 
+	 * This will have to be altered depending on how we will list the transactions from the in-cart page
+	 * TO PASS THE TRANASACTIONS ID'S OF ALL ITEMS TRANSACTIONS TO BE CHECKED OUT.   
+	 */
 	//-- insert and if successful return success
 	//-- if it is not return unsuccessful.
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertOrder(Order message){
-		return "success";
+	public Integer insertOrder(List<Integer> TransactionsId, @PathParam("id") Integer BuyerId){
+		Integer id = OrderService.placeOrder(TransactionsId, BuyerId);
+		return id;
 	}
+	
+	
+	// -- insert TRANSACTION ID and if successful return success
+		// -- if it is not return unsuccessful.
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.TEXT_PLAIN)
+		@Path("/update")
+		public String OrderShipped(@PathParam("id") Integer TransactionId) {
+			OrderService.updateTransactionShipped(TransactionId);
+			return "success";
+		}
+		
+		
+	// -- insert and if successful return success
+			// -- if it is not return unsuccessful.
+			@POST
+			@Consumes(MediaType.APPLICATION_JSON)
+			@Produces(MediaType.TEXT_PLAIN)
+			@Path("/update")
+			public String OrderDelivered(@PathParam("id") Integer TransactionId) {
+				OrderService.updateTransactionDelivered(TransactionId);
+				return "success";
+			}
 	
 	//-- insert and if successful return success
 	//-- if it is not return unsuccessful.

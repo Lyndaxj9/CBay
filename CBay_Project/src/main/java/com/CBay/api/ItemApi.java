@@ -84,7 +84,7 @@ public class ItemApi {
 	@Path("/post")
 	public Integer insertItem(JsonObject json) {
 		Integer id = null;
-		//id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"), (Double)json.getInt("price"), json.getInt("quantity"));
+		id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"), Double.parseDouble(json.getString("price")), json.getInt("quantity"));
 		return id;
 	}
 
@@ -95,7 +95,7 @@ public class ItemApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update")
 	public String updateItem(JsonObject json) {
-		//ItemService.editItem(json.getInt("id"), json.getString("itemName"), json.getInt("price"), json.getString("description"));
+		ItemService.editItem(json.getInt("id"), json.getString("itemName"), Double.parseDouble(json.getString("price")), json.getString("description"));
 		return "success";
 	}
 
