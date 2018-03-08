@@ -3,6 +3,7 @@ package com.CBay.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,47 +24,58 @@ import com.CBay.service.ItemService;
 //-- http://34.217.96.20:8089/CBay/rest/item
 @Path("/item")
 public class ItemApi {
-	
-	//-- this will return all the item in the database.
-	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/item/get/all
+
+	// -- this will return all the item in the database.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Item> getAllItems(){
+	public List<Item> getAllItems() {
 		return new ArrayList<Item>();
 	}
-	
-	//-- get one item from the database via id.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/item/get/{id}
+
+	// -- get one item from the database via id.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/{id}
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Item getItemIndex(@PathParam("id") int id){
+	public Item getItemIndex(@PathParam("id") int id) {
 		return ItemService.getItemById(id);
 	}
-	
-	//-- insert and if successful return success
-	//-- if it is not return unsuccessful.
+
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertItem(Item item){
+	public String insertItem(Item item) {
 		return "success";
 	}
-	
-	//-- delete a particular item via id.
-	//-- if the image exist the return success
-	//-- else just return error.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/item/delete/{id}
+
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/update")
+	public String updateItem(JsonObject json) {
+		ItemService.editItem(json.getInt("id"), json.getString("itemName"), json.getInt("price"), json.getString("description"));
+		return "success";
+	}
+
+	// -- delete a particular item via id.
+	// -- if the image exist the return success
+	// -- else just return error.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/item/delete/{id}
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
-	public String deleteItem(@PathParam("id") int id){
+	public String deleteItem(@PathParam("id") int id) {
 		return "success";
 	}
 

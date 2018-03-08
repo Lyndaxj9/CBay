@@ -3,6 +3,7 @@ package com.CBay.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -25,57 +26,69 @@ import com.CBay.service.UserService;
 @Path("/user")
 public class UserApi {
 
-
-	//-- this will return all the users in the database.
-	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/user/get/all
+	// -- this will return all the users in the database.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/user/get/all
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return new ArrayList<User>();
 	}
-	
-	//-- get one user from the database via id.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/user/get/{id}
+
+	// -- get one user from the database via id.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/user/get/{id}
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserIndex(@PathParam("id") int id){
+	public User getUserIndex(@PathParam("id") int id) {
 		return UserService.getUserInfo(id);
 	}
-	
-	//-- get one user from the database via username, password, type
-	//-- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
+
+	// -- get one user from the database via username, password, type
+	// -- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
 	@GET
 	@Path("/get/{username}/{password}/{type}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Integer loginUser(@PathParam("username") String username, 
-			@PathParam("password")String password, @PathParam("type")String type){
+	public Integer loginUser(@PathParam("username") String username, @PathParam("password") String password,
+			@PathParam("type") String type) {
 		return UserService.LoginSeller(username, password);
 	}
-	
-	//-- insert and if successful return success
-	//-- if it is not return unsuccessful.
+
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertUser(User user){
+	public String insertUser(User user) {
 		return "success";
 	}
-	
-	//-- delete a particular user via id.
-	//-- if the user exist the return success
-	//-- else just return error.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/user/delete/{id}
+
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/edit")
+	public String editUser(JsonObject json) {
+		UserService.EditUserInfo(json.getInt("id"), json.getString("firstname"), json.getString("lastname"), json.getString("username"), 
+				json.getString("pw"), json.getString("email"), json.getString("description"));
+		System.out.println(json);
+		return "success";
+	}
+
+	// -- delete a particular user via id.
+	// -- if the user exist the return success
+	// -- else just return error.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/user/delete/{id}
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
-	public String deleteUser(@PathParam("id") int id){
+	public String deleteUser(@PathParam("id") int id) {
 		return "success";
 	}
 }

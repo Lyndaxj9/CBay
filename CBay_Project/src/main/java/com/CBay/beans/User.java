@@ -206,6 +206,7 @@ public class User {
 
 
 
+<<<<<<< HEAD
 	public String getApproval() {
 		return Approval;
 	}
@@ -214,6 +215,13 @@ public class User {
 
 	public void setApproval(String approval) {
 		Approval = approval;
+=======
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserType=" + UserType
+				+ ", UserName=" + UserName + ", PW=" + PW + ", Email=" + Email + ", RatingAvg=" + RatingAvg
+				+ ", Description=" + Description + "]";
+>>>>>>> dc1285afa46271571638665aa1c4a0ab35feffab
 	}
 
 	
