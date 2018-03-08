@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.CBay.beans.Item;
 import com.CBay.service.ItemService;
+import com.CBay.service.UserService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -32,8 +33,18 @@ public class ItemApi {
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Item> getAllItems() {
-		return new ArrayList<Item>();
+		return ItemService.getAllItems();
 	}
+	
+	// -- this will return all the item's comments.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
+	@GET
+	@Path("/get/all/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> getAllItemComments(@PathParam("id") int id) {
+		return ItemService.getItemComments(id);
+		}
 
 	// -- get one item from the database via id.
 	// -- {id} = 3
@@ -51,8 +62,10 @@ public class ItemApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertItem(Item item) {
-		return "success";
+	public Integer insertItem(JsonObject json) {
+		Integer id = null;
+		id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"), json.getInt("price"), json.getInt("quantity"));
+		return id;
 	}
 
 	// -- insert and if successful return success
