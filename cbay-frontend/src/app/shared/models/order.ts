@@ -14,7 +14,7 @@ export class Order {
 
     constructor (public http: HttpClient) { }
 
-    update() {
+    insert() {
         const req = this.http.post(this.orderUrl + '/post/tocart', {
             itemid: this.itemid,
             buyerid: this.buyerid,

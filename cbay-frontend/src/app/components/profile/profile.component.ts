@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
         this.clientModel = new Client(this.http);
 
         // TODO probably have to change to get username so other way
-        this.clientModel.get('10002')
+        this.clientModel.get(sessionStorage.getItem('userid'))
             .then(user_data => {
 
             this.clientModel.set_all_values(user_data);

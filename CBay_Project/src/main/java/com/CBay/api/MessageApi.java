@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Message;
+import com.CBay.beans.MessageThread;
 import com.CBay.service.MessageService;
 
 //-- represents the url to go to to get, 
@@ -39,6 +40,16 @@ public class MessageApi {
 	//-- http://34.217.96.20:8089/CBay/rest/message/get/all
 	@GET
 	@Path("/get/thread/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<MessageThread> getAllThreadsByUser(@PathParam("id") int id){
+		return MessageService.getAllThreadsByUser(id);
+	}
+	
+	//-- this will return all the item in the database.
+	//-- past in below for testing.
+	//-- http://34.217.96.20:8089/CBay/rest/message/get/all
+	@GET
+	@Path("/get/thread/msg/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getAllMessagesByThread(@PathParam("id") int id){
 		return MessageService.getAllMessagesByThread(id);

@@ -69,7 +69,7 @@ public class MessageDao {
 		
 		try{	
 			tx = session.beginTransaction();
-			String hql = "FROM Message WHERE ThreadID= :ID";
+			String hql = "FROM Message WHERE ThreadID= :ID order by MessageTimeStamp";
 			Query query = session.createQuery(hql);
 			query.setParameter("ID", ThreadId);
 			msg = query.list();

@@ -3,6 +3,7 @@ package com.CBay.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Order;
+import com.CBay.service.OrderService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -49,6 +51,18 @@ public class OrderApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
 	public String insertOrder(Order message){
+		return "success";
+	}
+	
+	//-- insert and if successful return success
+	//-- if it is not return unsuccessful.
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/post/tocart")
+	public String addToCart(JsonObject json){
+		System.out.println("to cart " + json);
+		OrderService.createTransaction(json.getInt("itemid"), json.getInt("buyerid"), json.getInt("sellerid"), json.getInt("quantity"));
 		return "success";
 	}
 	

@@ -16,12 +16,13 @@ export class Item {
     constructor (public http: HttpClient) { }
 
     set_all_values(itemInfo: any) {
-        this.itemid = itemInfo.id;
-        this.userid = itemInfo.userId;
+        this.itemid = parseInt(itemInfo.id, 10);
+        this.userid = parseInt(itemInfo.userId, 10);
         this.itemname = itemInfo.itemName;
         this.description = itemInfo.description;
         this.price = itemInfo.price;
         this.ratingavg = itemInfo.ratingAvg;
+        this.quantity = itemInfo.quantity;
     }
 
     // TODO a get username by userid would be nice
