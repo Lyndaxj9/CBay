@@ -36,7 +36,7 @@ export class GenericlistComponent implements OnInit {
   }
 
   previous(){
-    if(this.current_page > 0){
+    if(this.current_page > 1){
       this.current_index -= this.max_number_of_items_on_a_page;
       this.temp_list = this.list.slice(this.current_index, this.current_index + this.max_number_of_items_on_a_page);
       console.log('previous');
