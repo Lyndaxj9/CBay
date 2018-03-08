@@ -141,8 +141,9 @@ public class Driver {
  		
  		//System.out.println(ItemService.getItemById(20000).getQuantity());
 
- 		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
+ 		//System.out.println(UserService.InsertSeller("John", "Doe", "JDoe2", "JDoe2", "JDoe2@doe.com"));
 
+ 		System.out.println(UserService.InsertMod("Ross", "Riss", "RissRoss", "RissRoss", "Riss@Ross.com"));
 
 
 		

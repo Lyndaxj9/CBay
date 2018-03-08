@@ -9,11 +9,14 @@ import com.CBay.dao.OrderDao;
 
 public class OrderService {
 
+	
+	// dont touch this method
 	public static Integer createOrder(Integer BuyerId, Integer ItemTotal) {
 		
 		OrderDao dao = new OrderDao();
 		Order order = new Order(BuyerId, ItemTotal, "Created");
 		dao.insertOrder(order);
+		
 		return order.getId();
 	}
 	
@@ -26,6 +29,7 @@ public class OrderService {
 		return tran.getId();
 	}
 	
+	// dont touch this method
 	public static void updateTransactionCheckedOut(Integer TransactionId) {
 		
 		OrderDao dao = new OrderDao();
@@ -68,11 +72,7 @@ public class OrderService {
 		return dao.getAllTransactionByOrder(OrderId);
 	}
 	
-	public static void addOrderIdToTransaction(Integer TransactionId, Integer OrderId){
-		
-		OrderDao dao = new OrderDao();
-		dao.insertOrderIdIntoTransaction(TransactionId, OrderId);;
-	}
+	
 	
 	public static void removeTransaction(Integer TransactionId){
 		
@@ -85,17 +85,31 @@ public class OrderService {
 		
 		OrderDao dao = new OrderDao();
 
-		List <Transactions> trans = new ArrayList<Transactions>();
+		List <Transactions> trans = new ArrayList<>();
 		for (Transactions t : getAllTransactions()) {
 			if (t.getBuyerId().equals(BuyerId) && t.getStatus().equals(Status)) {
 				
 				trans.add(dao.getTransactionById(t.getId()));
-
 			}
 		}
 		
 		return trans;
 	}
 	
+	
+	public static Integer placeOrder (List<Integer> TransactionsId, Integer BuyerId) {
+		
+		OrderDao dao = new OrderDao();
+		Integer orderId = createOrder(BuyerId, TransactionsId.size());
+
+		for(Integer tranId : TransactionsId) {
+			
+			dao.insertOrderIdIntoTransaction(tranId, orderId);
+			updateTransactionCheckedOut(tranId);
+
+		}
+	
+		return orderId;
+	}
 	
 }

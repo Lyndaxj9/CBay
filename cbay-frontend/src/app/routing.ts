@@ -8,6 +8,7 @@ import { MessagelistComponent } from './components/messagelist/messagelist.compo
 import { MessageComponent } from './components/message/message.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {GenericlistComponent} from './components/genericlist/genericlist.component';
+import {AdditemComponent} from './components/additem/additem.component';
 
 export const appRoutes: Routes = [
     {
@@ -21,6 +22,10 @@ export const appRoutes: Routes = [
     {
         path: 'item',
         component: SingleitemComponent
+    },
+    {
+      path: 'additem',
+      component: AdditemComponent
     },
     {
         path: 'messages',

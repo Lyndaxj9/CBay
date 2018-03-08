@@ -20,9 +20,9 @@ export class GenericlistComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.is_item_display = false;
+    this.is_item_display = true;
     this.is_user_display = false;
-    this.is_transaction_display = true;
+    this.is_transaction_display = false;
     this.is_review_display = false;
     this.is_cart_display = false;
     //-- get list of information

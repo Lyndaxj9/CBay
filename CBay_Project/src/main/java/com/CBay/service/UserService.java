@@ -20,48 +20,46 @@ public class UserService {
 	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email)  {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email, "N/A");
-		try {
 			dao.insertUser(user);
-			return user.getId();
-		} catch (Exception e) {
-			return null;			
-		}
+			if (dao.getUserById(user.getId()) != null)
+				return user.getId();	
+			else 
+				return null;
+
+		
 		
 	}
 	
 	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Seller", Username, PW, Email, "Pending");
-		try {
-			dao.insertUser(user);
-			return user.getId();
-		} catch (Exception e) {
-			return null;			
-		}
+		dao.insertUser(user);
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	
 	public static Integer InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email, "Pending");
-		try {
-			dao.insertUser(user);
-			return user.getId();
-		} catch (Exception e) {
-			return null;			
-		}
+		dao.insertUser(user);
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	
 	public static Integer InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
 		User user = new User(FirstName, LastName, "Admin", Username, PW, Email, "N/A");
-		try {
-			dao.insertUser(user);
-			return user.getId();
-		} catch (Exception e) {
-			return null;			
-		}
+		dao.insertUser(user);
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	

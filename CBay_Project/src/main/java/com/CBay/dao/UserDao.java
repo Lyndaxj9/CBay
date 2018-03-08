@@ -18,7 +18,7 @@ import com.CBay.util.HibernateUtil;
 
 public class UserDao {
 
-	public void insertUser(User user) throws Exception{
+	public void insertUser(User user) {
 		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
@@ -38,6 +38,7 @@ public class UserDao {
 			session.close();
 		}
 	}
+	
 
 	public Integer LoginUser(String username, String password, String Type) {
 		
