@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class RegistertempComponent {
 
   clientType = ['buyer', 'seller',
-    'moderator', 'admin'];
+    'moderator'];
 
   passwords_dont_match = false;
 

@@ -16,6 +16,7 @@ import { LogintempComponent } from './components/logintemp/logintemp.component';
 import { RegistertempComponent } from './components/registertemp/registertemp.component';
 import { HomeComponent } from './components/home/home.component';
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
+import { GenericlistComponent } from './components/genericlist/genericlist.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SingleitemComponent } from './components/singleitem/singleitem.componen
     LogintempComponent,
     RegistertempComponent,
     HomeComponent,
-    SingleitemComponent
+    SingleitemComponent,
+    GenericlistComponent
   ],
   imports: [
     BrowserModule,
