@@ -67,9 +67,18 @@ public class OrderService {
 		return dao.getAllTransactionByOrder(OrderId);
 	}
 	
+	public static void addOrderIdToTransaction(Integer TransactionId, Integer OrderId){
+		
+		OrderDao dao = new OrderDao();
+		dao.insertOrderIdIntoTransaction(TransactionId, OrderId);;
+	}
 	
-	
+	public static void removeTransaction(Integer TransactionId){
+		
+		OrderDao dao = new OrderDao();
+		dao.removeTransaction(TransactionId);
 
+	}
 	
 	
 }

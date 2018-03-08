@@ -19,7 +19,7 @@ public class UserService {
 
 	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email, "N/A");
 		dao.insertUser(user);
 		return user.getId();
 		
@@ -27,7 +27,7 @@ public class UserService {
 	
 	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Seller", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Seller", Username, PW, Email, "Pending");
 		dao.insertUser(user);
 		return user.getId();
 
@@ -35,7 +35,7 @@ public class UserService {
 	
 	public static Integer InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email, "Pending");
 		dao.insertUser(user);
 		return user.getId();
 
@@ -43,7 +43,7 @@ public class UserService {
 	
 	public static Integer InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Admin", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Admin", Username, PW, Email, "N/A");
 		dao.insertUser(user);
 		return user.getId();
 
@@ -240,6 +240,22 @@ public class UserService {
 		}
 		return Mods;
 	}
+	
+	
+	public static void approveAccount(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		dao.approveSellerModAccounts(UserId);
+	}
+	
+	
+	public static boolean checkApproval(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		return dao.checkSellerModApproval(UserId);
+	}
+	
+	
 	
 	
 	
