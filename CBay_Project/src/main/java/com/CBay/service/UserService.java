@@ -165,6 +165,41 @@ public class UserService {
 		return comments;
 	}
 	
+	// Don't touch this method
+		private static List<Integer> getSellerAverageRatingForCalculation(Integer UserId){
+				
+				UserDao dao = new UserDao();
+				List<Integer> avg = new ArrayList<Integer>();
+				List<SellerRating> ratings = dao.getSellerRating(UserId);
+				
+				for (SellerRating r : ratings) {
+					
+					avg.add(r.getNumRating());
+				}
+				
+				return avg;
+			}
+		
+		public static Double getSellerAverageRating(Integer UserId){
+				
+			UserDao dao = new UserDao();
+			return dao.getUserById(UserId).getRatingAvg();
+		}
+		
+			
+		private static Double calculateAvg(Integer UserId){
+			Double sum = 0.0;
+			List<Integer> average = getSellerAverageRatingForCalculation(UserId);
+			
+			for (Integer avg : average) {
+				
+				sum += avg;
+			}
+			
+			return sum/average.size();
+			
+		}
+	
 	
 	
 	
