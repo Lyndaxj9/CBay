@@ -59,7 +59,7 @@ public class UserApi {
 	// -- http://34.217.96.20:8089/CBay/rest/user/post
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)//lk
 	@Path("/post")
 	public Integer insertUser(JsonObject json) {
 		String type = json.getString("type");
@@ -78,6 +78,10 @@ public class UserApi {
 		else if(type.equals("mod")){
 			//-- String FirstName, String LastName, String Username, String PW, String Email
 			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
+			json.getString("username"),json.getString("pw"), json.getString("email"));
+		} else if(type.equals("admin")){
+			//-- String FirstName, String LastName, String Username, String PW, String Email
+			id = UserService.InsertAdmin(json.getString("firstname"), json.getString("lastname"),
 			json.getString("username"),json.getString("pw"), json.getString("email"));
 		}
 
