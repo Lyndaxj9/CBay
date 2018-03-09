@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
+        /*this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
         this.clientModel = new Client(this.http);
         this.sub = this.route.params
             .subscribe(params => {
@@ -114,7 +114,7 @@ export class ProfileComponent implements OnInit {
             this.options = this.modOptions;
         } else if (sessionStorage.getItem('usertype') === 'Admin') {
             this.options = this.adminOptions;
-        }
+        }*/
     }
 
     get_user_info() {
@@ -129,13 +129,13 @@ export class ProfileComponent implements OnInit {
             console.log(error);
         });
         console.log(sessionStorage.getItem('usertype'));
-        if (sessionStorage.getItem('usertype') === 'Buyer') {
+        if (sessionStorage.getItem('usertype') === 'buyer') {
             this.options = this.buyerOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Seller') {
+        } else if (sessionStorage.getItem('usertype') === 'seller') {
             this.options = this.sellerOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Moderator') {
+        } else if (sessionStorage.getItem('usertype') === 'moderator') {
             this.options = this.modOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Admin') {
+        } else if (sessionStorage.getItem('usertype') === 'admin') {
             this.options = this.adminOptions;
         }
     }
