@@ -4,6 +4,10 @@
       <div [hidden]="submitted">
         <h1 style="text-align: center"> <u>Welcome Back</u> </h1>
         <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+          <div *ngIf="unauthenticated===true"
+               class="alert alert-danger">
+            This password and username combination is not in the database.
+          </div>
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username"
