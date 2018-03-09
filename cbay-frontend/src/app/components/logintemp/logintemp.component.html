@@ -8,6 +8,10 @@
                class="alert alert-danger">
             This password and username combination is not in the database.
           </div>
+          <div *ngIf="server_error===true"
+               class="alert alert-danger">
+            Server or application error.
+          </div>
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username"
