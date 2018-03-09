@@ -1,51 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../../shared/models/item';
+import { Order } from '../../shared/models/order';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-@Component({
-  selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css']
-})
-export class ItemsComponent implements OnInit {
-  constructor(private http:HttpClient, private router:Router){}
 
-  list:any[];
-  is_item_display:boolean;
+@Component({
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
+})
+export class OrderComponent implements OnInit {
+  constructor(private http:HttpClient){}
+
+  list = ['', '', '', '', '', '', '', '', '' , ''];
+  is_order_display:boolean;
   temp_list:any[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;
   current_index = 0;
-  item: Item;
+  order:Order;
 
   load_list_information(){
     console.log('get information');
+    let type;
+    this.temp_list = [];
+    this.is_order_display = false;
+
     try
     {
-      this.temp_list = [];
-      this.is_item_display = true;
+      type = sessionStorage.getItem('list_type');
+      this.is_order_display = true;
       this.apply_pagination();
     }
     catch(ex)
     {
       console.log(ex);
     }
-  }
 
-  view_item(id){
-    console.log(id);
-    this.router.navigate(['item/', id]).catch(error=> {
-      console.log(error);
-    });
+
   }
 
   ngOnInit() {
-    this.item = new Item(this.http);
-    this.item.get_all_items().subscribe(items=>{
+    this.temp_list = [];
+    this.list = [];
+    this.order = new Order(this.http);
+    this.order.get_all_order().subscribe(items=>{
       this.temp_list = items;
+      this.load_list_information();
     });
-  this.load_list_information();
   }
 
   apply_pagination(){

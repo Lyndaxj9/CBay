@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.User;
+import com.CBay.service.ItemService;
 import com.CBay.service.UserService;
 
 
@@ -132,6 +133,18 @@ public class UserApi {
 		UserService.EditUserInfo(json.getInt("id"), json.getString("firstname"), json.getString("lastname"), json.getString("username"),
 				json.getString("pw"), json.getString("email"), json.getString("description"));
 		return "success";
+	}
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/post")
+	public Integer insertSellerRating(JsonObject json) {
+		Integer id = null;
+		id = UserService.insertSellerRating(json.getInt("id"), json.getInt("numrating"), json.getString("comment"));
+		UserService.updateSellerAvg(json.getInt("id"));
+		return id;
 	}
 
 	// -- delete a particular user via id.

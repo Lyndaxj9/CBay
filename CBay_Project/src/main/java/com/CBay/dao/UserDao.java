@@ -363,6 +363,27 @@ public class UserDao {
 				return false;
 				
 		}
+
+
+		public void removeUser(Integer Id) {
+			Session session = HibernateUtil.getSession();
+			Transaction tx = null;
+			User user = null;
+			try{
+				tx = session.beginTransaction();
+				user = (User)session.get(User.class, Id);
+				session.delete(user);
+				tx.commit();
+				
+			}catch(HibernateException e){
+				if(tx!=null){
+					tx.rollback();
+				}
+				e.printStackTrace();
+			}finally{
+				session.close();
+			}						
+		}
 	
 	
 	

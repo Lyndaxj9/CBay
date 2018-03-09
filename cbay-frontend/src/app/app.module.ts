@@ -23,6 +23,7 @@ import { UsersComponent } from './components/users/users.component';
 import { ItemsComponent } from './components/items/items.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CarttempComponent } from './components/carttemp/carttemp.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CarttempComponent } from './components/carttemp/carttemp.component';
     UsersComponent,
     ItemsComponent,
     ReviewsComponent,
-    CarttempComponent
+    CarttempComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

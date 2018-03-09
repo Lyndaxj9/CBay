@@ -26,9 +26,14 @@ export class Order {
     }
 
     get_cart() {
-        const req = this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'In-Cart', {headers: new HttpHeaders({
+        return this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'In-Cart', {headers: new HttpHeaders({
             'Content-Type': 'application/json'
         })});
-        return req;
     }
+
+  get_all_order(){
+    return this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'In-Cart', {headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })});
+  }
 }

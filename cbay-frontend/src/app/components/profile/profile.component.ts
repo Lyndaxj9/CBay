@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Previous Orders',
-            link: 'list/cart'
+            link: 'list/orders'
         }
     ];
     sellerOptions = [
