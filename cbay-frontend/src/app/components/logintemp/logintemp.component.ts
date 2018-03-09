@@ -13,18 +13,22 @@ export class LogintempComponent {
 
     model = new Client('', '', '');
     submitted = false;
-    url = 'http://54.213.131.230/CBay/rest/user/get';
+    unauthenticated = false;
+    url = 'http://54.213.131.230:8089/CBay/rest/user/get/';
     clientType = ['buyer', 'seller',
     'moderator'];
 
     onSubmit() {
         this.submitted = false;
       this.get_user_data().then(response => {
-        console.log(response);
+        let id = response;
+        if(Number.isInteger(id)){
+          sessionStorage.setItem('userid', id);
+          this.router.navigateByUrl('/profile');
+        }else{
+          this.unauthenticated = true;
+        }
       });
-        this.submitted = true;
-        sessionStorage.setItem('userid', '10002');
-        this.router.navigateByUrl('/profile');
     }
 
     // TODO: Remove this when we're done
@@ -35,12 +39,7 @@ export class LogintempComponent {
     }
 
   get_user_data(): Promise<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    return this.http.get(this.url + '/' + this.model.userName + '/' + this.model.password + '/' + this.model.type)
+    return this.http.get(this.url + this.model.userName + '/' + this.model.password + '/' + this.model.type)
       .toPromise();
   }
 }
