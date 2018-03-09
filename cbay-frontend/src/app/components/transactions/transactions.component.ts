@@ -1,33 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-genericlist',
-  templateUrl: './genericlist.component.html',
-  styleUrls: ['./genericlist.component.css']
+  selector: 'app-transactions',
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.css']
 })
-export class GenericlistComponent implements OnInit {
+export class TransactionsComponent implements OnInit {
+
   list = ['', '', '', '', '', '', '', '', '' , ''];
-  is_user_display = false;
-  is_cart_display = false;
-  is_item_display = false;
-  is_transaction_display = false;
-  is_review_display = false;
-  temp_list = [];
+  is_transaction_display:boolean;
+  temp_list:any[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;
   current_index = 0;
-  constructor() { }
+
+  load_list_information(){
+    console.log('get information');
+    try
+    {
+      let type;
+      this.temp_list = [];
+      this.is_transaction_display = true;
+      this.apply_pagination();
+    }
+    catch(ex)
+    {
+      console.log(ex);
+    }
+  }
 
   ngOnInit() {
-    this.is_item_display = true;
-    this.is_user_display = false;
-    this.is_transaction_display = false;
-    this.is_review_display = false;
-    this.is_cart_display = false;
-    //-- get list of information
-    //-- and add it to temp list
-    //-- that will display the items.
+    this.load_list_information();
+  }
+
+  apply_pagination(){
     this.temp_list = this.list.slice(this.current_index, this.current_index + this.max_number_of_items_on_a_page);
     this.last_page = Math.ceil(this.list.length / this.max_number_of_items_on_a_page);
 
@@ -53,5 +60,4 @@ export class GenericlistComponent implements OnInit {
       this.current_page = this.current_page - 1;
     }
   }
-
 }

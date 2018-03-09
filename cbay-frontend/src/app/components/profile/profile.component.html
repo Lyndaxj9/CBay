@@ -6,8 +6,17 @@
 </div>
 <div class="col-md-6" *ngIf="currentUser == userId">
     <h3>Actions</h3>
-    <div *ngFor="let o of options">
-        <h4><a routerLink={{o.link}}>{{o.name}}</a></h4>
+
+      <div *ngFor="let o of options">
+        <div *ngIf="!o.link.toLowerCase().includes('list');else other_content;">
+        <h4>
+          <a routerLink={{o.link}}>{{o.name}}</a>
+        </h4>
+      </div>
+        <ng-template #other_content>
+          <h4>
+            <h4 (click)="handle_link(o)">{{o.name}}</h4>
+          </h4>
+        </ng-template>
     </div>
 </div>
-

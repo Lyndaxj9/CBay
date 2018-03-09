@@ -17,7 +17,7 @@ export class LogintempComponent {
   submitted = false;
   server_error = false;
   unauthenticated = false;
-    urlBase = new Url();
+  urlBase = new Url();
   url = this.urlBase.get_urlbase() + '/user/get/';
   clientType = ['buyer', 'seller',
     'moderator', 'admin'];
@@ -32,10 +32,10 @@ export class LogintempComponent {
             sessionStorage.setItem('userid', id);
             sessionStorage.setItem('usertype', this.model.type);
             this.router.navigate(['/profile', id])
-                .catch(error=>{
+                .catch(error => {
             this.server_error = true;
             console.log(error);
-          });
+        });
         } else {
           this.unauthenticated = true;
         }

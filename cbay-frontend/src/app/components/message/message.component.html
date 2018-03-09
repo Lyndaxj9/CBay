@@ -13,7 +13,14 @@
 </div>
 <div>
     <div>
-        <input [(ngModel)]="messageModel.content" name="message">
+        <input [(ngModel)]="generalmsg" name="message">
         <button type="button" (click)="onSend()" name="sendMsgBtn">SEND</button>
+    </div>
+    <div *ngIf="aMod">
+        <input [(ngModel)]="modtoadminmsg" name="message">
+        <select [(ngModel)]="adminSelect" name="admins">
+            <option *ngFor="let a of admins" [ngValue]="a.id">{{a.userName}}</option>
+        </select>
+        <button type="submit" name="escalateMsgBtn" (click)="escalate()">ESCALATE</button>
     </div>
 </div>

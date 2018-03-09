@@ -7,8 +7,12 @@ import { SingleitemComponent } from './components/singleitem/singleitem.componen
 import { MessagelistComponent } from './components/messagelist/messagelist.component';
 import { MessageComponent } from './components/message/message.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import {GenericlistComponent} from './components/genericlist/genericlist.component';
+import {ItemsComponent } from './components/items/items.component';
 import {AdditemComponent} from './components/additem/additem.component';
+import {UsersComponent} from './components/users/users.component';
+import {TransactionsComponent} from './components/transactions/transactions.component';
+import {ReviewsComponent} from './components/reviews/reviews.component';
+import {CarttempComponent} from './components/carttemp/carttemp.component';
 
 export const appRoutes: Routes = [
     {
@@ -44,8 +48,24 @@ export const appRoutes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'list',
-        component: GenericlistComponent
+        path: 'list/item',
+        component: ItemsComponent
+    },
+    {
+      path: 'list/user',
+      component: UsersComponent
+    },
+    {
+      path: 'list/transaction',
+      component: TransactionsComponent
+    },
+    {
+      path: 'list/review',
+      component: ReviewsComponent
+    },
+    {
+      path: 'list/cart',
+      component:CarttempComponent
     }
     /*
         create path for homepage

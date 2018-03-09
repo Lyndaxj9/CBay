@@ -29,7 +29,7 @@ export class Client {
         this.email = userInfo.email;
         this.password = userInfo.PW;
         if (userInfo.description === undefined) {
-            console.log("not exist");
+            console.log('not exist');
             this.description = '';
         } else {
             console.log('exist');
@@ -53,8 +53,14 @@ export class Client {
             .toPromise();
     }
 
+    get_all_admins() {
+        const req = this.http.get(this.userUrl + '/get/all/admin', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
+
     update() {
-        console.log('url update: ' + this.userUrl + '/edit')
         const req = this.http.post(this.userUrl + '/edit', {
             id: this.userid,
             firstname: this.firstname,
