@@ -6,7 +6,7 @@
             <ul class="largenav pull-right">
                 <li class="upper-links"><a class="links"  routerLink="" routerLinkActive="active" *ngIf="!userid">Sign In</a></li>
                 <li class="upper-links"><a class="links"  routerLink="" routerLinkActive="active" (click)="logout()">Sign Out</a></li>
-                <li class="upper-links"><a class="links"  routerLink="/profile/{{userid}}" routerLinkActive="active">My Profile</a></li>
+                <li class="upper-links"><a class="links"  (click)="my_profile()" routerLinkActive="active">My Profile</a></li>
                 <li class="upper-links">
                     <a class="links" routerLink="/messages" routerLinkActive="active">
                         <svg class="" width="16px" height="12px" style="overflow: visible;">

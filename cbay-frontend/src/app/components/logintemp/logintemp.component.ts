@@ -15,7 +15,7 @@ export class LogintempComponent {
     submitted = false;
     url = 'http://54.213.131.230/CBay/rest/user/get';
     clientType = ['buyer', 'seller',
-    'moderator'];
+    'moderator', 'admin'];
 
     onSubmit() {
         this.submitted = false;
