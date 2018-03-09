@@ -12,6 +12,7 @@ export class LogintempComponent {
   constructor(public http: HttpClient, public router: Router) {
   }
 
+<<<<<<< HEAD
   model = new Client('', '', '');
   submitted = false;
   server_error = false;
@@ -19,6 +20,14 @@ export class LogintempComponent {
   url = 'http://54.213.131.230:8089/CBay/rest/user/get/';
   clientType = ['buyer', 'seller',
     'moderator'];
+=======
+    model = new Client('', '', '');
+    submitted = false;
+    unauthenticated = false;
+    url = 'http://54.213.131.230:8089/CBay/rest/user/get/';
+    clientType = ['buyer', 'seller',
+    'moderator', 'admin'];
+>>>>>>> a5301351e5619a3d760b0b0a06ab6d3c14d40be6
 
   onSubmit() {
     this.submitted = false;

@@ -79,10 +79,6 @@ public class UserApi {
 			//-- String FirstName, String LastName, String Username, String PW, String Email
 			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
 			json.getString("username"),json.getString("pw"), json.getString("email"));
-		} else if(type.equals("admin")){
-			//-- String FirstName, String LastName, String Username, String PW, String Email
-			id = UserService.InsertAdmin(json.getString("firstname"), json.getString("lastname"),
-			json.getString("username"),json.getString("pw"), json.getString("email"));
 		}
 
 		return id;

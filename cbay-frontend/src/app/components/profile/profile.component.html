@@ -4,7 +4,7 @@
 <div class="col-md-4" *ngIf="clientModel.userid">
     <app-entity-display [aUser]="clientModel"></app-entity-display>
 </div>
-<div class="col-md-6">
+<div class="col-md-6" *ngIf="currentUser == userId">
     <h3>Actions</h3>
     <div *ngFor="let o of options">
         <h4><a routerLink={{o.link}}>{{o.name}}</a></h4>
