@@ -32,10 +32,10 @@ export class MessageComponent implements OnInit {
                 this.messages = res;
                 this.messageModel.transid = res[0]['transaction'];
                 this.messageModel.threadid = res[0]['threadID'];
-                if (this.messageModel.responderid === parseInt(this.userid, 10)) {
-                    this.msgto = this.messageModel.senderid;
+                if (res[0]['responder'] === parseInt(this.userid, 10)) {
+                    this.msgto = res[0]['responder'];
                 } else {
-                    this.msgto = this.messageModel.responderid;
+                    this.msgto = res[0]['responder'];
                 }
                 this.messageModel.subject = res[0]['subject'];
                 console.log(res);
@@ -67,6 +67,7 @@ export class MessageComponent implements OnInit {
     onSend() {
         console.log('send message ' + this.messageModel.content + ' to db');
         this.messageModel.responderid = this.msgto;
+        console.log("onSend() msgto: " + this.msgto);
         this.messageModel.senderid = parseInt(sessionStorage.getItem('userid'), 10);
         this.messageModel.content = this.generalmsg;
         this.messageModel.post_new_msg().subscribe(
