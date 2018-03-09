@@ -13,6 +13,7 @@ import {UsersComponent} from './components/users/users.component';
 import {TransactionsComponent} from './components/transactions/transactions.component';
 import {ReviewsComponent} from './components/reviews/reviews.component';
 import {CarttempComponent} from './components/carttemp/carttemp.component';
+import {OrderComponent} from './components/order/order.component';
 
 export const appRoutes: Routes = [
     {
@@ -66,6 +67,10 @@ export const appRoutes: Routes = [
     {
       path: 'list/cart',
       component:CarttempComponent
+    },
+    {
+      path:'list/order',
+      component:OrderComponent
     }
     /*
         create path for homepage

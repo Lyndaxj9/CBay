@@ -30,7 +30,7 @@ export class RegistertempComponent {
 
     onSubmit() {
         this.submitted = false;
-        if(this.model.password && this.model.password == this.model.confirm_password){
+        if(this.model.password && this.model.password === this.model.confirm_password){
             this.submitted = false;
             console.log(this.model.password + ' ' + this.model.userType + ' ' + this.model.email + ' '
                         + this.model.userName + ' ' + this.model.lastName + ' ' + this.model.firstName);
