@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.CBay.beans.Item;
 import com.CBay.beans.User;
+import com.CBay.service.ItemService;
 import com.CBay.service.UserService;
 
 import oracle.sql.ARRAY;
@@ -100,6 +101,18 @@ public class UserApi {
 				json.getString("pw"), json.getString("email"), json.getString("description"));
 		System.out.println(json);
 		return "success";
+	}
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/post")
+	public Integer insertSellerRating(JsonObject json) {
+		Integer id = null;
+		id = UserService.insertSellerRating(json.getInt("id"), json.getInt("numRating"), json.getString("comment"));
+		UserService.updateSellerAvg(json.getInt("id"));
+		return id;
 	}
 
 	// -- delete a particular user via id.

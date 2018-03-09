@@ -67,8 +67,9 @@ public class OrderApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public Integer insertOrder(List<Integer> TransactionsId, @PathParam("id") Integer BuyerId){
-		Integer id = OrderService.placeOrder(TransactionsId, BuyerId);
+	public Integer insertOrder(JsonObject json){
+		
+		Integer id = OrderService.placeOrder((List<Integer>)json.get("tansactionList"), json.getInt("id"));
 		return id;
 	}
 	

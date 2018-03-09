@@ -48,6 +48,12 @@ public class OrderService {
 		dao.updateTransactionStatus(TransactionId, "Delivered");
 	}
 	
+	public static void updateTransactionCanceled(Integer TransactionId) {
+		
+		OrderDao dao = new OrderDao();
+		dao.updateTransactionStatus(TransactionId, "Canceled");
+	}
+	
 	public static Order getOrderById(Integer OrderId){
 		
 		OrderDao dao = new OrderDao();
