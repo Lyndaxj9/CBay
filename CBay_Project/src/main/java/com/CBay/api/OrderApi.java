@@ -42,7 +42,7 @@ public class OrderApi {
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order getOrderIndex(@PathParam("id") int id) {
-		return new Order();
+		return OrderService.getOrderById(id);
 	}
 
 	// -- this will return all the item in the database.
@@ -70,6 +70,15 @@ public class OrderApi {
 		Integer id = OrderService.placeOrder((List<Integer>)json.get("transactionlist"), json.getInt("id"));
 		return id;
 	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/update/removefromchart/{id}")
+	public String RemoveFromChart(@PathParam("id") Integer TransactionId) {
+		OrderService.removeTransaction(TransactionId);
+		return "success";
+	}
 
 	
 	@POST
@@ -94,7 +103,7 @@ public class OrderApi {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/update/delivered/{id}")
+	@Path("/update/canceled/{id}")
 	public String OrderCanceled(@PathParam("id") Integer TransactionId) {
 		OrderService.updateTransactionCanceled(TransactionId);
 		return "success";
