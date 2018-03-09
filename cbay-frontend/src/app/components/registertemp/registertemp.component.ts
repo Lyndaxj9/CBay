@@ -60,14 +60,6 @@ export class RegistertempComponent {
       '', '', '','' );
     this.passwords_dont_match = false;
   }
-  /*
-  "type": "buyer",
-	"firstname": "jim",
-	"lastname":"barberry",
-	"username": "theberryman",
-	"pw": "saturdaynightfever",
-	"email": "theberryman@mail.com"
-   */
 
   register():Promise<any>{
     return this.http.post('http://54.213.131.230:8089/CBay/rest/user/post', {

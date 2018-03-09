@@ -28,7 +28,7 @@ export class LogintempComponent {
         if (Number.isInteger(id)) {
             console.log('userid: ' + id);
           sessionStorage.setItem('userid', id);
-            this.router.navigate(['/profile', id]).catch(error=>{
+            this.router.navigate(['/profile', id]).catch(error => {
             this.server_error = true;
             console.log(error);
           });
