@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Client } from '../../shared/models/client';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-profile',
@@ -21,11 +22,11 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Cart',
-            link: '/cart'
+            link: 'list/cart'
         },
         {
             name: 'Previous Orders',
-            link: ''
+            link: 'list/cart'
         }
     ];
     sellerOptions = [
@@ -39,11 +40,11 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Sold Items',
-            link: '' // solditems
+            link: 'list/item' // solditems
         },
         {
             name: 'All Items',
-            link: '' // allitems
+            link: 'list/item' // allitems
         }
     ];
     modOptions = [
@@ -53,7 +54,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Approve Sellers',
-            link: '' // approvesellers
+            link: 'list/user' // approvesellers
         }
     ];
     adminOptions = [
@@ -63,20 +64,20 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Approve Mods',
-            link: '' // approvemods
+            link: '/list/user' // approvemods
         },
         {
             name: 'All Users',
-            link: '' // allusers
+            link: 'http://localhost:4200/cbay/list/user' // allusers
         },
         {
             name: 'All Transactions',
-            link: '' // alltransactions
+            link: '/list/transaction' // alltransactions
         }
     ];
     options: Array<Object>;
 
-    constructor(public http: HttpClient, private route: ActivatedRoute) {
+    constructor(public http: HttpClient, private route: ActivatedRoute, public router: Router) {
         this.sub = this.route.params
             .subscribe(params => {
             this.userId = +params['id'];
@@ -85,10 +86,6 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() { }
-
-    handle_list(type) {
-      console.log(type);
-    }
 
     get_user_info() {
         this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
@@ -112,4 +109,9 @@ export class ProfileComponent implements OnInit {
             this.options = this.adminOptions;
         }
     }
+
+  handle_link(o){
+      console.log(o);
+      this.router.navigateByUrl(o.link);
+  }
 }
