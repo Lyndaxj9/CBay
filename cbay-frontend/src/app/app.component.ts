@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         this.url = `http://localhost:8089/CBay_Project/rest/user/get`;
         console.log("current userid: " + this.userid);
     }
-    
+
     ngOnChanges(changes: SimpleChanges) {
         console.log("on changes");
         console.log(changes);
@@ -55,5 +55,19 @@ export class AppComponent implements OnInit {
     my_profile() {
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['/profile', sessionStorage.getItem('userid')]);
+    }
+
+    search_items(){
+      sessionStorage.setItem('list_type', 'item');
+      this.router.navigate(['/list']).catch(error => {
+        console.log(error);
+      });
+    }
+
+    go_to_my_cart(){
+      sessionStorage.setItem('list_type', 'cart');
+      this.router.navigate(['/list']).catch(error => {
+        console.log(error);
+      });
     }
 }

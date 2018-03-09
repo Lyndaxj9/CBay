@@ -6,16 +6,19 @@
       <div style="text-align: center; padding-bottom:30px; padding-top:30px;">
         <h3><u>Items</u></h3>
         <p>(select an item below to see a more detailed description)</p>
-        <p> total number of items : {{list.length}} </p>
+        <p *ngIf="list"> total number of items : {{list.length}} </p>
       </div>
-      <div class="col-md-4" *ngFor="let l of temp_list">
-        <div class="gallery">
-          <img src="../../../assets/computer.jpg" alt="Mountain View">
-          <div class="desc">Item name: NAME</div>
-          <div class="desc">Item description: hsdf fdjfbdjsaf dsjfbjdsnf sdif sd jf sd f fj dsjf jds</div>
-          <div class="desc">Item Price: $45.34</div>
+      <div *ngIf="temp_list">
+        <div class="col-md-4" *ngFor="let l of temp_list">
+          <div class="gallery">
+            <img src="../../../assets/computer.jpg" alt="Mountain View">
+            <div class="desc">Item name: NAME</div>
+            <div class="desc">Item description: hsdf fdjfbdjsaf dsjfbjdsnf sdif sd jf sd f fj dsjf jds</div>
+            <div class="desc">Item Price: $45.34</div>
+          </div>
         </div>
       </div>
+
     </div>
     <!-- represents the user -->
     <div class="col-md-12" *ngIf="is_user_display">

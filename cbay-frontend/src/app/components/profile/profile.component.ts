@@ -86,6 +86,10 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() { }
 
+    handle_list(type) {
+      console.log(type);
+    }
+
     get_user_info() {
         this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
         this.clientModel = new Client(this.http);

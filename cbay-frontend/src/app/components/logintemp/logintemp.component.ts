@@ -29,10 +29,15 @@ export class LogintempComponent {
         const id = response;
         if (Number.isInteger(id)) {
             console.log('userid: ' + id);
+<<<<<<< HEAD
+          sessionStorage.setItem('userid', id);
+            this.router.navigate(['/profile', id]).catch(error => {
+=======
             sessionStorage.setItem('userid', id);
             sessionStorage.setItem('usertype', this.model.type);
             this.router.navigate(['/profile', id])
                 .catch(error=>{
+>>>>>>> b7f387f5fb7b83978921dc7765537b95b24663cc
             this.server_error = true;
             console.log(error);
           });

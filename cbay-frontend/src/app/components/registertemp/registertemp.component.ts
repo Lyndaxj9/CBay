@@ -60,19 +60,11 @@ export class RegistertempComponent {
     // TODO: Remove this when we're done
     get diagnostic() { return JSON.stringify(this.model); }
 
-    reset() {
-        this.model = new Client('', '', this.clientType[0],  '',
-                                '', '', '','' );
-        this.passwords_dont_match = false;
-    }
-    /*
-  "type": "buyer",
-	"firstname": "jim",
-	"lastname":"barberry",
-	"username": "theberryman",
-	"pw": "saturdaynightfever",
-	"email": "theberryman@mail.com"
-   */
+  reset() {
+    this.model = new Client('', '', this.clientType[0],  '',
+      '', '', '','' );
+    this.passwords_dont_match = false;
+  }
 
     register():Promise<any>{
         return this.http.post(this.url, {
