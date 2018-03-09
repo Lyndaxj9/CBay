@@ -59,14 +59,14 @@ export class AppComponent implements OnInit {
 
     search_items(){
       sessionStorage.setItem('list_type', 'item');
-      this.router.navigate(['/list']).catch(error => {
+      this.router.navigate(['/list/item']).catch(error => {
         console.log(error);
       });
     }
 
     go_to_my_cart(){
       sessionStorage.setItem('list_type', 'cart');
-      this.router.navigate(['/list']).catch(error => {
+      this.router.navigate(['/list/cart']).catch(error => {
         console.log(error);
       });
     }

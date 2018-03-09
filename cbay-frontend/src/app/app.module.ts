@@ -16,9 +16,13 @@ import { LogintempComponent } from './components/logintemp/logintemp.component';
 import { RegistertempComponent } from './components/registertemp/registertemp.component';
 import { HomeComponent } from './components/home/home.component';
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
-import { GenericlistComponent } from './components/genericlist/genericlist.component';
 import { MessagelistComponent } from './components/messagelist/messagelist.component';
 import { AdditemComponent } from './components/additem/additem.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { UsersComponent } from './components/users/users.component';
+import { ItemsComponent } from './components/items/items.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { CarttempComponent } from './components/carttemp/carttemp.component';
 
 
 @NgModule({
@@ -33,9 +37,13 @@ import { AdditemComponent } from './components/additem/additem.component';
     RegistertempComponent,
     HomeComponent,
     SingleitemComponent,
-    GenericlistComponent,
     MessagelistComponent,
-    AdditemComponent
+    AdditemComponent,
+    TransactionsComponent,
+    UsersComponent,
+    ItemsComponent,
+    ReviewsComponent,
+    CarttempComponent
   ],
   imports: [
     BrowserModule,
