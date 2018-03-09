@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../../shared/models/order';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-order',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  constructor(private http:HttpClient){}
+
   list = ['', '', '', '', '', '', '', '', '' , ''];
   is_order_display:boolean;
   temp_list:any[];
@@ -13,6 +17,7 @@ export class OrderComponent implements OnInit {
   current_page = 1;
   last_page = 1;
   current_index = 0;
+  order:Order;
 
   load_list_information(){
     console.log('get information');
@@ -34,10 +39,14 @@ export class OrderComponent implements OnInit {
 
   }
 
-  constructor() { }
-
   ngOnInit() {
-    this.load_list_information();
+    this.temp_list = [];
+    this.list = [];
+    this.order = new Order(this.http);
+    this.order.get_all_order().subscribe(items=>{
+      this.temp_list = items;
+      this.load_list_information();
+    });
   }
 
   apply_pagination(){
