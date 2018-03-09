@@ -247,8 +247,6 @@ public class UserService {
 			return Sellers;
 		}
 	
-	
-	
 	public static List<User> getAllMods() {
 		
 		List<User> Mods = new ArrayList<User>();
@@ -260,6 +258,20 @@ public class UserService {
 			}
 		}
 		return Mods;
+	}
+	
+	
+	public static List<User> getAllAdmins() {
+		
+		List<User> Admin = new ArrayList<User>();
+		
+		for(User user : getAllUser()) {
+			
+			if(user.getUserType().equals("Admin")) {
+				Admin.add(user);
+			}
+		}
+		return Admin;
 	}
 	
 	
