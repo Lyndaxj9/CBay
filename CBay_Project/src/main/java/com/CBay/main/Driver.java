@@ -145,9 +145,9 @@ public class Driver {
 
  		//System.out.println(UserService.InsertMod("Ross", "Riss", "RissRoss", "RissRoss", "Riss@Ross.com"));
 
-		ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
+		//ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
 
-		
+		System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
 		
 		System.exit(0);
 	}
