@@ -24,10 +24,11 @@ export class LogintempComponent {
     this.submitted = false;
     this.get_user_data().then(response => {
       try {
-        let id = response;
+        const id = response;
         if (Number.isInteger(id)) {
+            console.log('userid: ' + id);
           sessionStorage.setItem('userid', id);
-          this.router.navigateByUrl('/profile').catch(error=>{
+            this.router.navigate(['/profile', id]).catch(error=>{
             this.server_error = true;
             console.log(error);
           });

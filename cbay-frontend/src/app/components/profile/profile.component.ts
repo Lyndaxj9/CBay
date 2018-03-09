@@ -112,7 +112,7 @@ export class ProfileComponent implements OnInit {
             this.options = this.adminOptions;
         }
     }
-    
+
     get_user_info() {
         this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
         this.clientModel = new Client(this.http);
