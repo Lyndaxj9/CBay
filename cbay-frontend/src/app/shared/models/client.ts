@@ -1,4 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Url } from './Url';
 
 export class Client {
     userid: number;
@@ -11,7 +13,9 @@ export class Client {
     rating: number;
     description: string;
     user: Object;
-    userUrl = `http://localhost:8089/CBay_Project/rest/user/get`;
+    url = new Url();
+    userUrl = this.url.get_urlbase() + '/user';
+    // userUrl = `http://localhost:8089/CBay_Project/rest/user/get`;
     // userUrl = `http://54.213.131.230:8089/CBay/rest/user/get`;
 
     constructor (public http: HttpClient) { }
@@ -24,7 +28,13 @@ export class Client {
         this.lastname = userInfo.lastName;
         this.email = userInfo.email;
         this.password = userInfo.PW;
-        this.description = userInfo.description;
+        if (userInfo.description === undefined) {
+            console.log("not exist");
+            this.description = '';
+        } else {
+            console.log('exist');
+            this.description = userInfo.description;
+        }
         this.rating = userInfo.ratingavg;
     }
 
@@ -38,20 +48,21 @@ export class Client {
                 'Content-Type':  'application/json'
             })
         };
-        return this.http.get(this.userUrl + '/' + id, httpOptions)
+        console.log('url get: ' + this.userUrl + '/get/' + id);
+        return this.http.get(this.userUrl + '/get/' + id, httpOptions)
             .toPromise();
     }
 
     update() {
-        const req = this.http.post('http://localhost:8089/CBay_Project/rest/user/edit', {
+        console.log('url update: ' + this.userUrl + '/edit')
+        const req = this.http.post(this.userUrl + '/edit', {
             id: this.userid,
             firstname: this.firstname,
             lastname: this.lastname,
             username: this.username,
             pw: this.password,
-            email: this.email,
-            description: this.description
-
+            description: this.description,
+            email: this.email
         }, {responseType: 'text'});
 
         return req;

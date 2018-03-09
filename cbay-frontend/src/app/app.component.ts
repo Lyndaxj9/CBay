@@ -71,4 +71,9 @@ export class AppComponent implements OnInit {
         return this.http.get(this.url + '/' + this.username + '/' + this.password + '/' + this.type, httpOptions)
             .toPromise();
     }
+
+    my_profile() {
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/profile', this.userid]);
+    }
 }

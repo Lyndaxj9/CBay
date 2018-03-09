@@ -26,99 +26,97 @@ import com.CBay.service.OrderService;
 @Path("/order")
 public class OrderApi {
 
-	//-- this will return all the item in the database.
-	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/order/get/all
+	// -- this will return all the item in the database.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/order/get/all
 	@GET
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Order> getAllOrders(){
+	public List<Order> getAllOrders() {
 		return OrderService.getAllOrders();
 	}
-	
-	//-- get one item from the database via id.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/order/get/{id}
+
+	// -- get one item from the database via id.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/order/get/{id}
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order getOrderIndex(@PathParam("id") int id){
+	public Order getOrderIndex(@PathParam("id") int id) {
 		return new Order();
 	}
-	
-	//-- this will return all the item in the database.
-	//-- past in below for testing.
-	//-- http://34.217.96.20:8089/CBay/rest/order/get/all
+
+	// -- this will return all the item in the database.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/order/get/all
 	@GET
 	@Path("/get/cart/{id}/{status}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Transactions> getAllTransInCart(@PathParam("id") int id, @PathParam("status") String status){
+	public List<Transactions> getAllTransInCart(@PathParam("id") int id, @PathParam("status") String status) {
 		return OrderService.getTransactionByBuyerIdAndStatus(id, status);
 	}
-	
-	
-	/* 
-	 * This will have to be altered depending on how we will list the transactions from the in-cart page
-	 * TO PASS THE TRANASACTIONS ID'S OF ALL ITEMS TRANSACTIONS TO BE CHECKED OUT.   
+
+	/*
+	 * This will have to be altered depending on how we will list the transactions
+	 * from the in-cart page TO PASS THE TRANASACTIONS ID'S OF ALL ITEMS
+	 * TRANSACTIONS TO BE CHECKED OUT.
 	 */
-	//-- insert and if successful return success
-	//-- if it is not return unsuccessful.
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public Integer insertOrder(JsonObject json){
-		
-		Integer id = OrderService.placeOrder((List<Integer>)json.get("tansactionList"), json.getInt("id"));
+	public Integer insertOrder(List<Integer> TransactionsId, @PathParam("id") Integer BuyerId) {
+		Integer id = OrderService.placeOrder(TransactionsId, BuyerId);
 		return id;
 	}
-	
-	
+
 	// -- insert TRANSACTION ID and if successful return success
-		// -- if it is not return unsuccessful.
-		@POST
-		@Consumes(MediaType.APPLICATION_JSON)
-		@Produces(MediaType.TEXT_PLAIN)
-		@Path("/update")
-		public String OrderShipped(@PathParam("id") Integer TransactionId) {
-			OrderService.updateTransactionShipped(TransactionId);
-			return "success";
-		}
-		
-		
+	// -- if it is not return unsuccessful.
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/update/shipped/{id}")
+	public String OrderShipped(@PathParam("id") Integer TransactionId) {
+		OrderService.updateTransactionShipped(TransactionId);
+		return "success";
+	}
+
 	// -- insert and if successful return success
-			// -- if it is not return unsuccessful.
-			@POST
-			@Consumes(MediaType.APPLICATION_JSON)
-			@Produces(MediaType.TEXT_PLAIN)
-			@Path("/update")
-			public String OrderDelivered(@PathParam("id") Integer TransactionId) {
-				OrderService.updateTransactionDelivered(TransactionId);
-				return "success";
-			}
-	
-	//-- insert and if successful return success
-	//-- if it is not return unsuccessful.
+	// -- if it is not return unsuccessful.
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/update/delivered/{id}")
+	public String OrderDelivered(@PathParam("id") Integer TransactionId) {
+		OrderService.updateTransactionDelivered(TransactionId);
+		return "success";
+	}
+
+	// -- insert and if successful return success
+	// -- if it is not return unsuccessful.
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post/tocart")
-	public String addToCart(JsonObject json){
+	public String addToCart(JsonObject json) {
 		System.out.println("to cart " + json);
-		OrderService.createTransaction(json.getInt("itemid"), json.getInt("buyerid"), json.getInt("sellerid"), json.getInt("quantity"));
+		OrderService.createTransaction(json.getInt("itemid"), json.getInt("buyerid"), json.getInt("sellerid"),
+				json.getInt("quantity"));
 		return "success";
 	}
-	
-	//-- delete a particular order via id.
-	//-- if the message exist the return success
-	//-- else just return error.
-	//-- {id} = 3
-	//-- http://34.217.96.20:8089/CBay/rest/order/delete/{id}
+
+	// -- delete a particular order via id.
+	// -- if the message exist the return success
+	// -- else just return error.
+	// -- {id} = 3
+	// -- http://34.217.96.20:8089/CBay/rest/order/delete/{id}
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
-	public String deleteOrder(@PathParam("id") int id){
+	public String deleteOrder(@PathParam("id") int id) {
 		return "success";
 	}
 }

@@ -21,7 +21,7 @@
 
     <ng-template #elseBlock>
         <h3>{{data.name}}</h3>
-        <span *ngIf="anItem">Seller: {{this.data.Seller}}</span>
+        <span *ngIf="anItem">Seller: <a routerLink="/profile/{{userId}}">{{this.data.Seller}}</a></span>
         <div *ngFor="let key of keys(this.data.editAble)">
             <label>{{key}}</label>
             <div>
