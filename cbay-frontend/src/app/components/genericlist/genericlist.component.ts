@@ -1,10 +1,10 @@
-import { Component, ngDoCheck } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 @Component({
   selector: 'app-genericlist',
   templateUrl: './genericlist.component.html',
   styleUrls: ['./genericlist.component.css']
 })
-export class GenericlistComponent implements  ngDoCheck{
+export class GenericlistComponent implements  DoCheck{
   list = ['', '', '', '', '', '', '', '', '' , ''];
   is_user_display:boolean;
   is_cart_display:boolean;
@@ -19,7 +19,7 @@ export class GenericlistComponent implements  ngDoCheck{
   constructor() { }
 
 
-  ngDoCheck(){
+  DoCheck(){
     let type;
     this.temp_list = [];
     this.is_user_display = false;
