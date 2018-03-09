@@ -16,6 +16,7 @@ import com.CBay.dao.ItemDao;
 import com.CBay.dao.UserDao;
 
 public class UserService {
+	
 
 	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email)  {
 		UserDao dao = new UserDao();
@@ -26,8 +27,6 @@ public class UserService {
 			else 
 				return null;
 
-		
-		
 	}
 	
 	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
@@ -166,8 +165,8 @@ public class UserService {
 		return comments;
 	}
 	
-	
-	public static List<Integer> getSellerAverageRating(Integer UserId){
+	// Don't touch this method
+	private static List<Integer> getSellerAverageRatingForCalculation(Integer UserId){
 			
 			UserDao dao = new UserDao();
 			List<Integer> avg = new ArrayList<Integer>();
@@ -181,10 +180,16 @@ public class UserService {
 			return avg;
 		}
 	
+	public static Double getSellerAverageRating(Integer UserId){
+			
+		UserDao dao = new UserDao();
+		return dao.getUserById(UserId).getRatingAvg();
+	}
 	
-	public static Double calculateAvg(Integer UserId){
+		
+	private static Double calculateAvg(Integer UserId){
 		Double sum = 0.0;
-		List<Integer> average = getSellerAverageRating(UserId);
+		List<Integer> average = getSellerAverageRatingForCalculation(UserId);
 		
 		for (Integer avg : average) {
 			
@@ -270,7 +275,11 @@ public class UserService {
 	}
 	
 	
-	
+	public static void deleteUser(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		dao.removeUser(UserId);
+	}
 	
 	
 	

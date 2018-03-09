@@ -200,7 +200,7 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from IMAGE;
+delete from CLIENT WHERE UserId = 10076;
 
 select * from CLIENT;
 select * from THREADS;
