@@ -1,6 +1,5 @@
 package com.CBay.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.JsonObject;
@@ -12,11 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.CBay.beans.Item;
 import com.CBay.service.ItemService;
-import com.CBay.service.UserService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -39,7 +36,7 @@ public class ItemApi {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/post")
+	@Path("/post/rating")
 	public Integer insertItemRating(JsonObject json) {
 		Integer id = null;
 		id = ItemService.insertItemRating(json.getInt("id"), json.getInt("numRating"), json.getString("comment"));

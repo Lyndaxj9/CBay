@@ -1,6 +1,5 @@
 package com.CBay.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.JsonObject;
@@ -12,13 +11,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import com.CBay.beans.Item;
 import com.CBay.beans.User;
 import com.CBay.service.UserService;
 
-import oracle.sql.ARRAY;
 
 //-- represents the url to go to to get,
 //-- update, delete or insert information in
@@ -63,7 +59,7 @@ public class UserApi {
 	// -- http://34.217.96.20:8089/CBay/rest/user/post
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)//lk
 	@Path("/post")
 	public Integer insertUser(JsonObject json) {
 		String type = json.getString("type");
@@ -83,6 +79,10 @@ public class UserApi {
 			//-- String FirstName, String LastName, String Username, String PW, String Email
 			id = UserService.InsertMod(json.getString("firstname"), json.getString("lastname"),
 			json.getString("username"),json.getString("pw"), json.getString("email"));
+		} else if(type.equals("admin")){
+			//-- String FirstName, String LastName, String Username, String PW, String Email
+			id = UserService.InsertAdmin(json.getString("firstname"), json.getString("lastname"),
+			json.getString("username"),json.getString("pw"), json.getString("email"));
 		}
 
 		return id;
@@ -96,9 +96,9 @@ public class UserApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/edit")
 	public String editUser(JsonObject json) {
+		System.out.println(json);
 		UserService.EditUserInfo(json.getInt("id"), json.getString("firstname"), json.getString("lastname"), json.getString("username"),
 				json.getString("pw"), json.getString("email"), json.getString("description"));
-		System.out.println(json);
 		return "success";
 	}
 

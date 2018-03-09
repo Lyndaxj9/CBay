@@ -24,7 +24,13 @@ export class Client {
         this.lastname = userInfo.lastName;
         this.email = userInfo.email;
         this.password = userInfo.PW;
-        this.description = userInfo.description;
+        if (userInfo.description === undefined) {
+            console.log("not exist");
+            this.description = '';
+        } else {
+            console.log("exist");
+            this.description = userInfo.description;
+        }
         this.rating = userInfo.ratingavg;
     }
 
@@ -49,9 +55,8 @@ export class Client {
             lastname: this.lastname,
             username: this.username,
             pw: this.password,
-            email: this.email,
-            description: this.description
-
+            description: this.description,
+            email: this.email
         }, {responseType: 'text'});
 
         return req;

@@ -13,19 +13,22 @@ export class HomeComponent implements OnInit {
     constructor(private router: Router) { }
 
     ngOnInit() {
-        console.log("home");
+        console.log('home');
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
         this.usertype = sessionStorage.getItem('usertype');
         console.log(this.userid + ' ' + this.usertype);
 
+<<<<<<< HEAD
         /*if (parseInt(sessionStorage.getItem('userid'), 10)) {
             this.router.navigateByUrl('\profile');
         }*/
 
+=======
+>>>>>>> a38d7a52d35e0e11bff76375cb64a64c4c7d6c0d
         if (!parseInt(sessionStorage.getItem('userid'), 10)) {
         } else {
-            console.log("redirect to profile");
-            this.router.navigateByUrl('/profile');
+            console.log('redirect to profile');
+            this.router.navigate(['/profile', this.userid]);
         }
     }
 

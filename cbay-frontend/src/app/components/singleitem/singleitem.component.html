@@ -3,12 +3,11 @@
 </div>
 <div class="col-md-12" *ngIf="itemModel.itemid">
     <app-entity-display [anItem]="itemModel"></app-entity-display>
-    <div>
-        Quantity: {{itemModel.quantity}} <br><!-- get from itemModel -->
+    <div *ngIf="isBuyer">
         <input [(ngModel)]="this.itemQuantity" style="display: inline-block" type="number"><button type="button" (click)='add_to_cart()'>ADD TO CART</button>
     </div>
 </div>
 <div class="col-md-12">
-    <app-genericlist></app-genericlist>
+    <!--<app-genericlist></app-genericlist>-->
 </div>
 

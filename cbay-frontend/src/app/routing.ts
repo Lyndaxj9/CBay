@@ -12,7 +12,7 @@ import {AdditemComponent} from './components/additem/additem.component';
 
 export const appRoutes: Routes = [
     {
-        path: 'profile',
+        path: 'profile/:id',
         component: ProfileComponent
     },
     {
@@ -20,12 +20,12 @@ export const appRoutes: Routes = [
         component: ItemsearchComponent
     },
     {
-        path: 'item',
+        path: 'item/:id',
         component: SingleitemComponent
     },
     {
-      path: 'additem',
-      component: AdditemComponent
+        path: 'profile/:id/additem',
+        component: AdditemComponent
     },
     {
         path: 'messages',
@@ -44,8 +44,8 @@ export const appRoutes: Routes = [
         component: HomeComponent
     },
     {
-      path: 'list',
-      component: GenericlistComponent
+        path: 'list',
+        component: GenericlistComponent
     }
     /*
         create path for homepage

@@ -29,6 +29,13 @@ export class LogintempComponent {
           this.unauthenticated = true;
         }
       });
+<<<<<<< HEAD
+=======
+        this.submitted = true;
+        sessionStorage.setItem('userid', '10000');
+        sessionStorage.setItem('usertype', 'Seller');
+        this.router.navigate(['/profile', sessionStorage.getItem('userid')]);
+>>>>>>> a38d7a52d35e0e11bff76375cb64a64c4c7d6c0d
     }
 
     // TODO: Remove this when we're done
