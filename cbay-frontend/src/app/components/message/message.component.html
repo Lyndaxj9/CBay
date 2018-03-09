@@ -16,4 +16,9 @@
         <input [(ngModel)]="messageModel.content" name="message">
         <button type="button" (click)="onSend()" name="sendMsgBtn">SEND</button>
     </div>
+    <div *ngIf="usertype === MOD">
+        <select *ngFor="let a of admins">
+            <option></option>
+        </select>
+    </div>
 </div>

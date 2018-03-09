@@ -34,6 +34,16 @@ public class UserApi {
 	public List<User> getAllUsers() {
 		return UserService.getAllUser();
 	}
+	
+	// -- this will return all the users in the database.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/user/get/all
+	@GET
+	@Path("/get/all/admin")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getAllAdmins() {
+		return UserService.getAllAdmins();
+	}
 
 	// -- get one user from the database via id.
 	// -- {id} = 3

@@ -29,7 +29,7 @@ export class Client {
         this.email = userInfo.email;
         this.password = userInfo.PW;
         if (userInfo.description === undefined) {
-            console.log("not exist");
+            console.log('not exist');
             this.description = '';
         } else {
             console.log('exist');
