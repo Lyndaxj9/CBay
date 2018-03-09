@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
         this.orderModel.get_cart().subscribe(
             res => {
                 this.transactions = res;
-                console.log(res);
                 this.getItemInfo();
             },
             err => {
@@ -53,5 +52,8 @@ export class CartComponent implements OnInit {
             });
         }
     }
-
+    
+    checkout() {
+        console.log("checkout");
+    }
 }

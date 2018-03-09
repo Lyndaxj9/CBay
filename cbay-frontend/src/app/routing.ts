@@ -62,12 +62,12 @@ export const appRoutes: Routes = [
     {
       path: 'list/review',
       component: ReviewsComponent
-    },
+    }
+    /*
     {
       path: 'list/cart',
       component:CarttempComponent
     }
-    /*
         create path for homepage
         and maybe one for page not found
     */
