@@ -41,9 +41,9 @@ export class Message {
 
     post_new_report() {
         const req = this.http.post(this.messageUrl + '/post/report', {
-            transactionid: this.transid,
-            senderid: this.senderid,
-            responserid: this.responderid,
+            transaction: this.transid,
+            sender: this.senderid,
+            responder: this.responderid,
             content: this.content,
             subject: this.subject
         }, {responseType: 'text'});

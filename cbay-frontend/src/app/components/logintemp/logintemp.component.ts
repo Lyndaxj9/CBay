@@ -25,25 +25,21 @@ export class LogintempComponent {
   onSubmit() {
     this.submitted = false;
     this.get_user_data().then(response => {
-      try
-      {
+      try {
         const id = response;
-        if (Number.isInteger(id))
-        {
+        if (Number.isInteger(id)) {
             console.log('userid: ' + id);
             sessionStorage.setItem('userid', id);
             sessionStorage.setItem('usertype', this.model.type);
-            this.router.navigate(['/profile', id]).catch(error => {
+            this.router.navigate(['/profile', id])
+                .catch(error => {
+            this.server_error = true;
             console.log(error);
         });
-        }
-        else
-        {
+        } else {
           this.unauthenticated = true;
         }
-      }
-      catch (ex)
-      {
+      } catch (ex) {
         this.unauthenticated = true;
         console.log(ex);
       }
