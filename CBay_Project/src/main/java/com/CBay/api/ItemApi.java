@@ -39,7 +39,7 @@ public class ItemApi {
 	@Path("/post/rating")
 	public Integer insertItemRating(JsonObject json) {
 		Integer id = null;
-		id = ItemService.insertItemRating(json.getInt("id"), json.getInt("numRating"), json.getString("comment"));
+		id = ItemService.insertItemRating(json.getInt("id"), json.getInt("numrating"), json.getString("comment"));
 		ItemService.updateItemAvg(json.getInt("id"));
 		return id;
 	}

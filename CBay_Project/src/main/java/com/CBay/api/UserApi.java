@@ -106,7 +106,7 @@ public class UserApi {
 	@Path("/post")
 	public Integer insertSellerRating(JsonObject json) {
 		Integer id = null;
-		id = UserService.insertSellerRating(json.getInt("id"), json.getInt("numRating"), json.getString("comment"));
+		id = UserService.insertSellerRating(json.getInt("id"), json.getInt("numrating"), json.getString("comment"));
 		UserService.updateSellerAvg(json.getInt("id"));
 		return id;
 	}
