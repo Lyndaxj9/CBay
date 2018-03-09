@@ -17,7 +17,7 @@ export class LogintempComponent {
   submitted = false;
   server_error = false;
   unauthenticated = false;
-    urlBase = new Url();
+  urlBase = new Url();
   url = this.urlBase.get_urlbase() + '/user/get/';
   clientType = ['buyer', 'seller',
     'moderator', 'admin'];
@@ -25,26 +25,25 @@ export class LogintempComponent {
   onSubmit() {
     this.submitted = false;
     this.get_user_data().then(response => {
-      try {
+      try
+      {
         const id = response;
-        if (Number.isInteger(id)) {
+        if (Number.isInteger(id))
+        {
             console.log('userid: ' + id);
-<<<<<<< HEAD
-          sessionStorage.setItem('userid', id);
-            this.router.navigate(['/profile', id]).catch(error => {
-=======
             sessionStorage.setItem('userid', id);
             sessionStorage.setItem('usertype', this.model.type);
-            this.router.navigate(['/profile', id])
-                .catch(error=>{
->>>>>>> b7f387f5fb7b83978921dc7765537b95b24663cc
-            this.server_error = true;
+            this.router.navigate(['/profile', id]).catch(error => {
             console.log(error);
-          });
-        } else {
+        });
+        }
+        else
+        {
           this.unauthenticated = true;
         }
-      } catch (ex) {
+      }
+      catch (ex)
+      {
         this.unauthenticated = true;
         console.log(ex);
       }
