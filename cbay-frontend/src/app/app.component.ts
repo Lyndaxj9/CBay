@@ -35,26 +35,6 @@ export class AppComponent implements OnInit {
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
     }
 
-    login() {
-        this.type = 'seller';
-        console.log('username : ' + this.username);
-        console.log('password : ' + this.password);
-        console.log('type : ' + this.type);
-        console.log(this.url + '/' + this.username + '/' + this.password + '/' + this.type);
-        this.get_user_data().then(user_data => {
-            console.log(user_data);
-        }).catch(error => {
-            console.log(error);
-        });
-    }
-
-    register() {
-        console.log(this.password);
-        console.log(this.username);
-        console.log(this.email);
-        console.log(this.confirm_password);
-    }
-
     logout() {
         sessionStorage.clear();
         this.userid = null;
@@ -74,7 +54,7 @@ export class AppComponent implements OnInit {
 
     my_profile() {
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['/profile', this.userid]);
+        this.router.navigate(['/profile', sessionStorage.getItem('userid')]);
     }
 
     search_items(){

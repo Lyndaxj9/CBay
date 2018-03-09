@@ -84,37 +84,10 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    handle_list(type){
+    ngOnInit() { }
+
+    handle_list(type) {
       console.log(type);
-    }
-
-    ngOnInit() {
-        /*this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
-        this.clientModel = new Client(this.http);
-        this.sub = this.route.params
-            .subscribe(params => {
-            this.userId = +params['id'];
-        });
-
-        // TODO probably have to change to get username so other way
-        this.clientModel.get(this.userId)
-            .then(user_data => {
-
-            this.clientModel.set_all_values(user_data);
-            console.log(this.clientModel);
-        }).catch(error => {
-            console.log(error);
-        });
-        console.log(sessionStorage.getItem('usertype'));
-        if (sessionStorage.getItem('usertype') === 'Buyer') {
-            this.options = this.buyerOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Seller') {
-            this.options = this.sellerOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Moderator') {
-            this.options = this.modOptions;
-        } else if (sessionStorage.getItem('usertype') === 'Admin') {
-            this.options = this.adminOptions;
-        }*/
     }
 
     get_user_info() {
