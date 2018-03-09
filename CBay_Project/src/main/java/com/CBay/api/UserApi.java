@@ -1,12 +1,13 @@
 package com.CBay.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -47,12 +48,37 @@ public class UserApi {
 
 	// -- get one user from the database via username, password, type
 	// -- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
-	@GET
+/*	@GET
 	@Path("/get/{username}/{password}/{type}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Integer loginUser(@PathParam("username") String username, @PathParam("password") String password,
 			@PathParam("type") String type) {
 		return UserService.LoginSeller(username, password);
+	}*/
+	
+	// -- get one user from the database via username, password, type
+	// -- http://34.217.96.20:8089/CBay/rest/user/get/{username}/{password}/{type}
+	@GET
+	@Path("/get/{username}/{password}/{type}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Integer loginUser(@PathParam("username") String username, @PathParam("password") String password,
+			@PathParam("type") String type) {
+		Integer id = null;
+		switch(type) {
+		case "seller":
+			id = UserService.LoginSeller(username, password);
+			break;
+		case "buyer":
+			id = UserService.LoginBuyer(username, password);
+			break;
+		case "moderator":
+			id = UserService.LoginMod(username, password);
+			break;
+		case "admin":
+			id = UserService.LoginAdmin(username, password);
+			break;
+		}
+		return id;
 	}
 
 	// -- insert and if successful return success

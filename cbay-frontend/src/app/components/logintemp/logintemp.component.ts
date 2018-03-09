@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import { Url } from '../../shared/models/Url';
 
 @Component({
   selector: 'app-logintemp',
@@ -16,9 +17,10 @@ export class LogintempComponent {
   submitted = false;
   server_error = false;
   unauthenticated = false;
-  url = 'http://54.213.131.230:8089/CBay/rest/user/get/';
+    urlBase = new Url();
+  url = this.urlBase.get_urlbase() + '/user/get/';
   clientType = ['buyer', 'seller',
-    'moderator'];
+    'moderator', 'admin'];
 
   onSubmit() {
     this.submitted = false;
@@ -27,17 +29,17 @@ export class LogintempComponent {
         const id = response;
         if (Number.isInteger(id)) {
             console.log('userid: ' + id);
-          sessionStorage.setItem('userid', id);
-            this.router.navigate(['/profile', id]).catch(error=>{
+            sessionStorage.setItem('userid', id);
+            sessionStorage.setItem('usertype', this.model.type);
+            this.router.navigate(['/profile', id])
+                .catch(error=>{
             this.server_error = true;
             console.log(error);
           });
-        }
-        else {
+        } else {
           this.unauthenticated = true;
         }
-      }
-      catch (ex) {
+      } catch (ex) {
         this.unauthenticated = true;
         console.log(ex);
       }
