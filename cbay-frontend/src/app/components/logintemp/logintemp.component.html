@@ -14,7 +14,7 @@
           </div>
           <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username"
+            <input type="text" class="form-control" id="loginusername"
                    required
                    [(ngModel)]="model.userName" name="username"
                    #username="ngModel">
@@ -26,7 +26,7 @@
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password"
+            <input type="password" class="form-control" id="loginpassword"
                    [(ngModel)]="model.password" name="password"
                    required
                    #password="ngModel">
@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <label for="type">Select Account Type</label>
-            <select class="form-control" id="type"
+            <select class="form-control" id="logintype"
                     required
                     [(ngModel)]="model.type" name="type"
                     #type="ngModel">
