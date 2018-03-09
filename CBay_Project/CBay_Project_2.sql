@@ -200,7 +200,7 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from IMAGE;
+delete from CLIENT WHERE UserId = 10076;
 
 select * from CLIENT;
 select * from THREADS;
@@ -228,8 +228,8 @@ ADD Quantity NUMBER(4);
 --DROP COLUMN QUANTITY;
 DELETE FROM CLIENT;
 
-ALTER TABLE TRANSACTIONS
-MODIFY OrderId NUMBER(6) NULL;
+ALTER TABLE ITEM
+MODIFY Price NUMBER(9,2);
 
 --Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 

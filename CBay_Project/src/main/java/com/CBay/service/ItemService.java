@@ -102,7 +102,7 @@ public class ItemService {
 	}
 	
 	// Don't touch this method
-	public static List<Integer> getItemAverageRatingForCalculation(Integer ItemId){
+	private static List<Integer> getItemAverageRatingForCalculation(Integer ItemId){
 			
 			ItemDao dao = new ItemDao();
 			List<Integer> avg = new ArrayList<Integer>();
@@ -118,7 +118,7 @@ public class ItemService {
 	
 	
 	// Don't touch this method
-	public static Double calculateAvg(Integer ItemId){
+	private static Double calculateAvg(Integer ItemId){
 		Double sum = 0.0;
 		List<Integer> average = getItemAverageRatingForCalculation(ItemId);
 		
