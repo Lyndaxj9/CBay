@@ -110,8 +110,8 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-  handle_link(o) {
-      console.log(o);
-      this.router.navigateByUrl(o.link);
-  }
+    handle_link(o) {
+        console.log(o);
+        this.router.navigateByUrl(o.link);
+    }
 }

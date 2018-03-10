@@ -24,6 +24,7 @@ export class LogintempComponent {
 
   onSubmit() {
     this.submitted = false;
+    console.log(this.url + this.model.userName + '/' + this.model.password + '/' + this.model.type);
     this.get_user_data().then(response => {
       try {
         const id = response;

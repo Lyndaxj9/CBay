@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { Url } from './url';
 
 export class Message {
     messageid: number;
@@ -11,8 +12,8 @@ export class Message {
     subject: string;
     content: string;
     timestamp: any;
-
-    messageUrl = `http://localhost:8089/CBay_Project/rest/message`;
+    url = new Url();
+    messageUrl = this.url.get_urlbase() + '/message';
 
     constructor (public http: HttpClient) { }
 
