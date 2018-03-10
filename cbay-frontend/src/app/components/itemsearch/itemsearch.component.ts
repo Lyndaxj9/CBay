@@ -10,9 +10,9 @@ import {Item} from '../../shared/models/item';
 })
 export class ItemsearchComponent implements OnInit {
 
-  list: Post[];
+  private list: Post[];
   is_item_display: boolean;
-  temp_list: Post[];
+  private temp_list: Post[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;

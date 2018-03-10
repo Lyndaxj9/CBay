@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'All Items',
-            link: 'list/item/id' // allitems
+            link: 'list/item/' + sessionStorage.getItem('userid') // allitems
         }
     ];
     modOptions = [
@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
     ];
     options: Array<Object>;
 
-    constructor(public http: HttpClient, private route: ActivatedRoute, public router: Router) {
+    constructor(public http: HttpClient, private route: ActivatedRoute, private router: Router) {
         this.sub = this.route.params
             .subscribe(params => {
             this.userId = +params['id'];
