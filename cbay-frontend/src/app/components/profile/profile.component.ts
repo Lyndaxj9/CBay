@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Cart',
-            link: 'list/cart'
+            link: '/cart'
         },
         {
             name: 'Previous Orders',
