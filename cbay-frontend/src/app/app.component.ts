@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         this.username = '';
         this.email = '';
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
-        console.log("current userid: " + this.userid);
+        console.log('current userid: ' + this.userid);
     }
 
     logout() {
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
 
     go_to_my_cart(){
       sessionStorage.setItem('list_type', 'cart');
-      this.router.navigate(['/list/cart']).catch(error => {
+      this.router.navigate(['/cart']).catch(error => {
         console.log(error);
       });
     }

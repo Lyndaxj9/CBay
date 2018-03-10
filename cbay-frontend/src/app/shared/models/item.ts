@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import {Client} from './client';
+import { Url } from './Url';
 
 export class Item {
     itemid: number;
@@ -11,7 +11,8 @@ export class Item {
     price: number;
     ratingavg: number;
     quantity: number;
-    itemUrl = `http://localhost:8089/CBay_Project/rest/item/get`;
+    url = new Url();
+    itemUrl = this.url.get_urlbase() + '/item';
     // itemUrl = `http://54.213.131.230:8089/CBay/rest/item/get`;
 
     constructor (public http: HttpClient) { }
@@ -34,12 +35,12 @@ export class Item {
                 'Content-Type':  'application/json'
             })
         };
-        return this.http.get(this.itemUrl + '/' + id, httpOptions)
+        return this.http.get(this.itemUrl + '/get/' + id, httpOptions)
             .toPromise();
     }
 
     update() {
-        const req = this.http.post('http://localhost:8089/CBay_Project/rest/item/update', {
+        const req = this.http.post(this.itemUrl + '/update', {
             id: this.itemid,
             itemName: this.itemname,
             description: this.description,
@@ -49,19 +50,27 @@ export class Item {
         return req;
     }
 
-  public get_all_items() {
-    return this.http.get<any[]>('http://54.213.131.230:8089/CBay/rest/item/get/all', {headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })});
-  }
+    public get_all_items() {
+        return this.http.get(this.itemUrl + '/get/all', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+    }
 
     post() {
-        const req = this.http.post('http://localhost:8089/CBay_Project/rest/item/post', {
+        const req = this.http.post(this.itemUrl + '/post', {
             sellerId: this.userid,
             itemName: this.itemname,
             description: this.description,
             price: this.price,
             quantity: this.quantity
+        }, {responseType: 'text'});
+
+        return req;
+    }
+
+    update_quantity() {
+        const req = this.http.post(this.itemUrl + '/post', {
+            itemid: this.itemid,
         }, {responseType: 'text'});
 
         return req;
