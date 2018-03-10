@@ -49,6 +49,7 @@ public class JUnitTest {
 		Assert.assertEquals((Double)100.50, ItemService.getItemById(testItemNum).getPrice());
 		Assert.assertEquals(20, (int)ItemService.getItemById(testItemNum).getQuantity());
 		
+		
 		ItemService.editItem(testItemNum, "ItemTest-Edit", 250.23, "Item Description-Edit");
 		Assert.assertEquals("ItemTest-Edit", ItemService.getItemById(testItemNum).getItemName());
 		Assert.assertEquals("Item Description-Edit", ItemService.getItemById(testItemNum).getDescription());
@@ -67,6 +68,7 @@ public class JUnitTest {
 		int testUserNumBuyer = UserService.InsertBuyer("BuyerTesterFN", "BuyerTesterLN", "BuyerTesterUN", "BuyerTesterPW", "BuyerTester@mail.com");
 		int testTransactionNum = OrderService.createTransaction(testItemNum, testUserNumBuyer, testUserNum, 11);
 		Assert.assertEquals(testTransactionNum, (int)OrderService.getTransactionByBuyerIdAndStatus(testUserNumBuyer, "In-Cart").get(0).getId());
+		
 		
 		List<Integer> TransactionsId = new ArrayList<Integer>();
 		TransactionsId.add(testTransactionNum);
