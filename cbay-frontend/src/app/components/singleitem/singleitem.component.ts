@@ -35,7 +35,7 @@ export class SingleitemComponent implements OnInit {
             console.log(error);
         });
 
-        this.isBuyer = sessionStorage.getItem('usertype') === 'Buyer';
+        this.isBuyer = sessionStorage.getItem('usertype') === 'buyer';
         this.itemQuantity = 1;
     }
 

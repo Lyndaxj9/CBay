@@ -112,8 +112,6 @@ public class OrderService {
 			
 			dao.insertOrderIdIntoTransaction(tranId, orderId);
 			updateTransactionCheckedOut(tranId);
-			
-
 		}
 	
 		return orderId;

@@ -32,7 +32,7 @@ public class ItemApi {
 	public List<Item> getAllItems() {
 		return ItemService.getAllItems();
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -43,7 +43,7 @@ public class ItemApi {
 		ItemService.updateItemAvg(json.getInt("id"));
 		return id;
 	}
-	
+
 	// -- this will return all the item's comments.
 	// -- past in below for testing.
 	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
@@ -53,7 +53,7 @@ public class ItemApi {
 	public List<String> getAllItemComments(@PathParam("id") int id) {
 		return ItemService.getItemComments(id);
 	}
-	
+
 	@GET
 	@Path("/get/ratingavg/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -61,8 +61,7 @@ public class ItemApi {
 		ItemService.updateItemAvg(id);
 		return ItemService.getItemAverageRating(id);
 	}
-	
-	
+
 	// -- get one item from the database via id.
 	// -- {id} = 3
 	// -- http://34.217.96.20:8089/CBay/rest/item/get/{id}
@@ -81,7 +80,8 @@ public class ItemApi {
 	@Path("/post")
 	public Integer insertItem(JsonObject json) {
 		Integer id = null;
-		id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"), Double.parseDouble(json.getString("price")), json.getInt("quantity"));
+		id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"),
+				Double.parseDouble(json.getString("price")), json.getInt("quantity"));
 		return id;
 	}
 
@@ -92,7 +92,8 @@ public class ItemApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update")
 	public String updateItem(JsonObject json) {
-		ItemService.editItem(json.getInt("id"), json.getString("itemName"), Double.parseDouble(json.getString("price")), json.getString("description"));
+		ItemService.editItem(json.getInt("id"), json.getString("itemName"), Double.parseDouble(json.getString("price")),
+				json.getString("description"));
 		return "success";
 	}
 

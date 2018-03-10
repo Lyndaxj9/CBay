@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
         this.orderModel.get_cart().subscribe(
             res => {
                 this.transactions = res;
-                console.log(res);
                 this.getItemInfo();
             },
             err => {
@@ -37,10 +36,12 @@ export class CartComponent implements OnInit {
     }
 
     getItemInfo() {
+        console.log(this.transactions);
         for (let i of this.transactions) {
             this.itemModel.get(i.itemId).then(item_data => {
                 let anItem = new Item(this.http);
-                anItem.itemid = i.itemid;
+                console.log(item_data);
+                anItem.itemid = item_data['id'];
                 anItem.itemname = item_data['itemName'];
                 anItem.price = item_data['price'];
                 anItem.description = item_data['description'];
@@ -54,4 +55,21 @@ export class CartComponent implements OnInit {
         }
     }
 
+    checkout() {
+        console.log('checkout');
+        for (let t of this.transactions) {
+            this.orderModel.transarray.push(t.id);
+        }
+        this.orderModel.checkout_status().subscribe(
+            res => {
+                console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        );
+        /*
+            update item quantities
+        */
+    }
 }

@@ -3,6 +3,7 @@ package com.CBay.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -67,7 +68,15 @@ public class OrderApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
 	public Integer insertOrder(JsonObject json){
-		Integer id = OrderService.placeOrder((List<Integer>)json.get("transactionlist"), json.getInt("id"));
+		System.out.println(json);
+		JsonArray jarr = json.getJsonArray("transactionlist");
+		ArrayList<Integer> ali = new ArrayList<>();
+		
+		for(int i = 0; i < jarr.size(); i++) {
+			ali.add(jarr.getInt(i));
+		}
+
+		Integer id = OrderService.placeOrder(ali, json.getInt("id"));
 		return id;
 	}
 	
@@ -75,11 +84,10 @@ public class OrderApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update/removefromchart/{id}")
-	public String RemoveFromChart(@PathParam("id") Integer TransactionId) {
+	public String RemoveFromCart(@PathParam("id") Integer TransactionId) {
 		OrderService.removeTransaction(TransactionId);
 		return "success";
 	}
-
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
