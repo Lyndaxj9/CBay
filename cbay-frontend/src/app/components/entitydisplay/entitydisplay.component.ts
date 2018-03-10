@@ -73,6 +73,7 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
             this.data['Seller'] = user_data['userName'];
             this.data.nonEditable['Price'] = '$' + this.anItem.price;
             this.data.nonEditable['Product Rating'] = this.anItem.ratingavg;
+            // TODO sold out if quantity == 0 and don't display add to cart
             this.data.nonEditable['Quantity'] = this.anItem.quantity;
         }).catch(error => {
             console.log(error);

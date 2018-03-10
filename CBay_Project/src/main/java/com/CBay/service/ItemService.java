@@ -155,8 +155,6 @@ public class ItemService {
 		return dao.getItemById(itemId).getRatingAvg();
 	}
 	
-	
-	
 	// need a list of all items 
 	// need a list of items by user 
 	
