@@ -48,7 +48,7 @@ export class ItemsComponent implements OnInit {
         i = i + 1;
         if(size <= i){
           this.temp_list = this.list.slice(0, this.max_number_of_items_on_a_page);
-          this.last_page = Math.ceil(size/this.max_number_of_items_on_a_page);
+          this.last_page = Math.ceil(this.list.length/this.max_number_of_items_on_a_page);
         }
       });
     });

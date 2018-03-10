@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'All Items',
-            link: 'list/item' // allitems
+            link: 'list/item/id' // allitems
         }
     ];
     modOptions = [
