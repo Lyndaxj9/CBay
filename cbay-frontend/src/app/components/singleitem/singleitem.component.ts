@@ -15,6 +15,7 @@ export class SingleitemComponent implements OnInit {
     itemQuantity: number;
     orderModel: Order;
     isBuyer: boolean;
+    hasBought: boolean;
     private sub: any;
 
     constructor(public http: HttpClient, private route: ActivatedRoute) { }
@@ -37,6 +38,8 @@ export class SingleitemComponent implements OnInit {
 
         this.isBuyer = sessionStorage.getItem('usertype') === 'buyer';
         this.itemQuantity = 1;
+
+        this.verifiedPurchaser();
     }
 
     add_to_cart() {
@@ -57,5 +60,10 @@ export class SingleitemComponent implements OnInit {
         } else {
             console.log('insuffient amount');
         }
+    }
+
+    verifiedPurchaser() {
+        this.hasBought = true;
+        // check if logged in user has currently showing item id past in cart status
     }
 }
