@@ -21,7 +21,7 @@ export const appRoutes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'searchresults',
+        path: 'list/item/id',
         component: ItemsearchComponent
     },
     {
