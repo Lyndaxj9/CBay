@@ -8,16 +8,19 @@
         <p>(select an item below to see a more detailed description)</p>
         <p *ngIf="list"> total number of items : {{list.length}} </p>
       </div>
-      <div *ngIf="temp_list">
+      <div *ngIf="temp_list && temp_list.length > 0; else content;">
         <div class="col-md-4" *ngFor="let l of temp_list">
-          <div class="gallery">
+          <div class="gallery" (click)="view_item(l.id)">
             <img src="../../../assets/computer.jpg" alt="Mountain View" style="width: 300px; height:300px;">
-            <div class="desc">Item name: NAME</div>
-            <div class="desc">Item description: hsdf fdjfbdjsaf dsjfbjdsnf sdif sd jf sd f fj dsjf jds</div>
-            <div class="desc">Item Price: $45.34</div>
+            <div class="desc" *ngIf="l.itemName">Item name: {{l.itemName}}</div>
+            <div class="desc" *ngIf="l.description">Item description: {{l.description}}</div>
+            <div class="desc" *ngIf="l.price">Item Price: {{l.price}}</div>
           </div>
         </div>
       </div>
+      <ng-template #content>
+        <h4 style="text-align: center;">There is nothing to display.</h4>
+      </ng-template>
     </div>
   </div>
 </div>

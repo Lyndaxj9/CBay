@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import {Client} from './client';
 
 export class Item {
     itemid: number;
@@ -47,6 +48,12 @@ export class Item {
 
         return req;
     }
+
+  public get_all_items() {
+    return this.http.get('http://54.213.131.230:8089/CBay/rest/item/get/all', {headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })});
+  }
 
     post() {
         const req = this.http.post('http://localhost:8089/CBay_Project/rest/item/post', {
