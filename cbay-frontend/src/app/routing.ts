@@ -63,6 +63,10 @@ export const appRoutes: Routes = [
     {
       path: 'list/review',
       component: ReviewsComponent
+    },
+    {
+        path: 'list/orders',
+        component: OrderComponent
     }
     /*
     {

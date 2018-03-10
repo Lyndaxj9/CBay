@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
-import { Url } from '../../shared/models/Url';
+import { Url } from '../../shared/models/url';
 
 @Component({
     selector: 'app-registertemp',
