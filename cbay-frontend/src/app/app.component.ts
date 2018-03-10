@@ -1,5 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,12 +24,6 @@ export class AppComponent implements OnInit {
         this.email = '';
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
         console.log("current userid: " + this.userid);
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-        console.log("on changes");
-        console.log(changes);
-        this.userid = parseInt(sessionStorage.getItem('userid'), 10);
     }
 
     logout() {

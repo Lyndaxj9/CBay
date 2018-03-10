@@ -50,7 +50,7 @@ export class Item {
     }
 
   public get_all_items() {
-    return this.http.get('http://54.213.131.230:8089/CBay/rest/item/get/all', {headers: new HttpHeaders({
+    return this.http.get<any[]>('http://54.213.131.230:8089/CBay/rest/item/get/all', {headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })});
   }

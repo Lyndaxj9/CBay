@@ -8,53 +8,51 @@ import { Router } from '@angular/router';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-  constructor(private http:HttpClient, private router:Router){}
 
-  list:any[];
-  is_item_display:boolean;
-  temp_list:any[];
+  list: Post[];
+  is_item_display: boolean;
+  temp_list: Post[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;
   current_index = 0;
   item: Item;
 
-  load_list_information(){
-    console.log('get information');
-    try
-    {
-      this.temp_list = [];
-      this.is_item_display = true;
-      this.apply_pagination();
-    }
-    catch(ex)
-    {
-      console.log(ex);
-    }
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  view_item(id){
-    console.log(id);
-    this.router.navigate(['item/', id]).catch(error=> {
+
+  view_item(id) {
+    this.router.navigate(['item/', id]).catch(error => {
       console.log(error);
     });
   }
 
   ngOnInit() {
     this.item = new Item(this.http);
-    this.item.get_all_items().subscribe(items=>{
-      this.temp_list = items;
+    this.list = [];
+    this.temp_list = [];
+    this.is_item_display = true;
+    this.http.get<Post[]>('http://54.213.131.230:8089/CBay/rest/item/get/all').subscribe(res => {
+      console.log(res);
+      let size = res.length;
+      let i = 0;
+      res.forEach(item=>{
+        this.list.push(item);
+        console.log(item.description);
+        console.log(item.id);
+        console.log(item.itemName);
+        console.log(item.price);
+        console.log(item.quantity);
+        console.log(item.ratingAvg);
+        console.log(item.userId);
+        i = i + 1;
+        if(size <= i){
+          this.temp_list = this.list.slice(0, this.max_number_of_items_on_a_page);
+          this.last_page = Math.ceil(size/this.max_number_of_items_on_a_page);
+        }
+      });
     });
-  this.load_list_information();
-  }
 
-  apply_pagination(){
-    this.temp_list = this.list.slice(this.current_index, this.current_index + this.max_number_of_items_on_a_page);
-    this.last_page = Math.ceil(this.list.length / this.max_number_of_items_on_a_page);
-
-    if(this.last_page <= 0){
-      this.last_page = 1;
-    }
   }
 
   next(){
@@ -76,3 +74,13 @@ export class ItemsComponent implements OnInit {
   }
 
 }
+
+interface Post {
+  description: string;
+  id: number;
+  itemName:string;
+  price:number;
+  quantity:number;
+  ratingAvg:number;
+  userId:number;
+};
