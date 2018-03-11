@@ -30,7 +30,9 @@ export class OrderComponent implements OnInit {
     url = new Url();
 
     report_types = ['Order Not Timely Shipped', 'Order Never Delivered', 'Order Cancelled'];
-    mods: any;
+    temp: any;
+    mods: any[];
+    allValues = true;
 
     constructor(private http: HttpClient, private router: Router, private titleService: Title) {
     }
@@ -64,30 +66,31 @@ export class OrderComponent implements OnInit {
                         trans => {
                             this.transactions = trans;
                             for(let i of this.transactions) {
-                            console.log('trans:');
+                                console.log('trans:');
                                 console.log(i);
-                            this.item.get(i['itemId']).then(
-                                item_data => {
-                                    let anItem = new Item(this.http);
-                                    anItem['transid'] = i['id']
-                                    anItem['status'] = i['status'];
-                                    anItem['itemid'] = item_data['id'];
-                                    anItem['itemname'] = item_data['itemName'];
-                                    anItem['price'] = item_data['price'];
-                                    anItem['description'] = item_data['description'];
-                                    anItem['quantity'] = i['quantity'];
-                                    console.log('quantity: ' + i['quantity'] + ' price: ' + item_data['price'])
-                                    anItem['subtotal'] = i['quantity'] * item_data['price'];
-                                    console.log('after assignments');
-                                    anItem['msgDisplayed'] = false;
-                                    console.log(anItem);
-                                    anItem['msgSubject'] = '';
-                                    anItem['mod'] = '';
-                                    anItem['msg'] = '';
-                                    this.list.push(anItem);
-                                }).catch(error => {
-                                console.log(error);
-                            });
+                                this.item.get(i['itemId']).then(
+                                    item_data => {
+                                        let anItem = new Item(this.http);
+                                        anItem['transid'] = i['id']
+                                        anItem['status'] = i['status'];
+                                        anItem['itemid'] = item_data['id'];
+                                        anItem['itemname'] = item_data['itemName'];
+                                        anItem['price'] = item_data['price'];
+                                        anItem['description'] = item_data['description'];
+                                        anItem['quantity'] = i['quantity'];
+                                        console.log('quantity: ' + i['quantity'] + ' price: ' + item_data['price'])
+                                        anItem['subtotal'] = i['quantity'] * item_data['price'];
+                                        console.log('after assignments');
+                                        anItem['msgDisplayed'] = false;
+                                        console.log(anItem);
+                                        anItem['msgSubject'] = '';
+                                        anItem['mod'] = '';
+                                        anItem['msg'] = '';
+                                        anItem['allValues'] = true;
+                                        this.list.push(anItem);
+                                    }).catch(error => {
+                                    console.log(error);
+                                });
                             }
                         }, err => {
                             console.log(err);
@@ -124,33 +127,47 @@ export class OrderComponent implements OnInit {
     }
 
     get_mods() {
-            const aUser = new Client(this.http);
-            aUser.get_all_mods().subscribe(
-                res => {
-                    this.mods = res;
-                    console.log(this.mods);
-                },
-                err => {
-                    console.log(err);
-                }
-            );
-    }
-
-    send_report(tid, msgSub, msg, modid) {
-        let aMsg = new Message(this.http);
-        aMsg.subject = 'Concerning Trans#' + aMsg.transid;
-        aMsg.responderid = 0;
-        aMsg.senderid = parseInt(sessionStorage.getItem('userid'), 10);
-        aMsg.content = msg;
-        aMsg.post_new_report().subscribe(
+        const aUser = new Client(this.http);
+        aUser.get_all_mods().subscribe(
             res => {
-                console.log(res);
+                this.temp = res;
+                this.mods = [];
+                for(let m of this.temp) {
+                    if(m.approval != 'Pending') {
+                        this.mods.push(m);
+                    }
+                    console.log(m.approval);
+                }
+                console.log(this.mods);
             },
             err => {
                 console.log(err);
             }
         );
-        console.log('send report');
+    }
+
+    send_report(tid, msgSub, msg, modid) {
+        let aMsg = new Message(this.http);
+        if(msgSub == '' || msgSub == undefined || msg == '' || msg == undefined || modid == undefined || modid == '') {
+            console.log('please fill all values');
+            this.allValues = false;
+        } else {
+            aMsg.transid = tid;
+            aMsg.subject = msgSub;
+            aMsg.responderid = modid;
+            aMsg.senderid = parseInt(sessionStorage.getItem('userid'), 10);
+            aMsg.content = msg;
+            aMsg.post_new_report().subscribe(
+                res => {
+                    console.log(res);
+                    this.allValues = true;
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+            console.log('send report');
+        }
     }
 }
 

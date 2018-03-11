@@ -45,13 +45,13 @@
                 </td>
                 <td>
                 <label>Moderator: </label>
-                <select [(ngModel)]="l.mod" *ngFor="let m of mods"  name="mods">
-                    <option *ngIf="m.approval != 'Pending'" [ngValue]="m.id">{{m.userName}}</option>
+                <select [(ngModel)]="l.mod" name="mods">
+                    <option *ngFor="let m of mods" [ngValue]="m.id">{{m.userName}}</option>
                 </select>
                     </td>
-                <td></td>
+                <td><p [hidden]="allValues" class="alert alert-danger" style="margin-top: 15px;">Please fill out all values</p></td>
                 <td>
-                <button type="submit" name="sendReportBtn" (click)="send_report(l.transid, l.msgSubject, l.msg, l.mod)">SEND</button>
+                <button type="submit" name="sendReportBtn" class="btn btn-info btn-sm" (click)="send_report(l.transid, l.msgSubject, l.msg, l.mod)"><i class="fa fa-paper-plane-o"></i></button>
                     </td>
             </tr>
         </tbody>
