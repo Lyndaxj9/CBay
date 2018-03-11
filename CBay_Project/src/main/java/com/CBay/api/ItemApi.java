@@ -44,6 +44,13 @@ public class ItemApi {
 		ItemService.updateItemAvg(json.getInt("id"));
 		return id;
 	}
+	
+	@GET
+	@Path("/search/{word}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Item> getAllItems(@PathParam("word") String word) {
+		return ItemService.getItemBySearch(word);
+	}
 
 	// -- this will return all the item's comments.
 	// -- past in below for testing.
