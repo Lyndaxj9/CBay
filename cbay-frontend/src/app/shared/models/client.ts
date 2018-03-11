@@ -62,8 +62,15 @@ export class Client {
         return req;
     }
 
+    get_all_mods() {
+        const req = this.http.get(this.userUrl + '/get/mods', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
+
     get_all_users() {
-      const req = this.http.get('http://54.213.131.230:8089/CBay/rest/user/get/all', {headers: new HttpHeaders({
+      const req = this.http.get(this.userUrl + '/get/all', {headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })});
       return req;

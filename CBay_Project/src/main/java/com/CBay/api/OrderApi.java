@@ -65,6 +65,13 @@ public class OrderApi {
 		return OrderService.getAllTransactionsBySeller(id);
 	}
 	
+	@GET
+	@Path("/get/all/trans/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transactions> getAllTransByOrderId(@PathParam("id") int id) {
+		return OrderService.getTransactionsByOrderId(id);
+	}
+	
 
 	/*
 	 * This will have to be altered depending on how we will list the transactions

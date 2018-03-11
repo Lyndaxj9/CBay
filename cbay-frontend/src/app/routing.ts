@@ -56,42 +56,38 @@ export const appRoutes: Routes = [
         component: ItemsComponent
     },
     {
-      path: 'list/user',
-      component: UsersComponent
+        path: 'list/user',
+        component: UsersComponent
     },
     {
-      path: 'list/transaction',
-      component: TransactionsComponent
+        path: 'list/transaction',
+        component: TransactionsComponent
     },
     {
-      path: 'list/review',
-      component: ReviewsComponent
+        path: 'list/review',
+        component: ReviewsComponent
     },
     {
         path: 'list/orders',
         component: OrderComponent
     },
     {
-      path: 'list/carts',
-      component:CarttempComponent
+        path: 'list/carts',
+        component: CarttempComponent
     },
-  {
-    path: 'list/moderators',
-    component:ModeratorsComponent
-  },
-  {
-    path: 'list/sellers',
-    component:SellersComponent
-  },
-  {
-    path: 'list/sold',
-    component:ItemsoldComponent
-  }
-  /*
     {
-      path:'list/order',
-      component:OrderComponent
+        path: 'list/moderators',
+        component: ModeratorsComponent
+    },
+    {
+        path: 'list/sellers',
+        component: SellersComponent
+    },
+    {
+        path: 'list/sold',
+        component: ItemsoldComponent
     }
+    /*
         create path for homepage
         and maybe one for page not found
     */

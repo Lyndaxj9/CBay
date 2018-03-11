@@ -45,6 +45,12 @@ export class Order {
         })});
     }
 
+    get_all_order_trans() {
+        return this.http.get(this.orderUrl + '/get/all/trans/' + this.orderid, {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+    }
+
     checkout_status() {
         console.log(this.transarray);
         const req = this.http.post(this.orderUrl + '/post', {
