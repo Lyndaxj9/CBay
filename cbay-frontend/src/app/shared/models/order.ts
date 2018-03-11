@@ -54,4 +54,22 @@ export class Order {
 
         return req;
     }
+
+    update_trans_shipped() {
+        const req = this.http.post(this.orderUrl + '/update/shipped/' + this.transid, { }, {responseType: 'text'});
+
+        return req;
+    }
+
+    update_trans_delivered() {
+        const req = this.http.post(this.orderUrl + '/update/delivered/' + this.transid, { }, {responseType: 'text'});
+
+        return req;
+    }
+
+    update_trans_canceled() {
+        const req = this.http.post(this.orderUrl + '/update/canceled/' + this.transid, { }, {responseType: 'text'});
+
+        return req;
+    }
 }

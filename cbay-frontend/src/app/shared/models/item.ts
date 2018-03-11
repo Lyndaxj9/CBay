@@ -90,11 +90,4 @@ export class Item {
 
         return req;
     }
-    /* update_quantity() {
-        const req = this.http.post(this.itemUrl + '/post', {
-            itemid: this.itemid,
-        }, {responseType: 'text'});
-
-        return req;
-    }*/
 }
