@@ -53,6 +53,7 @@ export class CartComponent implements OnInit {
                 anItem.description = item_data['description'];
                 anItem.quantity = i.quantity;
                 anItem['subtotal'] = i.quantity * anItem.price;
+                anItem['transid'] = i.id;
                 this.total += anItem['subtotal'];
                 this.currentCart.push(anItem);
             }).catch(error => {
@@ -73,6 +74,20 @@ export class CartComponent implements OnInit {
                 setTimeout((router: Router) => {
                     this.router.navigate(['list/orders']);
                 }, 2575);
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    remove_from_cart(tid) {
+        console.log('rm from cart: ' + tid);
+        this.orderModel.transid = tid;
+        this.orderModel.update_rm_from_cart().subscribe(
+            res => {
+                console.log(res);
+                window.location.reload();
             },
             err => {
                 console.log(err);

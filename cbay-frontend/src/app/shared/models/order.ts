@@ -72,4 +72,10 @@ export class Order {
 
         return req;
     }
+
+    update_rm_from_cart() {
+        const req = this.http.post(this.orderUrl + '/update/removefromcart/' + this.transid, { }, {responseType: 'text'});
+
+        return req;
+    }
 }
