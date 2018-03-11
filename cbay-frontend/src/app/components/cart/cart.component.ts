@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { Item } from '../../shared/models/item';
 import { Order } from '../../shared/models/order';
 import { Router } from '@angular/router';
@@ -18,9 +19,11 @@ export class CartComponent implements OnInit {
     transactions: any;
     currentCart: Array<Item>;
 
-    constructor(public http: HttpClient, private router: Router) { }
+    constructor(public http: HttpClient, private router: Router, private titleService: Title) { }
 
     ngOnInit() {
+        this.titleService.setTitle('Cart');
+
         this.orderModel = new Order(this.http);
         this.orderModel.buyerid = parseInt(sessionStorage.getItem('userid'), 10);
         this.itemModel = new Item(this.http);

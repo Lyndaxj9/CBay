@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {FormGroup, FormControl} from "@angular/forms";
 
 @Component({
     selector: 'app-reviews',
     templateUrl: './reviews.component.html',
-    styleUrls: ['./reviews.component.scss']
+    styleUrls: ['./reviews.component.css']
 })
 export class ReviewsComponent implements OnInit {
 
@@ -16,9 +17,12 @@ export class ReviewsComponent implements OnInit {
     current_index = 0;
 
     @Input() canReview: boolean;
+    @Input() reviewer: string;
     reviewTextModel: string;
     enteredText = true;
-    numberRating = 5;
+    form = new FormGroup({
+        myRatingControl: new FormControl('5')
+    });
 
     load_list_information() {
         console.log('get information');
@@ -34,6 +38,7 @@ export class ReviewsComponent implements OnInit {
 
     ngOnInit() {
         this.load_list_information();
+        // this.form.valid.myRatingControl
     }
 
     apply_pagination(){
@@ -66,6 +71,7 @@ export class ReviewsComponent implements OnInit {
     add_review() {
         if (this.reviewTextModel !== '' && this.reviewTextModel != undefined) {
             console.log(this.reviewTextModel);   
+            console.log(this.form.value['myRatingControl']);
         } else {
             this.enteredText = false;
         }

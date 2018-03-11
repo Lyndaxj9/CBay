@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-transactions',
@@ -30,7 +31,10 @@ export class TransactionsComponent implements OnInit {
     }
   }
 
+    constructor(private titleService: Title) { }
+
   ngOnInit() {
+      this.titleService.setTitle('Transactions');
     this.load_list_information();
   }
 

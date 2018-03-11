@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Item } from '../../shared/models/item';
 import { Order } from '../../shared/models/order';
+import { Client } from '../../shared/models/client';
 
 @Component({
     selector: 'app-singleitem',
@@ -17,11 +19,14 @@ export class SingleitemComponent implements OnInit {
     isBuyer: boolean;
     hasBought: boolean;
     verifyStatus = 'Checked-Out';
+    verifyUsername = '';
     private sub: any;
 
-    constructor(public http: HttpClient, private route: ActivatedRoute) { }
+    constructor(public http: HttpClient, private route: ActivatedRoute, private titleService: Title) { }
 
     ngOnInit() {
+        this.titleService.setTitle('Item Information');
+
         this.itemModel = new Item(this.http);
         this.orderModel = new Order(this.http);
         this.sub = this.route.params
@@ -65,7 +70,8 @@ export class SingleitemComponent implements OnInit {
     }
 
     verifiedPurchaser() {
-        this.orderModel.buyerid = parseInt(sessionStorage.getItem('userid'), 10);
+        const userid = parseInt(sessionStorage.getItem('userid'), 10);
+        this.orderModel.buyerid = userid;
         this.orderModel.get_checked_out().subscribe(
             res => {
                 if (res != []) {
@@ -74,6 +80,11 @@ export class SingleitemComponent implements OnInit {
                         if (res[k].itemId === this.itemId && res[k].status === this.verifyStatus) {
                             console.log('can review');
                             this.hasBought = true;
+                            const aClient = new Client(this.http);
+                            aClient.get(userid)
+                                .then(user_data => {
+                                this.verifyUsername = user_data['userName'];
+                            });
                             break;
                         }
                     }

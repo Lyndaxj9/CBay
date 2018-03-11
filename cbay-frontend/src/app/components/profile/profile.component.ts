@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Client } from '../../shared/models/client';
 import { Router } from '@angular/router';
 
@@ -77,7 +78,7 @@ export class ProfileComponent implements OnInit {
     ];
     options: Array<Object>;
 
-    constructor(public http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    constructor(public http: HttpClient, private route: ActivatedRoute, private router: Router, private titleService: Title) {
         this.sub = this.route.params
             .subscribe(params => {
             this.userId = +params['id'];
@@ -85,7 +86,9 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.titleService.setTitle('Profile');
+    }
 
     get_user_info() {
         this.currentUser = parseInt(sessionStorage.getItem('userid'), 10);
