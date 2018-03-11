@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,17 +11,14 @@ export class HomeComponent implements OnInit {
     userid: number;
     usertype: string;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private titleService: Title) { }
 
     ngOnInit() {
-        console.log('home');
+        this.titleService.setTitle('CBAY');
+
         this.userid = parseInt(sessionStorage.getItem('userid'), 10);
         this.usertype = sessionStorage.getItem('usertype');
         console.log(this.userid + ' ' + this.usertype);
-
-        /*if (parseInt(sessionStorage.getItem('userid'), 10)) {
-            this.router.navigateByUrl('\profile');
-        }*/
 
         if (!parseInt(sessionStorage.getItem('userid'), 10)) {
         } else {

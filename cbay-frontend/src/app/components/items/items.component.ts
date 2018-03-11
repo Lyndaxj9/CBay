@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../shared/models/item';
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Url } from '../../shared/models/url';
 @Component({
@@ -20,7 +21,7 @@ export class ItemsComponent implements OnInit {
   item: Item;
   url = new Url();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private titleService: Title) {}
 
 
   view_item(id) {
@@ -30,6 +31,8 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.titleService.setTitle('Search Results');
+
     this.item = new Item(this.http);
     this.list = [];
     this.temp_list = [];

@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../../shared/models/order';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD
 import {Router} from '@angular/router';
 import {Item} from '../../shared/models/item';
 import {Url} from '../../shared/models/url';
+=======
+import { Title } from '@angular/platform-browser';
+>>>>>>> cb50d1942ec8031238e0ec4f6acfa67d143b6dc4
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
+<<<<<<< HEAD
 export class OrderComponent{
 
   private list: Post[];
@@ -80,6 +85,14 @@ export class OrderComponent{
     }
   }
 
+=======
+export class OrderComponent implements OnInit {
+    constructor(private titleService: Title) { }
+
+    ngOnInit() {
+        this.titleService.setTitle('Orders');
+    }
+>>>>>>> cb50d1942ec8031238e0ec4f6acfa67d143b6dc4
 }
 
 interface Post {

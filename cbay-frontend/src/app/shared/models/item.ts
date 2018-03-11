@@ -10,6 +10,7 @@ export class Item {
     description: string;
     price: number;
     ratingavg: number;
+    ratingtext: string;
     quantity: number;
     url = new Url();
     itemUrl = this.url.get_urlbase() + '/item';
@@ -68,11 +69,20 @@ export class Item {
         return req;
     }
 
-    update_quantity() {
+    post_rating() {
+        const req = this.http.post(this.itemUrl + '/post/rating', {
+            id: this.itemid,
+            numrating: this.ratingavg,
+            comment: this.ratingtext
+        }, {responseType: 'text'});
+
+        return req;
+    }
+   /* update_quantity() {
         const req = this.http.post(this.itemUrl + '/post', {
             itemid: this.itemid,
         }, {responseType: 'text'});
 
         return req;
-    }
+    }*/
 }

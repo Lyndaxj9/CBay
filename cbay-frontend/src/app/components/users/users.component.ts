@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {Item} from '../../shared/models/item';
 import {Url} from '../../shared/models/url';
@@ -11,9 +12,9 @@ import {Url} from '../../shared/models/url';
 })
 export class UsersComponent  implements OnInit {
 
-  list: Post[];
+  private list: Post[];
   is_user_display: boolean;
-  temp_list: Post[];
+  private temp_list: Post[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;
@@ -21,7 +22,7 @@ export class UsersComponent  implements OnInit {
   item: Item;
   url = new Url();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private titleService: Title) {}
 
 
   view_user(l) {
@@ -32,6 +33,8 @@ export class UsersComponent  implements OnInit {
   }
 
   ngOnInit() {
+      this.titleService.setTitle('Users');
+
     this.item = new Item(this.http);
     this.list = [];
     this.temp_list = [];
