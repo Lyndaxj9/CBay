@@ -36,6 +36,21 @@ public class UserApi {
 		return UserService.getAllUser();
 	}
 	
+	@GET
+	@Path("/get/mods")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getAllMods() {
+		return UserService.getAllMods();
+	}
+	
+	//-- add sellers
+	@GET
+	@Path("/get/sell")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getAllSellers() {
+		return UserService.getAllSellers();
+	}
+	
 	// -- this will return all the users in the database.
 	// -- past in below for testing.
 	// -- http://34.217.96.20:8089/CBay/rest/user/get/all

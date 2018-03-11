@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Sold Items',
-            link: 'list/item' // solditems
+            link: 'list/sold' // solditems
         },
         {
             name: 'All Items',
@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    ngOnInit() { 
+    ngOnInit() {
         this.titleService.setTitle('Profile');
     }
 

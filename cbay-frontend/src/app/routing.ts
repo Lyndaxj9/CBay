@@ -16,6 +16,7 @@ import {CarttempComponent} from './components/carttemp/carttemp.component';
 import {OrderComponent} from './components/order/order.component';
 import {ModeratorsComponent} from './components/moderators/moderators.component';
 import {SellersComponent} from './components/sellers/sellers.component';
+import {ItemsoldComponent} from './components/itemsold/itemsold.component';
 
 export const appRoutes: Routes = [
     {
@@ -81,6 +82,10 @@ export const appRoutes: Routes = [
   {
     path: 'list/sellers',
     component:SellersComponent
+  },
+  {
+    path: 'list/sold',
+    component:ItemsoldComponent
   }
   /*
     {

@@ -11,7 +11,7 @@
       <div>
         <div class="col-md-4" *ngFor="let l of temp_list;">
           <div class="gallery" (click)="view_item(l.id)">
-            <img src="../../../assets/computer.jpg" alt="Mountain View" style="width: 300px; height:300px;">
+            <img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg" alt="Mountain View" style="width: 300px; height:300px;">
             <div class="desc" *ngIf="l.itemName">Item name: {{l.itemName}}</div>
             <div class="desc" *ngIf="l.description">Item description: {{l.description}}</div>
             <div class="desc" *ngIf="l.price">Item Price: {{l.price}}</div>
