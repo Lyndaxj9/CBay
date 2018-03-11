@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {Item} from '../../shared/models/item';
+import {Client} from '../../shared/models/client';
 import {Url} from '../../shared/models/url';
 
 @Component({
@@ -47,6 +48,7 @@ export class ModeratorsComponent implements OnInit {
       console.log(user_id);
 
       res.forEach(item => {
+          console.log(item);
         this.list.push(item);
         console.log(item);
 
@@ -79,6 +81,21 @@ export class ModeratorsComponent implements OnInit {
       this.current_page = this.current_page - 1;
     }
   }
+
+    approve_mod(mid) {
+        console.log('approve: ' + mid);
+        let userModel = new Client(this.http);
+        userModel.userid = mid;
+        userModel.approve_account().subscribe(
+            res => {
+                console.log(res);
+                window.location.reload();
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 
 }
 

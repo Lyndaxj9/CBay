@@ -12,6 +12,7 @@ export class Client {
     email: string;
     rating: number;
     description: string;
+    approval: string;
     user: Object;
     url = new Url();
     userUrl = this.url.get_urlbase() + '/user';
@@ -36,6 +37,7 @@ export class Client {
             this.description = userInfo.description;
         }
         this.rating = userInfo.ratingavg;
+        this.approval = userInfo.approval;
     }
 
     get_userName() {
@@ -77,6 +79,12 @@ export class Client {
             description: this.description,
             email: this.email
         }, {responseType: 'text'});
+
+        return req;
+    }
+
+    approve_account() {
+        const req = this.http.post(this.userUrl + '/approve/' + this.userid, { }, {responseType: 'text'});
 
         return req;
     }

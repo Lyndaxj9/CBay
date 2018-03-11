@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Approve Sellers',
-            link: 'list/user' // approvesellers
+            link: 'list/sellers' // approvesellers
         }
     ];
     adminOptions = [
@@ -65,11 +65,11 @@ export class ProfileComponent implements OnInit {
         },
         {
             name: 'Approve Mods',
-            link: '/list/user' // approvemods
+            link: '/list/moderators' // approvemods
         },
         {
             name: 'All Users',
-            link: 'http://localhost:4200/cbay/list/user' // allusers
+            link: '/list/user' // allusers
         },
         {
             name: 'All Transactions',
