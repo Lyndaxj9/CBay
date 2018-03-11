@@ -109,6 +109,7 @@ export class ReviewsComponent implements OnInit {
             this.itemModel.post_rating().subscribe(
                 res => {
                     console.log(res);
+                    window.location.reload();
                 },
                 err => {
                     console.log(err);

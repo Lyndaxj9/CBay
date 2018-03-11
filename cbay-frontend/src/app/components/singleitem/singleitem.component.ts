@@ -19,7 +19,7 @@ export class SingleitemComponent implements OnInit {
     orderModel: Order;
     isBuyer: boolean;
     hasBought: boolean;
-    verifyStatus = 'Checked-Out';
+    verifyStatus = 'Delivered';
     verifyUsername = '';
     private sub: any;
 
@@ -74,10 +74,11 @@ export class SingleitemComponent implements OnInit {
     verifiedPurchaser() {
         const userid = parseInt(sessionStorage.getItem('userid'), 10);
         this.orderModel.buyerid = userid;
-        this.orderModel.get_checked_out().subscribe(
+        this.orderModel.get_delivered().subscribe(
             res => {
                 if (res != []) {
                     for (let k of Object.keys(res)) {
+                        console.log('res[k]');
                         console.log(res[k]);
                         if (res[k].itemId === this.itemId && res[k].status === this.verifyStatus) {
                             console.log('can review');
