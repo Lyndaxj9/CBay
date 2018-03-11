@@ -62,11 +62,12 @@ export class Item {
     }
 
     post() {
+        let strPrice = '' + this.price;
         const req = this.http.post(this.itemUrl + '/post', {
             sellerId: this.userid,
             itemName: this.itemname,
             description: this.description,
-            price: this.price,
+            price: strPrice,
             quantity: this.quantity
         }, {responseType: 'text'});
 
