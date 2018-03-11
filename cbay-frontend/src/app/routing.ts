@@ -67,12 +67,12 @@ export const appRoutes: Routes = [
     {
         path: 'list/orders',
         component: OrderComponent
-    }
-    /*
+    },
     {
-      path: 'list/cart',
+      path: 'list/carts',
       component:CarttempComponent
     },
+  /*
     {
       path:'list/order',
       component:OrderComponent

@@ -25,6 +25,7 @@ import { ItemsComponent } from './components/items/items.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CarttempComponent } from './components/carttemp/carttemp.component';
 import { OrderComponent } from './components/order/order.component';
+import { ItemsoldComponent } from './components/itemsold/itemsold.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { OrderComponent } from './components/order/order.component';
     ItemsComponent,
     ReviewsComponent,
     CarttempComponent,
-    OrderComponent
+    OrderComponent,
+    ItemsoldComponent
   ],
   imports: [
     BrowserModule,
