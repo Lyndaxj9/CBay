@@ -154,6 +154,14 @@ public class ItemService {
 		ItemDao dao = new ItemDao();
 		return dao.getItemById(itemId).getRatingAvg();
 	}
+	
+	public static List<Item> getItemBySearch(String search) {
+
+		ItemDao dao = new ItemDao();
+		List<Item> items = dao.getItemBySearch(search);
+
+		return items;
+	}
 
 	// need a list of all items
 	// need a list of items by user
