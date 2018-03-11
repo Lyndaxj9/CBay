@@ -39,7 +39,7 @@ export class SellersComponent implements OnInit {
     this.list = [];
     this.temp_list = [];
     this.is_user_display = true;
-    this.http.get<Post[]>(this.url.get_urlbase() + '/get/all/sells').subscribe(res => {
+    this.http.get<Post[]>(this.url.get_urlbase() + '/user/get/sell').subscribe(res => {
       console.log(res);
       let size = res.length;
       let i = 0;
