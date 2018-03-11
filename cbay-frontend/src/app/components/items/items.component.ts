@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../../shared/models/item';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Url } from '../../shared/models/url';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -17,6 +18,7 @@ export class ItemsComponent implements OnInit {
   last_page = 1;
   current_index = 0;
   item: Item;
+  url = new Url();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -32,7 +34,7 @@ export class ItemsComponent implements OnInit {
     this.list = [];
     this.temp_list = [];
     this.is_item_display = true;
-    this.http.get<Post[]>('http://54.213.131.230:8089/CBay/rest/item/get/all').subscribe(res => {
+    this.http.get<Post[]>(this.url.get_urlbase() + '/item/get/all').subscribe(res => {
       console.log(res);
       let size = res.length;
       let i = 0;
