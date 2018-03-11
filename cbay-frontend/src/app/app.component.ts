@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     public type: string;
     public email: string;
     userid: number;
+    public input:string;
 
     constructor(public http: HttpClient, public router: Router) { }
 
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
     }
 
     search_items(){
-      sessionStorage.setItem('list_type', 'item');
+      sessionStorage.setItem('search_word', this.input);
       this.router.navigate(['/list/item']).catch(error => {
         console.log(error);
       });

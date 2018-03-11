@@ -37,7 +37,18 @@ export class ItemsComponent implements OnInit {
     this.list = [];
     this.temp_list = [];
     this.is_item_display = true;
-    this.http.get<Post[]>(this.url.get_urlbase() + '/item/get/all').subscribe(res => {
+    let search_url;
+    let search_result;
+    search_result = sessionStorage.getItem('search_word');
+    if(search_result)
+    {
+      search_url = '/item/search/' + search_result;
+    }
+    else
+    {
+      search_url = '/item/get/all';
+    }
+    this.http.get<Post[]>(this.url.get_urlbase() + search_url).subscribe(res => {
       console.log(res);
       let size = res.length;
       let i = 0;
