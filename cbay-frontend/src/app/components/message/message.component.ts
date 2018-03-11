@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { Message } from '../../shared/models/message';
 import { Client } from '../../shared/models/client';
 
@@ -21,9 +22,11 @@ export class MessageComponent implements OnInit {
     modtoadminmsg: string;
     adminSelect: number;
 
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient, private titleService: Title) { }
 
     ngOnInit() {
+        this.titleService.setTitle('Message Thread');
+
         this.messageModel = new Message(this.http);
         this.messageModel
             .get_thread_msg(parseInt(localStorage.getItem('msgthread'), 10))

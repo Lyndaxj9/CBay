@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Item } from '../../shared/models/item';
 
@@ -15,9 +16,11 @@ export class AdditemComponent {
 
     submitted = false;
 
-    constructor(public http: HttpClient, private router: Router) { }
+    constructor(public http: HttpClient, private router: Router, private titleService: Title) { }
 
     onSubmit() {
+        this.titleService.setTitle('Add Item');
+
         this.submitted = false;
         this.itemModel = new Item(this.http);
         this.itemModel.userid = parseInt(sessionStorage.getItem('userid'), 10);
