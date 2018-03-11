@@ -48,7 +48,7 @@ export class ItemsComponent implements OnInit {
     {
       search_url = '/item/get/all';
     }
-    this.http.get<Post[]>(this.url.get_urlbase() + search_url).subscribe(res => {
+    this.http.get<Post[]>(this.url.get_urlbase() + '/item/get/all').subscribe(res => {
       console.log(res);
       let size = res.length;
       let i = 0;
