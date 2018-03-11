@@ -16,7 +16,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Order;
 import com.CBay.beans.Transactions;
+import com.CBay.beans.User;
 import com.CBay.service.OrderService;
+import com.CBay.service.UserService;
 
 //-- represents the url to go to to get, 
 //-- update, delete or insert information in 
@@ -55,6 +57,7 @@ public class OrderApi {
 	public List<Transactions> getAllTransInCart(@PathParam("id") int id, @PathParam("status") String status) {
 		return OrderService.getTransactionByBuyerIdAndStatus(id, status);
 	}
+	
 
 	/*
 	 * This will have to be altered depending on how we will list the transactions
