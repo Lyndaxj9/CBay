@@ -20,6 +20,7 @@ public class MessageService {
 		
 		MessageDao dao = new MessageDao();
 		Message msg = new Message(ThreadId, TransactionId, SenderId, ResponderId, MessageContent, Subject);
+		System.out.println("msg transid: " + msg.getTransaction());
 		dao.insertMessage(msg);
 		return msg.getId();
 		

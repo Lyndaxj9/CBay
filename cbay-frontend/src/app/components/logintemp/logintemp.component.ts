@@ -1,54 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
+import { Url } from '../../shared/models/url';
 
 @Component({
-    selector: 'app-logintemp',
-    templateUrl: './logintemp.component.html',
-    styleUrls: ['./logintemp.component.css']
+  selector: 'app-logintemp',
+  templateUrl: './logintemp.component.html',
+  styleUrls: ['./logintemp.component.css']
 })
-export class LogintempComponent implements OnInit {
-    public password: string;
-    public username: string;
-    public confirm_password: string;
-    public type: string;
-    public email: string;
-    public url: string;
+export class LogintempComponent {
 
-    constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public router: Router) {
+  }
 
-    ngOnInit() {
-        this.password = '';
-        this.confirm_password = '';
-        this.username = '';
-        this.email = '';
-        // this.url = `http://54.213.131.230:8089/CBay/rest/user/get`;
-        this.url = `http://localhost:8089/CBay_Project/rest/user/get`;
-    }
+  model = new Client('', '', '');
+  submitted = false;
+  server_error = false;
+  unauthenticated = false;
+  urlBase = new Url();
+  url = this.urlBase.get_urlbase() + '/user/get/';
+  clientType = ['buyer', 'seller',
+    'moderator', 'admin'];
 
-    login() {
-        this.type = 'seller';
-        console.log('username : ' + this.username);
-        console.log('password : ' + this.password);
-        console.log('type : ' + this.type);
-        console.log(this.url + '/' + this.username + '/' + this.password + '/' + this.type);
-        this.get_user_data().then(user_data => {
-            if (user_data != null) {
-                sessionStorage.setItem('userid', user_data);
-                console.log('session stored for : ' + user_data);
-            }
-            console.log(user_data);
-        }).catch(error => {
+  onSubmit() {
+    this.submitted = false;
+    console.log(this.url + this.model.userName + '/' + this.model.password + '/' + this.model.type);
+    this.get_user_data().then(response => {
+      try {
+        const id = response;
+        if (Number.isInteger(id)) {
+            console.log('userid: ' + id);
+            sessionStorage.setItem('userid', id);
+            sessionStorage.setItem('usertype', this.model.type);
+            this.router.navigate(['/profile', id])
+                .catch(error => {
+            this.server_error = true;
             console.log(error);
         });
-    }
+        } else {
+          this.unauthenticated = true;
+        }
+      } catch (ex) {
+        this.unauthenticated = true;
+        console.log(ex);
+      }
+    });
+  }
 
-    get_user_data(): Promise<any> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json'
-            })
-        };
-        return this.http.get(this.url + '/' + this.username + '/' + this.password + '/' + this.type, httpOptions)
-            .toPromise();
-    }
+  // TODO: Remove this when we're done
+  get diagnostic() {
+    return JSON.stringify(this.model);
+  }
+
+  reset() {
+    this.model = new Client('', '', '');
+  }
+
+  get_user_data(): Promise<any> {
+    return this.http.get(this.url + this.model.userName + '/' + this.model.password + '/' + this.model.type)
+      .toPromise();
+  }
+}
+
+export class Client {
+
+  constructor(public userName: string,
+              public password: string,
+              public type: string) {
+  }
+
 }

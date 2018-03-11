@@ -1,3 +1,111 @@
-<p>
-  registertemp works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+  <div [hidden]="submitted">
+    <h1 style="text-align: center"> <u>SIGN UP HERE</u> </h1>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="registerusername"
+               required
+               [(ngModel)]="model.userName" name="username"
+               #username="ngModel">
+        <div [hidden]="username.valid || username.pristine"
+             class="alert alert-danger">
+          Username is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fname">First Name:</label>
+        <input type="text" class="form-control" id="fname"
+               required
+               [(ngModel)]="model.firstName" name="name"
+               #fname="ngModel">
+        <div [hidden]="fname.valid || fname.pristine"
+             class="alert alert-danger">
+          First name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Last Name:</label>
+        <input type="text" class="form-control" id="lname"
+               required
+               [(ngModel)]="model.lastName" name="lname"
+               #lname="ngModel">
+        <div [hidden]="lname.valid || lname.pristine"
+             class="alert alert-danger">
+          Last name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email"
+               [(ngModel)]="model.email" name="email"
+               required
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          Email is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="registerpassword"
+               [(ngModel)]="model.password" name="password"
+               required
+               #password="ngModel">
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          password is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" class="form-control" id="confirm_password"
+               [(ngModel)]="model.confirm_password" name="confirm_password">
+        <div *ngIf="passwords_dont_match"
+             class="alert alert-danger">
+          The passwords entered do not match
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Select Account Type</label>
+        <select class="form-control" id="registertype"
+                required
+                [(ngModel)]="model.userType" name="type"
+                #type="ngModel">
+          <option *ngFor="let type of clientType" [value]="type">{{type}}</option>
+        </select>
+        <div [hidden]="type.valid || type.pristine" class="alert alert-danger">
+          Account type is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Sign Up Here</button>
+      <button type="button" class="btn btn-default" (click)="reset(); heroForm.reset()">Reset Fields</button>
+      <i>with</i> reset
+
+      <div>
+      </div>
+      <!-- - -->
+    </form>
+  </div>
+    </div>
+  </div>
+
+<style>
+  .no-style .ng-valid {
+    border-left: 1px  solid #CCC
+  }
+
+  .no-style .ng-invalid {
+    border-left: 1px  solid #CCC
+  }
+</style>
+</div>

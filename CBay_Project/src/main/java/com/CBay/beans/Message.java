@@ -38,15 +38,15 @@ public class Message {
 	
 	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="TransactionID")
-	private Integer Transaction;
+	private Integer TransactionID;
 	
 	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SenderID")
-	private Integer Sender;
+	private Integer SenderID;
 	
 	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ResponderID")
-	private Integer Responder;
+	private Integer ResponderID;
 	
 	@Column(name="MessageContent")
 	private String MessageContent;
@@ -63,9 +63,9 @@ public class Message {
 		super();
 		this.id = id;
 		ThreadID = threadID;
-		Transaction = transaction;
-		Sender = sender;
-		Responder = responder;
+		TransactionID = transaction;
+		SenderID = sender;
+		ResponderID = responder;
 		MessageContent = messageContent;
 		Subject = subject;
 		MessageTimeStamp = messageTimeStamp;
@@ -74,9 +74,9 @@ public class Message {
 	public Message(Integer threadID, Integer transaction, Integer sender, Integer responder, String messageContent, String subject) {
 		super();
 		ThreadID = threadID;
-		Transaction = transaction;
-		Sender = sender;
-		Responder = responder;
+		TransactionID = transaction;
+		SenderID = sender;
+		ResponderID = responder;
 		MessageContent = messageContent;
 		Subject = subject;
 	}
@@ -102,27 +102,27 @@ public class Message {
 	}
 
 	public Integer getTransaction() {
-		return Transaction;
+		return TransactionID;
 	}
 
 	public void setTransaction(Integer transaction) {
-		Transaction = transaction;
+		TransactionID = transaction;
 	}
 
 	public Integer getSender() {
-		return Sender;
+		return SenderID;
 	}
 
 	public void setSender(Integer sender) {
-		Sender = sender;
+		SenderID = sender;
 	}
 
 	public Integer getResponder() {
-		return Responder;
+		return ResponderID;
 	}
 
 	public void setResponder(Integer responder) {
-		Responder = responder;
+		ResponderID = responder;
 	}
 
 	public String getMessageContent() {
@@ -147,6 +147,13 @@ public class Message {
 
 	public void setMessageTimeStamp(Calendar messageTimeStamp) {
 		MessageTimeStamp = messageTimeStamp;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", ThreadID=" + ThreadID + ", Transaction=" + TransactionID + ", Sender=" + SenderID
+				+ ", Responder=" + ResponderID + ", MessageContent=" + MessageContent + ", Subject=" + Subject
+				+ ", MessageTimeStamp=" + MessageTimeStamp + "]";
 	}
 
 	

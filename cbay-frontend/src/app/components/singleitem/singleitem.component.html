@@ -1,10 +1,11 @@
-<div class="col-md-12">
-    <h3>Single Item</h3>
-</div>
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="itemModel.itemid">
     <app-entity-display [anItem]="itemModel"></app-entity-display>
+    <div *ngIf="isBuyer">
+        <input [(ngModel)]="this.itemQuantity" style="display: inline-block" type="number"><button type="button" (click)='add_to_cart()'>ADD TO CART</button>
+    </div>
 </div>
+<hr>
 <div class="col-md-12">
-    <h3>for reviews</h3>
+    <app-reviews [canReview]="hasBought" [reviewer]="verifyUsername" [itemModel]="passItem"></app-reviews>
 </div>
 

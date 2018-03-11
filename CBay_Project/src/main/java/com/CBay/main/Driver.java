@@ -5,8 +5,10 @@ import java.io.IOException;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
+import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.service.ItemService;
+import com.CBay.service.OrderService;
 import com.CBay.service.UserService;
 
 public class Driver {
@@ -112,11 +114,53 @@ public class Driver {
 		System.out.println(UserService.getAllMods());
 		System.out.println(UserService.getAllUser());
 		
-		
+		System.out.println(UserService.InsertSeller("Robbert", "Rob", "RRob", "RRob", "Robbert@rob.com"));
+ 		System.out.println(UserService.checkApproval(10042));
+ 		UserService.approveAccount(10042);
+		System.out.println(UserService.checkApproval(10042));
+
 	*/
+		
+		/*System.out.println(UserService.InsertSeller("John", "Doe", "JDoe", "JDoe", "JDoe@doe.com"));
+		System.out.println(UserService.InsertSeller("Bobbert", "Bob", "BBobbert", "BBobbert", "Bobbert@bob.com"));
+		System.out.println(UserService.InsertBuyer("Robbert", "Rob", "RRob", "RRob", "Robbert@rob.com"));
+
+		ItemService.createItem(10000, "Tv", "Samsung Tv", 200, 10);
+		ItemService.createItem(10001, "LapTop", "Windows 98", 2000, 14);
+		
 		
 		
 
+ 		System.out.println(UserService.checkApproval(10000));
+ 		System.out.println(UserService.checkApproval(10001));
+ 		
+ 		System.out.println(OrderService.createTransaction(20000, 10002, 10001, 3));
+ 		
+ 		
+		for(Transactions tran : OrderService.getAllTransactionsBySeller(10000)) {
+			
+			System.out.println(tran.getId());
+		}
+		
+ 		 */
+ 		
+ 
+ 		
+ 		//OrderService.updateTransactionCheckedOut(30002);
+ 		
+ 		//System.out.println(ItemService.getItemById(20000).getQuantity());
+
+ 		//System.out.println(UserService.InsertSeller("John", "Doe", "JDoe2", "JDoe2", "JDoe2@doe.com"));
+
+ 		//System.out.println(UserService.InsertMod("Ross", "Riss", "RissRoss", "RissRoss", "Riss@Ross.com"));
+
+		//ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
+
+
+		for(Item item : ItemService.getItemBySearch("lap")) {
+			
+			System.out.println(item.getId());
+		}
 		
 		
 		System.exit(0);

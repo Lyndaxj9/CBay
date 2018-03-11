@@ -1,3 +1,28 @@
-<p>
-  message works!
-</p>
+<h1>Messaging</h1>
+<div>
+    <h4>Concerning Transaction #{{messageModel.transid}}</h4>
+</div>
+<div *ngFor="let msg of messages">
+    <span name="from"><strong>From:</strong> {{msg["sender"]}}</span> ->
+    <span name="to"><strong>To:</strong> {{msg["responder"]}}</span>
+    <br>
+    <span><strong>Subject:</strong> {{msg["subject"]}}</span>
+    <br>
+    <span><strong>Timestamp:</strong> {{msg["messageTimeStamp"]}}</span>
+    <br>
+    <span><strong>Message: </strong>{{msg["messageContent"]}}</span>
+    <hr>
+</div>
+<div>
+    <div>
+        <input [(ngModel)]="generalmsg" name="message">
+        <button type="button" (click)="onSend()" name="sendMsgBtn">SEND</button>
+    </div>
+    <div *ngIf="aMod">
+        <input [(ngModel)]="modtoadminmsg" name="message">
+        <select [(ngModel)]="adminSelect" name="admins">
+            <option *ngFor="let a of admins" [ngValue]="a.id">{{a.userName}}</option>
+        </select>
+        <button type="submit" name="escalateMsgBtn" (click)="escalate()">ESCALATE</button>
+    </div>
+</div>

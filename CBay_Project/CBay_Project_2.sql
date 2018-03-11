@@ -200,7 +200,10 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from IMAGE;
+delete from CLIENT WHERE UserId = 10124;
+delete from CLIENT WHERE UserId = 10122;
+
+
 
 select * from CLIENT;
 select * from THREADS;
@@ -208,6 +211,8 @@ select * from ITEM;
 select * from IMAGE;
 select * from ITEMRATING;
 select * from SELLERRATING;
+select * from TRANSACTIONS;
+
 
 
 ALTER TABLE CLIENT
@@ -216,9 +221,21 @@ MODIFY RatingAvg NUMBER(*,2);
 ALTER TABLE CLIENT
 MODIFY Description VARCHAR2(1000);
 
---DELETE FROM ITEM;
+ALTER TABLE CLIENT
+ADD Approval VARCHAR2(20);
+
+ALTER TABLE TRANSACTIONS
+ADD Quantity NUMBER(4);
+
+--ALTER TABLE ITEM
+--DROP COLUMN QUANTITY;
+DELETE FROM CLIENT;
+
+ALTER TABLE ITEM
+MODIFY Price NUMBER(9,2);
 
 --Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 
+Select * FROM TRANSACTIONS SellerID = 1000 AND Status != 'In-Cart';
 
 --select USER_ID_SEQ.nextval from dual;

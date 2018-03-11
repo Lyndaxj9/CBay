@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { appRoutes } from './routing';
 // Components
@@ -16,6 +17,17 @@ import { LogintempComponent } from './components/logintemp/logintemp.component';
 import { RegistertempComponent } from './components/registertemp/registertemp.component';
 import { HomeComponent } from './components/home/home.component';
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
+import { MessagelistComponent } from './components/messagelist/messagelist.component';
+import { AdditemComponent } from './components/additem/additem.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { UsersComponent } from './components/users/users.component';
+import { ItemsComponent } from './components/items/items.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { CarttempComponent } from './components/carttemp/carttemp.component';
+import { OrderComponent } from './components/order/order.component';
+import { ItemsoldComponent } from './components/itemsold/itemsold.component';
+import { SellersComponent } from './components/sellers/sellers.component';
+import { ModeratorsComponent } from './components/moderators/moderators.component';
 
 
 @NgModule({
@@ -29,12 +41,25 @@ import { SingleitemComponent } from './components/singleitem/singleitem.componen
     LogintempComponent,
     RegistertempComponent,
     HomeComponent,
-    SingleitemComponent
+    SingleitemComponent,
+    MessagelistComponent,
+    AdditemComponent,
+    TransactionsComponent,
+    UsersComponent,
+    ItemsComponent,
+    ReviewsComponent,
+    CarttempComponent,
+    OrderComponent,
+    ItemsoldComponent,
+    SellersComponent,
+    ModeratorsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    StarRatingModule.forRoot(),
+      ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

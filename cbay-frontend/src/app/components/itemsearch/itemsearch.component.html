@@ -1,3 +1,42 @@
-<p>
-  itemsearch works!
-</p>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <!-- represents the items -->
+    <div class="col-md-12" *ngIf="is_item_display">
+      <div style="text-align: center; padding-bottom:30px; padding-top:30px;">
+        <h3><u>Items</u></h3>
+        <p>(select an item below to see a more detailed description)</p>
+        <p *ngIf="list"> total number of items : {{list.length}} </p>
+      </div>
+      <div>
+        <div class="col-md-4" *ngFor="let l of temp_list;">
+          <div class="gallery" (click)="view_item(l.id)">
+            <img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg" alt="Mountain View" style="width: 300px; height:300px;">
+            <div class="desc" *ngIf="l.itemName">Item name: {{l.itemName}}</div>
+            <div class="desc" *ngIf="l.description">Item description: {{l.description}}</div>
+            <div class="desc" *ngIf="l.price">Item Price: {{l.price}}</div>
+          </div>
+        </div>
+      </div>
+      <ng-template #content>
+        <h4 style="text-align: center;">There is nothing to display.</h4>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="row">
+    <div style="text-align: center; padding-bottom:50px; padding-top:50px;">
+      <div class="col-md-4">
+        <p class="btn btn-warning" (click)="previous()"><i class="fa fa-angle-left"></i> Previous</p>
+      </div>
+      <div class="col-md-4">
+        <h4>{{this.current_page}}/ {{this.last_page}}</h4>
+      </div>
+      <div class="col-md-4">
+        <p class="btn btn-warning" (click)="next()"><i class="fa fa-angle-left"></i> Next</p>
+      </div>
+    </div>
+  </div>
+</footer>

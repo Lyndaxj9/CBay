@@ -1,4 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Url } from './url';
 
 export class Client {
     userid: number;
@@ -10,8 +12,11 @@ export class Client {
     email: string;
     rating: number;
     description: string;
+    approval: string;
     user: Object;
-    userUrl = `http://localhost:8089/CBay_Project/rest/user/get`;
+    url = new Url();
+    userUrl = this.url.get_urlbase() + '/user';
+    // userUrl = `http://localhost:8089/CBay_Project/rest/user/get`;
     // userUrl = `http://54.213.131.230:8089/CBay/rest/user/get`;
 
     constructor (public http: HttpClient) { }
@@ -24,8 +29,15 @@ export class Client {
         this.lastname = userInfo.lastName;
         this.email = userInfo.email;
         this.password = userInfo.PW;
-        this.description = userInfo.description;
+        if (userInfo.description === undefined) {
+            console.log('not exist');
+            this.description = '';
+        } else {
+            console.log('exist');
+            this.description = userInfo.description;
+        }
         this.rating = userInfo.ratingavg;
+        this.approval = userInfo.approval;
     }
 
     get_userName() {
@@ -38,8 +50,50 @@ export class Client {
                 'Content-Type':  'application/json'
             })
         };
-        return this.http.get(this.userUrl + '/' + id, httpOptions)
+        console.log('url get: ' + this.userUrl + '/get/' + id);
+        return this.http.get(this.userUrl + '/get/' + id, httpOptions)
             .toPromise();
+    }
+
+    get_all_admins() {
+        const req = this.http.get(this.userUrl + '/get/all/admin', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
+
+    get_all_mods() {
+        const req = this.http.get(this.userUrl + '/get/mods', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+        return req;
+    }
+
+    get_all_users() {
+      const req = this.http.get(this.userUrl + '/get/all', {headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })});
+      return req;
+    }
+
+    update() {
+        const req = this.http.post(this.userUrl + '/edit', {
+            id: this.userid,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            username: this.username,
+            pw: this.password,
+            description: this.description,
+            email: this.email
+        }, {responseType: 'text'});
+
+        return req;
+    }
+
+    approve_account() {
+        const req = this.http.post(this.userUrl + '/approve/' + this.userid, { }, {responseType: 'text'});
+
+        return req;
     }
 }
 

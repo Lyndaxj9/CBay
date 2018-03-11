@@ -16,36 +16,49 @@ import com.CBay.dao.ItemDao;
 import com.CBay.dao.UserDao;
 
 public class UserService {
+	
 
-	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email) {
+	public static Integer InsertBuyer(String FirstName, String LastName, String Username, String PW, String Email)  {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email);
-		dao.insertUser(user);
-		return user.getId();
-		
+		User user = new User(FirstName, LastName, "Buyer", Username, PW, Email, "N/A");
+			dao.insertUser(user);
+			if (dao.getUserById(user.getId()) != null)
+				return user.getId();	
+			else 
+				return null;
+
 	}
 	
 	public static Integer InsertSeller(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Seller", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Seller", Username, PW, Email, "Pending");
 		dao.insertUser(user);
-		return user.getId();
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	
 	public static Integer InsertMod(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Moderator", Username, PW, Email, "Pending");
 		dao.insertUser(user);
-		return user.getId();
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	
 	public static Integer InsertAdmin(String FirstName, String LastName, String Username, String PW, String Email) {
 		UserDao dao = new UserDao();
-		User user = new User(FirstName, LastName, "Admin", Username, PW, Email);
+		User user = new User(FirstName, LastName, "Admin", Username, PW, Email, "N/A");
 		dao.insertUser(user);
-		return user.getId();
+		if (dao.getUserById(user.getId()) != null)
+			return user.getId();	
+		else 
+			return null;
 
 	}
 	
@@ -152,34 +165,42 @@ public class UserService {
 		return comments;
 	}
 	
-	
-	public static List<Integer> getSellerAverageRating(Integer UserId){
-			
-			UserDao dao = new UserDao();
-			List<Integer> avg = new ArrayList<Integer>();
-			List<SellerRating> ratings = dao.getSellerRating(UserId);
-			
-			for (SellerRating r : ratings) {
+	// Don't touch this method
+		private static List<Integer> getSellerAverageRatingForCalculation(Integer UserId){
 				
-				avg.add(r.getNumRating());
+				UserDao dao = new UserDao();
+				List<Integer> avg = new ArrayList<Integer>();
+				List<SellerRating> ratings = dao.getSellerRating(UserId);
+				
+				for (SellerRating r : ratings) {
+					
+					avg.add(r.getNumRating());
+				}
+				
+				return avg;
+			}
+		
+		public static Double getSellerAverageRating(Integer UserId){
+				
+			UserDao dao = new UserDao();
+			return dao.getUserById(UserId).getRatingAvg();
+		}
+		
+			
+		private static Double calculateAvg(Integer UserId){
+			Double sum = 0.0;
+			List<Integer> average = getSellerAverageRatingForCalculation(UserId);
+			
+			for (Integer avg : average) {
+				
+				sum += avg;
 			}
 			
-			return avg;
-		}
-	
-	
-	public static Double calculateAvg(Integer UserId){
-		Double sum = 0.0;
-		List<Integer> average = getSellerAverageRating(UserId);
-		
-		for (Integer avg : average) {
+			return sum/average.size();
 			
-			sum += avg;
 		}
-		
-		return sum/average.size();
-		
-	}
+	
+	
 	
 	
 	public static void updateSellerAvg(Integer UserId) {
@@ -226,8 +247,6 @@ public class UserService {
 			return Sellers;
 		}
 	
-	
-	
 	public static List<User> getAllMods() {
 		
 		List<User> Mods = new ArrayList<User>();
@@ -241,6 +260,40 @@ public class UserService {
 		return Mods;
 	}
 	
+	
+	public static List<User> getAllAdmins() {
+		
+		List<User> Admin = new ArrayList<User>();
+		
+		for(User user : getAllUser()) {
+			
+			if(user.getUserType().equals("Admin")) {
+				Admin.add(user);
+			}
+		}
+		return Admin;
+	}
+	
+	
+	public static void approveAccount(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		dao.approveSellerModAccounts(UserId);
+	}
+	
+	
+	public static boolean checkApproval(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		return dao.checkSellerModApproval(UserId);
+	}
+	
+	
+	public static void deleteUser(Integer UserId) {
+		
+		UserDao dao = new UserDao();
+		dao.removeUser(UserId);
+	}
 	
 	
 	

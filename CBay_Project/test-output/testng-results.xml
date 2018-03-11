@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="14" passed="14" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2018-03-11T21:25:35Z" name="Default suite" finished-at="2018-03-11T21:27:48Z" duration-ms="133243">
+    <groups>
+      <group name="Included">
+        <method signature="CBayDriver.AddItemToCart()[pri:8, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="AddItemToCart" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.CheckOut()[pri:11, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="CheckOut" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ClickItem()[pri:6, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ClickItem" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmCartLanding()[pri:10, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmCartLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmHomePage()[pri:0, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmHomePage" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmItemLanding()[pri:7, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmItemLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmOrderLanding()[pri:12, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmOrderLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmProfileLanding()[pri:2, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmProfileLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmSearchLanding()[pri:5, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmSearchLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmSignOutLanding()[pri:14, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmSignOutLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.EditProfile()[pri:3, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="EditProfile" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.SearchItem()[pri:4, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="SearchItem" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.SignOut()[pri:13, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="SignOut" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.logInToCBay()[pri:1, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="logInToCBay" class="com.TestNG.test.CBayDriver"/>
+      </group> <!-- Included -->
+      <group name="Excluded">
+        <method signature="CBayDriver.AddItemToCart()[pri:8, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="AddItemToCart" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.CheckOut()[pri:11, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="CheckOut" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ClickItem()[pri:6, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ClickItem" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmCartLanding()[pri:10, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmCartLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmHomePage()[pri:0, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmHomePage" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmItemLanding()[pri:7, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmItemLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmOrderLanding()[pri:12, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmOrderLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmProfileLanding()[pri:2, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmProfileLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmSearchLanding()[pri:5, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmSearchLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.ConfirmSignOutLanding()[pri:14, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="ConfirmSignOutLanding" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.EditProfile()[pri:3, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="EditProfile" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.SearchItem()[pri:4, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="SearchItem" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.SignOut()[pri:13, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="SignOut" class="com.TestNG.test.CBayDriver"/>
+        <method signature="CBayDriver.logInToCBay()[pri:1, instance:com.TestNG.test.CBayDriver@1bb266b3]" name="logInToCBay" class="com.TestNG.test.CBayDriver"/>
+      </group> <!-- Excluded -->
+    </groups>
+    <test started-at="2018-03-11T21:25:35Z" name="Default test" finished-at="2018-03-11T21:27:48Z" duration-ms="133243">
+      <class name="com.TestNG.test.CBayDriver">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:25:35Z" name="setup" finished-at="2018-03-11T21:26:35Z" duration-ms="59922" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="ConfirmHomePage()[pri:0, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:35Z" name="ConfirmHomePage" finished-at="2018-03-11T21:26:36Z" duration-ms="1043" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmHomePage -->
+        <test-method signature="logInToCBay()[pri:1, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:36Z" name="logInToCBay" finished-at="2018-03-11T21:26:53Z" duration-ms="17696" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logInToCBay -->
+        <test-method signature="ConfirmProfileLanding()[pri:2, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:53Z" name="ConfirmProfileLanding" finished-at="2018-03-11T21:26:53Z" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmProfileLanding -->
+        <test-method signature="EditProfile()[pri:3, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:53Z" name="EditProfile" finished-at="2018-03-11T21:26:56Z" duration-ms="2473" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EditProfile -->
+        <test-method signature="SearchItem()[pri:4, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:56Z" name="SearchItem" finished-at="2018-03-11T21:26:58Z" duration-ms="2405" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SearchItem -->
+        <test-method signature="ConfirmSearchLanding()[pri:5, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:26:58Z" name="ConfirmSearchLanding" finished-at="2018-03-11T21:27:25Z" duration-ms="26466" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmSearchLanding -->
+        <test-method signature="ClickItem()[pri:6, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:25Z" name="ClickItem" finished-at="2018-03-11T21:27:29Z" duration-ms="3896" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClickItem -->
+        <test-method signature="ConfirmItemLanding()[pri:7, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:29Z" name="ConfirmItemLanding" finished-at="2018-03-11T21:27:29Z" duration-ms="161" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmItemLanding -->
+        <test-method signature="AddItemToCart()[pri:8, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:29Z" name="AddItemToCart" finished-at="2018-03-11T21:27:39Z" duration-ms="10307" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddItemToCart -->
+        <test-method signature="ConfirmCartLanding()[pri:10, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:39Z" name="ConfirmCartLanding" finished-at="2018-03-11T21:27:39Z" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmCartLanding -->
+        <test-method signature="CheckOut()[pri:11, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:39Z" name="CheckOut" finished-at="2018-03-11T21:27:43Z" duration-ms="4135" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckOut -->
+        <test-method signature="ConfirmOrderLanding()[pri:12, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:43Z" name="ConfirmOrderLanding" finished-at="2018-03-11T21:27:43Z" duration-ms="26" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmOrderLanding -->
+        <test-method signature="SignOut()[pri:13, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:43Z" name="SignOut" finished-at="2018-03-11T21:27:44Z" duration-ms="561" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SignOut -->
+        <test-method signature="ConfirmSignOutLanding()[pri:14, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:44Z" name="ConfirmSignOutLanding" finished-at="2018-03-11T21:27:44Z" duration-ms="50" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ConfirmSignOutLanding -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.TestNG.test.CBayDriver@1bb266b3]" started-at="2018-03-11T21:27:44Z" name="teardown" finished-at="2018-03-11T21:27:48Z" duration-ms="3940" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.TestNG.test.CBayDriver -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

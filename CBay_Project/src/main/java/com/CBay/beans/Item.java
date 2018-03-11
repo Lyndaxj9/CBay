@@ -38,54 +38,52 @@ public class Item {
 	private String Description;
 	 
 	@Column(name="Price")
-	private Integer Price;
+	private Double Price;
 	
-	// map this to the Image Table instead
-	/*@OneToMany(mappedBy="ImageID", fetch=FetchType.EAGER)
-	private Set<Image> Image;*/
-	
+	@Column(name="Quantity")
+	private Integer Quantity;
 	
 	@Column(name="RatingAvg")
 	private Double RatingAvg;
 	
-	// map this to the Rating Table instead
-	/*@OneToMany(mappedBy="TextRating", fetch=FetchType.EAGER)
-	private Set<Rating> RatingText;*/
+	
+	
 
 	
-	public Item(Integer id, Integer user, String name, String description, Set<Image> image, Integer price, Double ratingAvg) {
+	public Item(Integer id, Integer user, String name, String description, Double price, Integer quantity, Double ratingAvg) {
 		super();
 		this.id = id;
 		this.UserId = user;
 		ItemName = name;
 		Description = description;
-		//this.image = image;
 		Price = price;
 		RatingAvg = ratingAvg;
+		Quantity = quantity;
 	}
 
-	public Item(Integer user, String name, String description, Integer price, Double ratingAvg) {
+	public Item(Integer user, String name, String description, Double price, Integer quantity, Double ratingAvg) {
+		super();
+		this.UserId = user;
+		ItemName = name;
+		Description = description;
+		Price = price;
+		RatingAvg = ratingAvg;
+		Quantity = quantity;
+	}
+
+	
+	public Item(Integer user, String name, String description, Double price) {
 		super();
 		this.UserId = user;
 		ItemName = name;
 		Description = description;
 		//this.image = image;
 		Price = price;
-		RatingAvg = ratingAvg;
-	}
-
-	public Item(Integer user, String name, String description, Integer price) {
-		super();
-		this.UserId = user;
-		ItemName = name;
-		Description = description;
-		//this.image = image;
-		Price = price;
 	}
 	
 	
 
-	public Item(String name, String description, Integer price) {
+	public Item(String name, String description, Double price) {
 		super();
 		ItemName = name;
 		Description = description;
@@ -93,7 +91,7 @@ public class Item {
 	}
 	
 
-	public Item(Integer id, String itemName, Integer price, String description) {
+	public Item(Integer id, String itemName, Double price, String description) {
 		super();
 		this.id = id;
 		ItemName = itemName;
@@ -137,11 +135,11 @@ public class Item {
 		Description = description;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return Price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		Price = price;
 	}
 
@@ -160,6 +158,13 @@ public class Item {
 	}
 
 	
+	public Integer getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		Quantity = quantity;
+	}
 
 	
 	

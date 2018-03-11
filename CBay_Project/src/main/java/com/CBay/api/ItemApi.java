@@ -1,6 +1,5 @@
 package com.CBay.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.JsonObject;
@@ -12,9 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.CBay.beans.Item;
+import com.CBay.beans.ItemRating;
 import com.CBay.service.ItemService;
 
 //-- represents the url to go to to get, 
@@ -32,7 +31,53 @@ public class ItemApi {
 	@Path("/get/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Item> getAllItems() {
-		return new ArrayList<Item>();
+		return ItemService.getAllItems();
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/post/rating")
+	public Integer insertItemRating(JsonObject json) {
+		Integer id = null;
+		id = ItemService.insertItemRating(json.getInt("id"), json.getInt("numrating"), json.getString("comment"));
+		ItemService.updateItemAvg(json.getInt("id"));
+		return id;
+	}
+	
+	@GET
+	@Path("/search/{word}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Item> getAllItems(@PathParam("word") String word) {
+		return ItemService.getItemBySearch(word);
+	}
+
+	// -- this will return all the item's comments.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
+	@GET
+	@Path("/get/ratings/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ItemRating> getAllItemRatings(@PathParam("id") int id) {
+		return ItemService.getItemRatings(id);
+	}
+	
+	// -- this will return all the item's comments.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
+	@GET
+	@Path("/get/comment/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> getAllItemComments(@PathParam("id") int id) {
+		return ItemService.getItemComments(id);
+	}
+
+	@GET
+	@Path("/get/ratingavg/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Double getItemAverageRating(@PathParam("id") int id) {
+		ItemService.updateItemAvg(id);
+		return ItemService.getItemAverageRating(id);
 	}
 
 	// -- get one item from the database via id.
@@ -51,8 +96,11 @@ public class ItemApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/post")
-	public String insertItem(Item item) {
-		return "success";
+	public Integer insertItem(JsonObject json) {
+		Integer id = null;
+		id = ItemService.createItem(json.getInt("sellerId"), json.getString("itemName"), json.getString("description"),
+				Double.parseDouble(json.getString("price")), json.getInt("quantity"));
+		return id;
 	}
 
 	// -- insert and if successful return success
@@ -62,9 +110,8 @@ public class ItemApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/update")
 	public String updateItem(JsonObject json) {
-		System.out.println(json);
-		
-		ItemService.editItem(json.getInt("id"), json.getString("itemName"), json.getInt("price"), json.getString("description"));
+		ItemService.editItem(json.getInt("id"), json.getString("itemName"), Double.parseDouble(json.getString("price")),
+				json.getString("description"));
 		return "success";
 	}
 

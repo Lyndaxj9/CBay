@@ -117,6 +117,14 @@ public class Order {
 		OrderTimeStamp = orderTimeStamp;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", buyerId=" + buyerId + ", Status=" + Status + ", TotalItems=" + TotalItems
+				+ ", OrderTimeStamp=" + OrderTimeStamp + "]";
+	}
+
 	
 	
 }

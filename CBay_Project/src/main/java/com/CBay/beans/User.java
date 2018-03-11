@@ -1,15 +1,12 @@
 package com.CBay.beans;
 
 
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -46,6 +43,9 @@ public class User {
 	
 	@Column(name="Description")
 	private String Description;
+	
+	@Column(name="Approval")
+	private String Approval;
 
 	
 	public User(Integer id, String firstName, String lastName, String type, String userName, String password,
@@ -79,7 +79,7 @@ public class User {
 
 
 	public User(String firstName, String lastName, String type, String userName, String password, String email,
-			Double rating, String description) {
+			Double rating, String description, String approval) {
 		super();
 		FirstName = firstName;
 		LastName = lastName;
@@ -89,11 +89,12 @@ public class User {
 		Email = email;
 		RatingAvg = rating;
 		Description = description;
+		Approval = approval;
 	}
 
 
 
-	public User(String firstName, String lastName, String type, String userName, String password, String email) {
+	public User(String firstName, String lastName, String type, String userName, String password, String email, String approval) {
 		super();
 		FirstName = firstName;
 		LastName = lastName;
@@ -101,6 +102,7 @@ public class User {
 		UserName = userName;
 		PW = password;
 		Email = email;
+		Approval = approval;
 	
 	}
 
@@ -114,7 +116,7 @@ public class User {
 		return id;
 	}
 
-	public void setID(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -197,6 +199,27 @@ public class User {
 
 	public void setRatingAvg(Double avg) {
 		RatingAvg = avg;
+	}
+
+
+
+	public String getApproval() {
+		return Approval;
+	}
+
+
+
+	public void setApproval(String approval) {
+		Approval = approval;
+		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserType=" + UserType
+				+ ", UserName=" + UserName + ", PW=" + PW + ", Email=" + Email + ", RatingAvg=" + RatingAvg
+				+ ", Description=" + Description + "]";
 	}
 
 	
