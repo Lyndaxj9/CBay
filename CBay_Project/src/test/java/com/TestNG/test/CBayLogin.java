@@ -24,6 +24,8 @@ WebElement type;
 
 @FindBy(xpath="html/body/app-root/div[3]/app-home/div[1]/app-logintemp/div/div/div/div/form/button[1]")
 WebElement login;
+
+
 	
 	public CBayLogin(WebDriver driver){
 		PageFactory.initElements(driver, this);
@@ -51,4 +53,15 @@ WebElement login;
 		inputType(Type);
 		submitLoginCredentials();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
