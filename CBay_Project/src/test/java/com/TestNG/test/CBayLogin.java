@@ -2,33 +2,47 @@ package com.TestNG.test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CBayLogin {
 private WebDriver driver;
 	
-	private By username = By.xpath("//input[@id='loginusername']");
-	private By password = By.xpath("//input[@id='loginpassword']");
-	private By type = By.xpath("//select[@id='logintype']");
-	private By login = By.linkText("Login Here");
+@FindBy(xpath="//input[@name='creditnumber']")
+WebElement CreditCardNum;
+
+
+@FindBy(xpath="//input[@id='loginusername']")
+WebElement username;
+
+@FindBy(xpath="//input[@id='loginpassword']")
+WebElement password;
+
+@FindBy(xpath="//select[@id='logintype']")
+WebElement type;
+
+@FindBy(xpath="html/body/app-root/div[3]/app-home/div[1]/app-logintemp/div/div/div/div/form/button[1]")
+WebElement login;
 	
 	public CBayLogin(WebDriver driver){
-		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 	
 	public void inputUsername(String username){
-		driver.findElement(this.username).sendKeys(username);
+		this.username.sendKeys(username);
 	}
 	
 	public void inputpassword(String password){
-		driver.findElement(this.password).sendKeys(password);
+		this.password.sendKeys(password);
 	}
 	
-	public void inputType(String password){
-		driver.findElement(this.password).sendKeys(password);
+	public void inputType(String type){
+		this.type.sendKeys(type);
 	}
 	
 	public void submitLoginCredentials(){
-		driver.findElement(this.login).click();
+		this.login.click();
 	}
 	
 	public void driverLogIn(String username, String password, String Type){
