@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FormGroup, FormControl} from "@angular/forms";
+import { Item } from '../../shared/models/item';
 
 @Component({
     selector: 'app-reviews',
@@ -18,6 +19,7 @@ export class ReviewsComponent implements OnInit {
 
     @Input() canReview: boolean;
     @Input() reviewer: string;
+    @Input() itemModel: Item;
     reviewTextModel: string;
     enteredText = true;
     form = new FormGroup({
@@ -72,6 +74,16 @@ export class ReviewsComponent implements OnInit {
         if (this.reviewTextModel !== '' && this.reviewTextModel != undefined) {
             console.log(this.reviewTextModel);   
             console.log(this.form.value['myRatingControl']);
+            this.itemModel.ratingavg = parseInt(this.form.value['myRatingControl'], 10);
+            this.itemModel.ratingtext = this.reviewTextModel;
+            this.itemModel.post_rating().subscribe(
+                res => {
+                    console.log(res);
+                },
+                err => {
+                    console.log(err);
+                }
+            )
         } else {
             this.enteredText = false;
         }
