@@ -157,7 +157,7 @@ public class Driver {
 		//ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
 
 
-		for(Item item : ItemService.getItemBySearch("T")) {
+		for(Item item : ItemService.getItemBySearch("lap")) {
 			
 			System.out.println(item.getId());
 		}
