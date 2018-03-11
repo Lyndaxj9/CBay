@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
+import {Client} from '../../shared/models/client';
 import {Item} from '../../shared/models/item';
 import {Url} from '../../shared/models/url';
 
@@ -79,6 +80,21 @@ export class SellersComponent implements OnInit {
       this.current_page = this.current_page - 1;
     }
   }
+    
+    approve_seller(sid) {
+        console.log('approve: ' + sid);
+        let userModel = new Client(this.http);
+        userModel.userid = sid;
+        userModel.approve_account().subscribe(
+            res => {
+                console.log(res);
+                window.location.reload();
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 
 }
 
