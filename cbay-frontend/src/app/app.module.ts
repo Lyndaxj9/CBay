@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { appRoutes } from './routing';
 // Components
@@ -51,6 +52,7 @@ import { OrderComponent } from './components/order/order.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    StarRatingModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

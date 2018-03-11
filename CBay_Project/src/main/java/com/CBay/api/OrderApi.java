@@ -83,7 +83,7 @@ public class OrderApi {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/update/removefromchart/{id}")
+	@Path("/update/removefromcart/{id}")
 	public String RemoveFromCart(@PathParam("id") Integer TransactionId) {
 		OrderService.removeTransaction(TransactionId);
 		return "success";

@@ -16,6 +16,7 @@ export class SingleitemComponent implements OnInit {
     orderModel: Order;
     isBuyer: boolean;
     hasBought: boolean;
+    verifyStatus = 'Checked-Out';
     private sub: any;
 
     constructor(public http: HttpClient, private route: ActivatedRoute) { }
@@ -38,7 +39,8 @@ export class SingleitemComponent implements OnInit {
 
         this.isBuyer = sessionStorage.getItem('usertype') === 'buyer';
         this.itemQuantity = 1;
-
+        
+        this.hasBought = false;
         this.verifiedPurchaser();
     }
 
@@ -63,7 +65,23 @@ export class SingleitemComponent implements OnInit {
     }
 
     verifiedPurchaser() {
-        this.hasBought = true;
-        // check if logged in user has currently showing item id past in cart status
+        this.orderModel.buyerid = parseInt(sessionStorage.getItem('userid'), 10);
+        this.orderModel.get_checked_out().subscribe(
+            res => {
+                if (res != []) {
+                    for (let k of Object.keys(res)) {
+                        console.log(res[k]);
+                        if (res[k].itemId === this.itemId && res[k].status === this.verifyStatus) {
+                            console.log('can review');
+                            this.hasBought = true;
+                            break;
+                        }
+                    }
+                }
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 }

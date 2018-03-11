@@ -33,6 +33,12 @@ export class Order {
         })});
     }
 
+    get_checked_out() {
+        return this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'Checked-Out', {headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })});
+    }
+
     get_all_order() {
         return this.http.get(this.orderUrl + '/get/cart/' + this.buyerid + '/' + 'In-Cart', {headers: new HttpHeaders({
             'Content-Type': 'application/json'
