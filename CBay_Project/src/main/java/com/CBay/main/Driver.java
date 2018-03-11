@@ -134,7 +134,15 @@ public class Driver {
  		System.out.println(UserService.checkApproval(10000));
  		System.out.println(UserService.checkApproval(10001));
  		
- 		System.out.println(OrderService.createTransaction(20000, 10002, 10001, 3)); */
+ 		System.out.println(OrderService.createTransaction(20000, 10002, 10001, 3));
+ 		
+ 		
+		for(Transactions tran : OrderService.getAllTransactionsBySeller(10000)) {
+			
+			System.out.println(tran.getId());
+		}
+		
+ 		 */
  		
  
  		
@@ -149,9 +157,9 @@ public class Driver {
 		//ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
 
 
-		for(Transactions tran : OrderService.getAllTransactionsBySeller(10000)) {
+		for(Item item : ItemService.getItemBySearch("T")) {
 			
-			System.out.println(tran.getId());
+			System.out.println(item.getId());
 		}
 		
 		

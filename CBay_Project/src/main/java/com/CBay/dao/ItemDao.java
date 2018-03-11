@@ -282,5 +282,32 @@ public class ItemDao {
 		return null;
 
 	}
+	
+	public List<Item> getItemBySearch(String search) {
+
+		List<Item> item = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Item WHERE ItemName LIKE :Search";
+			Query query = session.createQuery(hql);
+			query.setParameter("Search", "%"+search+"%");
+			item = query.list();
+			return item;
+
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+
+	}
+
 
 }

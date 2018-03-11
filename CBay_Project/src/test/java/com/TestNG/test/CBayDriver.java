@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
+
 public class CBayDriver {
 	public static WebDriver driver;
 	public final String url = "http://localhost:4200/cbay/";
@@ -29,6 +30,13 @@ public class CBayDriver {
 	
 	@Test(priority = 0, groups={"Excluded","Included"})
 	public void confirmHomepage() {
-		AssertJUnit.assertEquals(driver.getTitle(), "CbayFrontend");
+		AssertJUnit.assertEquals(driver.getTitle(), "CBAY");
+	}
+	
+	@Test(dependsOnMethods = "confirmHomepage",groups={"Excluded","Included"})
+	public void logInToCBay() {
+		LoginPage = new CBayLogin(driver);
+		LoginPage.driverLogIn("JDoe", "JDoe", "seller");
+		AssertJUnit.assertEquals(driver.getTitle(), "CBAY");
 	}
 }
