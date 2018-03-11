@@ -161,6 +161,15 @@ public class UserApi {
 		UserService.updateSellerAvg(json.getInt("id"));
 		return id;
 	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/approve/{id}")
+	public String approveAccount(@PathParam("id") int id) {
+		UserService.approveAccount(id);
+		return "success";
+	}
 
 	// -- delete a particular user via id.
 	// -- if the user exist the return success
