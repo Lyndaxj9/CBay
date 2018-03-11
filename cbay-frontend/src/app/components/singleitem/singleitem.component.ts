@@ -44,7 +44,7 @@ export class SingleitemComponent implements OnInit {
 
         this.isBuyer = sessionStorage.getItem('usertype') === 'buyer';
         this.itemQuantity = 1;
-        
+
         this.hasBought = false;
         this.verifiedPurchaser();
     }
