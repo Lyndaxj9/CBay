@@ -14,6 +14,7 @@ import { Client } from '../../shared/models/client';
 export class SingleitemComponent implements OnInit {
     itemId: number;
     itemModel: Item;
+    passItem: Item;
     itemQuantity: number;
     orderModel: Order;
     isBuyer: boolean;
@@ -38,6 +39,7 @@ export class SingleitemComponent implements OnInit {
         this.itemModel.get(this.itemId).then(item_data => {
             this.itemModel.set_all_values(item_data);
             console.log('singleitem ngOnInit(): ' + this.itemModel);
+            this.passItem = this.itemModel;
         }).catch(error => {
             console.log(error);
         });

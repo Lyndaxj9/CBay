@@ -29,6 +29,10 @@ export class Item {
     }
 
     // TODO a get username by userid would be nice
+    
+    get_item_id() {
+        return this.itemid;
+    }
 
     get(id: number): Promise<any> {
         const httpOptions = {
@@ -78,7 +82,15 @@ export class Item {
 
         return req;
     }
-   /* update_quantity() {
+
+    get_ratings() {
+        const req = this.http.get(this.itemUrl + '/get/ratings/' + this.itemid, {headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })});
+
+        return req;
+    }
+    /* update_quantity() {
         const req = this.http.post(this.itemUrl + '/post', {
             itemid: this.itemid,
         }, {responseType: 'text'});

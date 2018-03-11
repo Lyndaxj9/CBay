@@ -28,11 +28,22 @@
                 <p>{{this.data.editAble[key]}}</p>
             </div>
         </div>
-        
+
         <div *ngIf="!nonEditableData()">
             <div *ngFor="let key of keys(this.data.nonEditable)">
                 <label>{{key}}</label>
-                <p>{{this.data.nonEditable[key]}}</p>
+                <br>
+                <div class="clearfix">
+                <div *ngIf="key === 'Product Rating'; else elseBlock" class="pull-left">
+                    <form [formGroup]="form">
+                        <star-rating-comp [starType]="'svg'" [speed]="'noticeable'" formControlName="myRatingControl" [disabled]=true></star-rating-comp>
+                    </form>
+                </div>
+                    </div>
+                <div>
+                    <ng-template #elseBlock>{{this.data.nonEditable[key]}}</ng-template>
+                </div>
+                
             </div>
         </div>
     </ng-template>

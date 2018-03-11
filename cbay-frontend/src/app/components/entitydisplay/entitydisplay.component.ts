@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterContentInit, Input } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {FormGroup, FormControl} from "@angular/forms";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../../shared/models/client';
 import { Item } from '../../shared/models/item';
@@ -23,6 +24,7 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
     public name: string;
     itemImage: any;
     public disableEdit = true;
+    form: FormGroup;
     public data = {
         id: 0,
         name: '',
@@ -48,8 +50,9 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
     }
 
     get_item() {
-        this.itemId = 20000;
-        console.log(this.itemId);
+        this.itemId = this.anItem.itemid;
+        console.log('get_item(): ' + this.itemId);
+        console.log(this.anItem);
         console.log('from input: ' + this.anItem.itemname);
 
         this.data.id = this.anItem.itemid;
@@ -73,6 +76,9 @@ export class EntityDisplayComponent implements OnInit, AfterContentInit {
             this.data['Seller'] = user_data['userName'];
             this.data.nonEditable['Price'] = '$' + this.anItem.price;
             this.data.nonEditable['Product Rating'] = this.anItem.ratingavg;
+            this.form = new FormGroup({
+                myRatingControl: new FormControl({value: this.anItem.ratingavg, disabled: true})
+            });
             // TODO sold out if quantity == 0 and don't display add to cart
             this.data.nonEditable['Quantity'] = this.anItem.quantity;
         }).catch(error => {

@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.CBay.beans.Item;
+import com.CBay.beans.ItemRating;
 import com.CBay.service.ItemService;
 
 //-- represents the url to go to to get, 
@@ -44,6 +45,16 @@ public class ItemApi {
 		return id;
 	}
 
+	// -- this will return all the item's comments.
+	// -- past in below for testing.
+	// -- http://34.217.96.20:8089/CBay/rest/item/get/all
+	@GET
+	@Path("/get/ratings/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ItemRating> getAllItemRatings(@PathParam("id") int id) {
+		return ItemService.getItemRatings(id);
+	}
+	
 	// -- this will return all the item's comments.
 	// -- past in below for testing.
 	// -- http://34.217.96.20:8089/CBay/rest/item/get/all

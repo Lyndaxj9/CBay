@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterContentInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl} from "@angular/forms";
+import { ActivatedRoute } from '@angular/router';
 import { Item } from '../../shared/models/item';
 
 @Component({
@@ -9,7 +11,8 @@ import { Item } from '../../shared/models/item';
 })
 export class ReviewsComponent implements OnInit {
 
-    list = ['', '', '', '', '', '', '', '', '' , ''];
+    list = [];
+    reviews: any;
     is_review_display: boolean;
     temp_list: any[];
     max_number_of_items_on_a_page = 6;
@@ -20,11 +23,14 @@ export class ReviewsComponent implements OnInit {
     @Input() canReview: boolean;
     @Input() reviewer: string;
     @Input() itemModel: Item;
+    itemid: number;
     reviewTextModel: string;
     enteredText = true;
     form = new FormGroup({
         myRatingControl: new FormControl('5')
     });
+
+    constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
     load_list_information() {
         console.log('get information');
@@ -40,7 +46,13 @@ export class ReviewsComponent implements OnInit {
 
     ngOnInit() {
         this.load_list_information();
-        // this.form.valid.myRatingControl
+        this.route.params
+            .subscribe(
+            params => {
+                this.itemid = +params['id']; // (+) converts string 'id' to number
+            });
+        this.get_reviews();
+        console.log(this.reviews);
     }
 
     apply_pagination(){
@@ -50,6 +62,8 @@ export class ReviewsComponent implements OnInit {
         if(this.last_page <= 0){
             this.last_page = 1;
         }
+        console.log('temlist');
+        console.log(this.temp_list);
     }
 
     next(){
@@ -70,9 +84,25 @@ export class ReviewsComponent implements OnInit {
         }
     }
 
+    get_reviews() {
+        let reviewItem = new Item(this.http);
+        reviewItem.itemid = this.itemid;
+        reviewItem.get_ratings().subscribe(
+            res => {
+                if(res != []) {
+                    this.reviews = res;
+                    this.list = this.reviews;
+                }
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
     add_review() {
         if (this.reviewTextModel !== '' && this.reviewTextModel != undefined) {
-            console.log(this.reviewTextModel);   
+            console.log(this.reviewTextModel + ' :for: ' + this.itemModel.itemid);   
             console.log(this.form.value['myRatingControl']);
             this.itemModel.ratingavg = parseInt(this.form.value['myRatingControl'], 10);
             this.itemModel.ratingtext = this.reviewTextModel;
