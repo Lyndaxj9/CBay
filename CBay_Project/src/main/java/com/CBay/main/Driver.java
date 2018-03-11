@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.CBay.beans.Image;
 import com.CBay.beans.Item;
+import com.CBay.beans.Transactions;
 import com.CBay.beans.User;
 import com.CBay.service.ItemService;
 import com.CBay.service.OrderService;
@@ -147,6 +148,12 @@ public class Driver {
 
 		//ItemService.createItem(10000, "Tv", "Samsung Tv", 200.53, 10);
 
+
+		for(Transactions tran : OrderService.getAllTransactionsBySeller(10000)) {
+			
+			System.out.println(tran.getId());
+		}
+		
 		
 		System.exit(0);
 	}

@@ -14,6 +14,8 @@ import {TransactionsComponent} from './components/transactions/transactions.comp
 import {ReviewsComponent} from './components/reviews/reviews.component';
 import {CarttempComponent} from './components/carttemp/carttemp.component';
 import {OrderComponent} from './components/order/order.component';
+import {ModeratorsComponent} from './components/moderators/moderators.component';
+import {SellersComponent} from './components/sellers/sellers.component';
 
 export const appRoutes: Routes = [
     {
@@ -67,12 +69,20 @@ export const appRoutes: Routes = [
     {
         path: 'list/orders',
         component: OrderComponent
-    }
-    /*
+    },
     {
-      path: 'list/cart',
+      path: 'list/carts',
       component:CarttempComponent
     },
+  {
+    path: 'list/moderators',
+    component:ModeratorsComponent
+  },
+  {
+    path: 'list/sellers',
+    component:SellersComponent
+  }
+  /*
     {
       path:'list/order',
       component:OrderComponent

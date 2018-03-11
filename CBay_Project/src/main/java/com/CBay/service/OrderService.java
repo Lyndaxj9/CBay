@@ -117,4 +117,12 @@ public class OrderService {
 		return orderId;
 	}
 	
+	public static List<Transactions> getAllTransactionsBySeller(Integer Seller) {
+		
+		OrderDao dao = new OrderDao();
+		return dao.getAllTransactionsBySellerId(Seller);
+		
+		
+	}
+	
 }

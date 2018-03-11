@@ -244,6 +244,36 @@ public class OrderDao {
 			return trans;
 				
 	}
+
+	public List<Transactions> getAllTransactionsBySellerId(Integer sellerId) {
+		
+		List<Transactions> trans = null;
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try{	
+			tx = session.beginTransaction();
+			
+			String hql = "FROM Transactions WHERE SellerId = :ID AND Status != 'In-Cart' ";
+			Query query = session.createQuery(hql);
+			query.setParameter("ID", sellerId);
+			trans = query.list();
+			
+			return trans;
+			
+		}catch(HibernateException e){
+			if(tx!=null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+		
+		
+		
 	
 	
 
