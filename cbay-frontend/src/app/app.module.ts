@@ -26,6 +26,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CarttempComponent } from './components/carttemp/carttemp.component';
 import { OrderComponent } from './components/order/order.component';
 import { ItemsoldComponent } from './components/itemsold/itemsold.component';
+import { SellersComponent } from './components/sellers/sellers.component';
+import { ModeratorsComponent } from './components/moderators/moderators.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { ItemsoldComponent } from './components/itemsold/itemsold.component';
     ReviewsComponent,
     CarttempComponent,
     OrderComponent,
-    ItemsoldComponent
+    ItemsoldComponent,
+    SellersComponent,
+    ModeratorsComponent
   ],
   imports: [
     BrowserModule,
