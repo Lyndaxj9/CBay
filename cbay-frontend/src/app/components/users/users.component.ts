@@ -26,6 +26,9 @@ export class UsersComponent  implements OnInit {
 
   view_user(l) {
     console.log(l);
+    this.router.navigate(['profile/', l.id]).catch(error => {
+      console.log(error);
+    });
   }
 
   ngOnInit() {
