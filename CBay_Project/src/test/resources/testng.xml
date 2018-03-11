@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CBaySuite">
+
+    <test thread-count="5" name="TestWithGroups">
+    <groups>
+    	<run>
+    		<exclude name="Excluded"></exclude>
+    		<include name="setup"></include>
+    		<include name="teardown"></include>
+    		<include name="Included"></include>
+    	</run>
+    </groups>
+    
+    <classes>
+      <class name="com.TestNG.CBayDriver"/>
+    </classes>
+  </test>
+  
+</suite> 
