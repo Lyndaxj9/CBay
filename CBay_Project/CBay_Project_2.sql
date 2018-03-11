@@ -200,7 +200,7 @@ CREATE SEQUENCE ITEM_RATING_ID_SEQ
     
 commit;
 
-delete from CLIENT WHERE UserId = 10123;
+delete from CLIENT WHERE UserId = 10124;
 delete from CLIENT WHERE UserId = 10122;
 
 
@@ -236,5 +236,6 @@ MODIFY Price NUMBER(9,2);
 
 --Update CLIENT set RatingAvg = 0 Where UserId = 10000;
 
+Select * FROM TRANSACTIONS SellerID = 1000 AND Status != 'In-Cart';
 
 --select USER_ID_SEQ.nextval from dual;
