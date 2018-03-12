@@ -12,9 +12,9 @@ import {Url} from '../../shared/models/url';
 })
 export class CarttempComponent implements OnInit {
 
-  private list: Post[];
+  list: any[];
   is_item_display: boolean;
-  private temp_list: Post[];
+  temp_list: any[];
   max_number_of_items_on_a_page = 6;
   current_page = 1;
   last_page = 1;

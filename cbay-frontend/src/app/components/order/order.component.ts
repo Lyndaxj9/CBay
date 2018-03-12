@@ -8,7 +8,6 @@ import { Message } from '../../shared/models/message';
 import {Url} from '../../shared/models/url';
 import { Title } from '@angular/platform-browser';
 
-
 @Component({
     selector: 'app-order',
     templateUrl: './order.component.html',
@@ -17,7 +16,7 @@ import { Title } from '@angular/platform-browser';
 
 export class OrderComponent implements OnInit {
 
-    private list = [];
+    list = [];
     is_item_display: boolean;
     private temp_list: Post[];
     max_number_of_items_on_a_page = 6;
